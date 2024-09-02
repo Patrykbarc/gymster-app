@@ -10,6 +10,7 @@ import { ErrorPage } from './routes/(logged)/ErrorPage/ErrorPage.tsx'
 import { Planner } from './routes/(logged)/Planner/Planner.tsx'
 import { Workout } from './routes/(logged)/Workout/Workout.tsx'
 import { Login } from './routes/Login/Login.tsx'
+import { Register } from './routes/Register/Register.tsx'
 import './styles/index.css'
 import './styles/reset.css'
 import { theme } from './styles/theme.ts'
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path: '/register',
+    element: <Register />,
   },
   {
     path: '/',

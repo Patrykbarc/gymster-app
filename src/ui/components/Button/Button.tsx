@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components'
 
-const buttonVariants = {
+interface ButtonProps {
+  $variant?: 'primary' | 'secondary' | 'success' | 'danger'
+}
+
+const variantStyles = {
   primary: css`
     background: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.light};
@@ -19,7 +23,7 @@ const buttonVariants = {
   `,
 }
 
-export const Button = styled.button<{ $variant: keyof typeof buttonVariants }>`
+export const Button = styled.button<ButtonProps>`
   padding: ${({ theme }) => theme.spacing.small};
   font-size: ${({ theme }) => theme.fontSizes.medium};
   border: none;
@@ -28,7 +32,7 @@ export const Button = styled.button<{ $variant: keyof typeof buttonVariants }>`
   cursor: pointer;
   display: inline-block;
 
-  ${({ $variant }) => buttonVariants[$variant] || buttonVariants.primary}
+  ${({ $variant = 'primary' }) => variantStyles[$variant]}
 
   &:hover {
     opacity: 0.9;

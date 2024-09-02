@@ -2,12 +2,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
-import { Button } from '../components/Button/Button'
-import { Form } from '../components/Form/Form/Form'
-import { FormError } from '../components/Form/FormError/FormError'
-import { FormTitle } from '../components/Form/FormTitle/FormTitle'
-import { Input } from '../components/Input/Input'
-import { Wrapper } from '../components/Wrapper/Wrapper'
+import { Button } from '../../components/Button/Button'
+import { Form } from '../../components/Form/Form/Form'
+import { FormError } from '../../components/Form/FormError/FormError'
+import { FormField } from '../../components/Form/FormField/FormField'
+import { FormTitle } from '../../components/Form/FormTitle/FormTitle'
+import { Wrapper } from '../../components/Wrapper/Wrapper'
 import { FORM_SCHEMA } from './helpers/form-schema'
 import { handleLogin } from './helpers/handleLogin'
 
@@ -25,7 +25,6 @@ export function LoginForm() {
     resolver: zodResolver(FORM_SCHEMA),
     defaultValues: { email: '', password: '' },
   })
-  console.log(errors)
 
   async function submitForm({ email, password }: FormData) {
     handleLogin({ loginData: { email, password }, setError, router })
@@ -35,23 +34,36 @@ export function LoginForm() {
     <Wrapper height="100dvh">
       <Form onSubmit={handleSubmit(submitForm)}>
         <FormTitle>Login to continue</FormTitle>
-        <Input
+
+        <FormField
+          label="Email"
           id="email"
           type="email"
           placeholder="Enter your email address"
-          {...register('email', {
-            pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+          inputProps={register('email', {
+            pattern: {
+              value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+              message: 'Invalid email address',
+            },
           })}
+          error={errors.email?.message}
+          isError={!!errors.email}
         />
-        <FormError error={errors.email?.message} />
-        <Input
+
+        <FormField
+          label="Password"
           id="password"
           type="password"
           placeholder="Enter password"
-          {...register('password', { required: 'Password is required' })}
+          inputProps={register('password', {
+            required: 'Password is required',
+          })}
+          error={errors.password?.message}
+          isError={!!errors.password}
         />
 
-        <FormError error={errors.root?.message} />
+        {errors.root && <FormError error={errors.root.message} />}
+
         <Button type="submit" $variant="primary">
           Login
         </Button>
