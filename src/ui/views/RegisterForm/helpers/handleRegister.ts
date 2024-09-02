@@ -2,29 +2,35 @@ import { UseFormSetError } from 'react-hook-form'
 import { NavigateFunction } from 'react-router-dom'
 import { z } from 'zod'
 import { supabase } from '../../../../api/supabase'
-import { FORM_SCHEMA } from './form-schema'
+import { REGISTER_SCHEMA } from './register-schema'
 
-type FormSchema = z.infer<typeof FORM_SCHEMA>
+type FormSchema = z.infer<typeof REGISTER_SCHEMA>
 
-type HandleLoginArgs = {
-  loginData: FormSchema
+type HandleRegisterArgs = {
+  registerData: FormSchema
   setError: UseFormSetError<FormSchema>
   router: NavigateFunction
 }
 
-export async function handleLogin({
-  loginData,
+export async function handleRegister({
+  registerData,
   setError,
   router,
-}: HandleLoginArgs) {
+}: HandleRegisterArgs) {
   try {
-    const { email, password } = loginData
+    const { email, password, firstName, lastName } = registerData
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { error, data } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          first_name: firstName,
+          last_name: lastName,
+        },
+      },
     })
-
+    console.log(error, data)
     if (error) {
       setError('root', {
         type: 'custom',

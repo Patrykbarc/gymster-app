@@ -1,25 +1,32 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 import { Button } from '../../components/Button/Button'
 import { Form } from '../../components/Form/Form/Form'
+import { FormError } from '../../components/Form/FormError/FormError'
 import { FormField } from '../../components/Form/FormField/FormField'
 import { FormTitle } from '../../components/Form/FormTitle/FormTitle'
 import { Wrapper } from '../../components/Wrapper/Wrapper'
+import { handleRegister } from './helpers/handleRegister'
 import { REGISTER_SCHEMA } from './helpers/register-schema'
 
 type FormData = z.infer<typeof REGISTER_SCHEMA>
 
 export function RegisterForm() {
+  const router = useNavigate()
+
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(REGISTER_SCHEMA),
     mode: 'onBlur',
     defaultValues: {
-      username: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -27,9 +34,8 @@ export function RegisterForm() {
   })
 
   function submitRegister(data: FormData) {
-    console.log(data)
+    handleRegister({ registerData: data, setError, router })
   }
-  console.log(errors)
 
   return (
     <Wrapper height="100dvh">
@@ -37,11 +43,19 @@ export function RegisterForm() {
         <FormTitle>Join GymsterApp</FormTitle>
 
         <FormField
-          label="Username"
-          id="username"
-          inputProps={register('username')}
-          error={errors.username?.message}
-          isError={!!errors.username}
+          label="First name"
+          id="firstName"
+          inputProps={register('firstName')}
+          error={errors.firstName?.message}
+          isError={!!errors.firstName}
+        />
+
+        <FormField
+          label="Last name"
+          id="lastName"
+          inputProps={register('lastName')}
+          error={errors.lastName?.message}
+          isError={!!errors.firstName}
         />
 
         <FormField
@@ -70,6 +84,8 @@ export function RegisterForm() {
           error={errors.confirmPassword?.message}
           isError={!!errors.confirmPassword}
         />
+
+        <FormError error={errors.root?.message} />
 
         <Button type="submit">Register</Button>
       </Form>

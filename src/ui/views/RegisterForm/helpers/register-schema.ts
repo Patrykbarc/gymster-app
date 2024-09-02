@@ -2,9 +2,12 @@ import { z } from 'zod'
 
 export const REGISTER_SCHEMA = z
   .object({
-    username: z
+    firstName: z
       .string()
-      .min(5, { message: 'Must be at least 5 characters long' }),
+      .min(2, { message: 'Must be at least 2 characters long' }),
+    lastName: z
+      .string()
+      .min(2, { message: 'Must be at least 2 characters long' }),
     email: z.string().email({ message: 'Invalid email format' }),
     password: z
       .string()
