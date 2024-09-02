@@ -7,6 +7,7 @@ import { Form } from '../../components/Form/Form/Form'
 import { FormError } from '../../components/Form/FormError/FormError'
 import { FormField } from '../../components/Form/FormField/FormField'
 import { FormTitle } from '../../components/Form/FormTitle/FormTitle'
+import { Link } from '../../components/Link/Link'
 import { Wrapper } from '../../components/Wrapper/Wrapper'
 import { FORM_SCHEMA } from './helpers/form-schema'
 import { handleLogin } from './helpers/handleLogin'
@@ -67,6 +68,9 @@ export function LoginForm() {
         <Button type="submit" $variant="primary">
           Login
         </Button>
+        <Link to="/register" $textAlign="end">
+          Create account
+        </Link>
       </Form>
     </Wrapper>
   )

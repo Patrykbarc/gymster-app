@@ -7,6 +7,7 @@ import { Form } from '../../components/Form/Form/Form'
 import { FormError } from '../../components/Form/FormError/FormError'
 import { FormField } from '../../components/Form/FormField/FormField'
 import { FormTitle } from '../../components/Form/FormTitle/FormTitle'
+import { Link } from '../../components/Link/Link'
 import { Wrapper } from '../../components/Wrapper/Wrapper'
 import { handleRegister } from './helpers/handleRegister'
 import { REGISTER_SCHEMA } from './helpers/register-schema'
@@ -88,6 +89,7 @@ export function RegisterForm() {
         <FormError error={errors.root?.message} />
 
         <Button type="submit">Register</Button>
+        <Link to="/login" $textAlign='end'>Already registered?</Link>
       </Form>
     </Wrapper>
   )

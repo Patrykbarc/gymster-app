@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 
 interface ButtonProps {
-  $variant?: 'primary' | 'secondary' | 'success' | 'danger'
+  $variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'link'
 }
 
 const variantStyles = {
@@ -20,6 +20,10 @@ const variantStyles = {
   danger: css`
     background: ${({ theme }) => theme.colors.danger};
     color: ${({ theme }) => theme.colors.light};
+  `,
+  link: css`
+    background: none;
+    padding: 0;
   `,
 }
 
