@@ -11,7 +11,13 @@ type LinkProps = {
 }
 
 const LinkContainer = styled(NavLink)<{ $textAlign: AlignProps }>`
-  text-align: ${({ $textAlign }) => $textAlign || 'start'};
+  text-align: ${({ $textAlign }) => $textAlign ?? 'start'};
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.text};
+
+  &:hover {
+    opacity: 0.65;
+  }
 `
 
 export function Link({ to, children, $textAlign = 'start' }: LinkProps) {

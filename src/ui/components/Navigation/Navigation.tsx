@@ -1,10 +1,14 @@
-import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+import { Link } from '../Link/Link'
 
 const NavigationContainer = styled.div`
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: ${({ theme }) => theme.spacing.medium};
+
+  padding: ${({ theme }) => theme.spacing.xl};
+  background: ${({ theme }) => theme.colors.secondary};
+
   text-transform: capitalize;
 `
 
@@ -31,9 +35,9 @@ export function Navigation() {
   return (
     <NavigationContainer>
       {navigationLinks.map((link) => (
-        <NavLink key={link.name} to={link.href}>
+        <Link key={link.name} to={link.href}>
           {link.name}
-        </NavLink>
+        </Link>
       ))}
     </NavigationContainer>
   )
