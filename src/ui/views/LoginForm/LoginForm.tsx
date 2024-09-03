@@ -32,7 +32,7 @@ export function LoginForm() {
   }
 
   return (
-    <Wrapper height="100dvh">
+    <Wrapper $height="100dvh">
       <Form onSubmit={handleSubmit(submitForm)}>
         <FormTitle>Login to continue</FormTitle>
 

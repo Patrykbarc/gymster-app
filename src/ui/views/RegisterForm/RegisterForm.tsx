@@ -39,7 +39,7 @@ export function RegisterForm() {
   }
 
   return (
-    <Wrapper height="100dvh">
+    <Wrapper $height="100dvh">
       <Form onSubmit={handleSubmit(submitRegister)}>
         <FormTitle>Join GymsterApp</FormTitle>
 
@@ -89,7 +89,9 @@ export function RegisterForm() {
         <FormError error={errors.root?.message} />
 
         <Button type="submit">Register</Button>
-        <Link to="/login" $textAlign='end'>Already registered?</Link>
+        <Link to="/login" $textAlign="end">
+          Already registered?
+        </Link>
       </Form>
     </Wrapper>
   )

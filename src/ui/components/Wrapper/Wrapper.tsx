@@ -1,7 +1,8 @@
+import { Property } from 'csstype'
 import styled from 'styled-components'
 
 type WrapperProps = {
-  height?: string
+  $height?: Property.Height
 }
 
 export const Wrapper = styled.div<WrapperProps>`
@@ -12,8 +13,8 @@ export const Wrapper = styled.div<WrapperProps>`
   justify-content: center;
 
   max-width: 1250px;
-  height: ${({ height }) => height || 'auto'};
+  height: ${({ $height }) => $height ?? 'auto'};
 
   margin: auto;
-  padding: 0, ${({ theme }) => theme.spacing.xl};
+  padding: 0 ${({ theme }) => theme.spacing.xl};
 `
