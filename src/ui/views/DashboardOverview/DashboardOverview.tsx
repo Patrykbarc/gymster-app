@@ -1,5 +1,9 @@
 import { TotalProgressOverview } from './TotalProgressOverview/TotalProgressOverview'
 
 export function DashboardOverview() {
-  return <TotalProgressOverview />
+  return (
+    <section>
+      <TotalProgressOverview />
+    </section>
+  )
 }
