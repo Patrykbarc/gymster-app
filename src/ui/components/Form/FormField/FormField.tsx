@@ -1,8 +1,9 @@
 import { HTMLInputTypeAttribute } from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
-import styled from 'styled-components'
 import { Input } from '../../Input/Input'
-import { FormError } from '../FormError/FormError'
+import { FormError, TextPosition } from '../FormError/FormError'
+import { FormItemsContainer } from './FormItemsContainer/FormItemsContainer'
+import { InputContainer, InputVariant } from './InputContainer/InputContainer'
 
 type FormFieldProps = {
   label: string
@@ -12,13 +13,9 @@ type FormFieldProps = {
   placeholder?: string
   error?: string
   isError: boolean
+  $direction?: InputVariant
+  $errorPosition?: TextPosition
 }
-
-export const FormItemsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.medium};
-`
 
 export function FormField({
   label,
@@ -28,18 +25,22 @@ export function FormField({
   placeholder,
   error,
   isError,
+  $direction = 'vertical',
+  $errorPosition = 'left',
 }: FormFieldProps) {
   return (
     <FormItemsContainer>
-      <label htmlFor={id}>{label}</label>
-      <Input
-        id={id}
-        type={type}
-        {...inputProps}
-        $isError={isError}
-        placeholder={placeholder}
-      />
-      {error && <FormError error={error} />}
+      <InputContainer $direction={$direction}>
+        <label htmlFor={id}>{label}</label>
+        <Input
+          id={id}
+          type={type}
+          {...inputProps}
+          $isError={isError}
+          placeholder={placeholder}
+        />
+      </InputContainer>
+      {error && <FormError error={error} $errorPosition={$errorPosition} />}
     </FormItemsContainer>
   )
 }

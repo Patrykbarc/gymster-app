@@ -12,9 +12,8 @@ export const Wrapper = styled.div<WrapperProps>`
   align-items: center;
   justify-content: center;
 
-  max-width: 1250px;
-  height: ${({ $height }) => $height ?? 'auto'};
-
   margin: auto;
-  padding: 0 ${({ theme }) => theme.spacing.xl};
+  max-width: 1600px;
+  height: ${({ $height }) => $height ?? 'auto'};
+  padding: ${({ theme }) => theme.spacing.xl};
 `

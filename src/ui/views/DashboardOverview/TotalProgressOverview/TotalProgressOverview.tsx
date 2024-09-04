@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Card } from '../../../components/Card/Card'
+import { StatisticsCard } from '../../../components/StatisticsCard/StatisticsCard'
 import { MOCKED_OVERVIEW_DATA } from './helpers/mocked-overview-data'
 
 const TotalProgressOverviewContainer = styled.div`
@@ -21,14 +21,14 @@ export function TotalProgressOverview() {
   return (
     <TotalProgressOverviewContainer>
       {MOCKED_OVERVIEW_DATA.map((item) => (
-        <Card
+        <StatisticsCard
           key={item.title}
           title={item.title}
           icon={item.icon}
           statistic={item.statistic}
         >
           {item.text}
-        </Card>
+        </StatisticsCard>
       ))}
     </TotalProgressOverviewContainer>
   )

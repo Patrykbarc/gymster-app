@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Link } from '../Link/Link'
 
-const NavigationContainer = styled.div`
+const NavigationContainer = styled.nav`
   display: flex;
   justify-content: center;
   gap: ${({ theme }) => theme.spacing.medium};

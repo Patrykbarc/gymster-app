@@ -1,10 +1,14 @@
+import { Property } from 'csstype'
 import styled from 'styled-components'
 
 type InputProps = {
   $isError?: boolean
+  $width?: Property.Height
 }
 
 export const Input = styled.input<InputProps>`
+  width: 100%;
+
   border-radius: ${({ theme }) => theme.borderRadius.small};
   padding: ${({ theme }) => theme.spacing.medium};
   border: 1px solid ${({ theme }) => theme.colors.secondary};

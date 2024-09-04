@@ -1,14 +1,6 @@
-import { ReactNode } from 'react'
 import styled from 'styled-components'
 
-type CardProps = {
-  title: string
-  statistic: string
-  children: ReactNode
-  icon?: string | ReactNode
-}
-
-const CardContainer = styled.div`
+export const Card = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -18,7 +10,7 @@ const CardContainer = styled.div`
 
   border: 1px solid ${({ theme }) => theme.colors.secondary};
   border-radius: ${({ theme }) => theme.borderRadius.medium};
-  padding: ${({ theme }) => theme.spacing.large};
+  padding: ${({ theme }) => theme.spacing.xl};
   box-shadow: ${({ theme }) => theme.shadows.small};
 
   h3 {
@@ -26,23 +18,3 @@ const CardContainer = styled.div`
     font-weight: bold;
   }
 `
-
-const TitleContainer = styled.p`
-  display: flex;
-  justify-content: space-between;
-
-  width: 100%;
-`
-
-export function Card({ title, statistic, children, icon }: CardProps) {
-  return (
-    <CardContainer>
-      <TitleContainer>
-        {title}
-        <span>{icon}</span>
-      </TitleContainer>
-      <h3>{statistic}</h3>
-      {children}
-    </CardContainer>
-  )
-}
