@@ -13,7 +13,7 @@ export const Wrapper = styled.div<WrapperProps>`
   justify-content: center;
 
   margin: auto;
-  max-width: 1600px;
+  max-width: 1150px;
   height: ${({ $height }) => $height ?? 'auto'};
   padding: ${({ theme }) => theme.spacing.xl};
 `
