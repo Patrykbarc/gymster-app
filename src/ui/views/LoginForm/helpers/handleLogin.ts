@@ -30,10 +30,10 @@ export async function handleLogin({
         type: 'custom',
         message: error.message,
       })
-      return
+      return router('/login')
+    } else {
+      return router('/dashboard')
     }
-
-    router('/dashboard')
   } catch (err) {
     setError('root', {
       type: 'custom',

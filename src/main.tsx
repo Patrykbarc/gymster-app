@@ -14,6 +14,7 @@ import { Workout } from './routes/(logged)/Workout/Workout.tsx'
 import './styles/index.css'
 import './styles/reset.css'
 import { theme } from './styles/theme.ts'
+import { SessionProvider } from './utils/providers/SessionProvider.tsx'
 
 const queryClient = new QueryClient()
 
@@ -55,7 +56,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <SessionProvider>
+          <RouterProvider router={router} />
+        </SessionProvider>
       </QueryClientProvider>
     </ThemeProvider>
   </StrictMode>

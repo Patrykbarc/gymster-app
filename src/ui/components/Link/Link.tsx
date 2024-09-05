@@ -10,7 +10,7 @@ type LinkProps = {
   $textAlign?: AlignProps
 }
 
-const LinkContainer = styled(NavLink)<{ $textAlign: AlignProps }>`
+export const LinkContainer = styled(NavLink)<{ $textAlign: AlignProps }>`
   text-align: ${({ $textAlign }) => $textAlign ?? 'start'};
   font-weight: 600;
   color: ${({ theme }) => theme.colors.text};

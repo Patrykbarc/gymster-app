@@ -3,13 +3,15 @@ import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import { z } from 'zod'
 import { supabase } from '../../../api/supabase'
-import { useSession } from '../../../utils/hooks/useSession'
 import { Button } from '../../components/Button/Button'
 import { Form } from '../../components/Form/Form/Form'
 import { FormField } from '../../components/Form/FormField/FormField'
 import { FormTitle } from '../../components/Form/FormTitle/FormTitle'
 
-type SubmitFormWorkout = z.infer<typeof PLANNER_FORM_SCHEMA>
+type SubmitFormWorkout = { workout: string; workoutDate: string }
+type PlannerFormProps = {
+  userId: string
+}
 
 const PLANNER_FORM_SCHEMA = z.object({
   workout: z.string().min(3, { message: 'Workout must be named' }),
@@ -26,9 +28,7 @@ const PlannerFormContainer = styled.div`
   gap: ${({ theme }) => theme.spacing.xl};
 `
 
-export function PlannerForm() {
-  const { session } = useSession()
-
+export function PlannerForm({ userId }: PlannerFormProps) {
   const {
     register,
     handleSubmit,
@@ -40,12 +40,21 @@ export function PlannerForm() {
   })
 
   async function submitForm({ workout, workoutDate }: SubmitFormWorkout) {
+    const dateObject = new Date(workoutDate)
+
+    if (isNaN(dateObject.getTime())) {
+      console.error('Invalid date format')
+      return
+    }
+
+    const formattedDate = dateObject.toISOString().split('T')[0]
+
     const { data, error } = await supabase
       .from('planned_workouts')
       .upsert({
-        user_id: session.id,
+        user_id: userId,
         workout_name: workout,
-        workout_date: workoutDate,
+        workout_date: formattedDate,
       })
       .select()
 
@@ -53,7 +62,6 @@ export function PlannerForm() {
     console.log(error)
   }
 
-  console.log(session.id)
   return (
     <PlannerFormContainer>
       <Form onSubmit={handleSubmit(submitForm)}>

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
+import { handleSignOut } from '../../../api/handleSignOut'
 import { Link } from '../Link/Link'
+import { NAVIGATION_LINKS } from './helpers/navigation-links'
 
 const NavigationContainer = styled.nav`
   display: flex;
@@ -12,33 +14,25 @@ const NavigationContainer = styled.nav`
   text-transform: capitalize;
 `
 
-const navigationLinks = [
-  {
-    name: 'dashboard',
-    href: '/dashboard',
-  },
-  {
-    name: 'workout',
-    href: '/workout',
-  },
-  {
-    name: 'planner',
-    href: '/planner',
-  },
-  {
-    name: 'calendar',
-    href: '/calendar',
-  },
-]
+const Signout = styled.a`
+  cursor: pointer;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.text};
+
+  &:hover {
+    opacity: 0.65;
+  }
+`
 
 export function Navigation() {
   return (
     <NavigationContainer>
-      {navigationLinks.map((link) => (
+      {NAVIGATION_LINKS.map((link) => (
         <Link key={link.name} to={link.href}>
           {link.name}
         </Link>
       ))}
+      <Signout onClick={handleSignOut}>Sign out</Signout>
     </NavigationContainer>
   )
 }

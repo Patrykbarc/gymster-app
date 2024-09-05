@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import styled from 'styled-components'
 import { usePortal } from '../../../utils/hooks/usePortal'
+import { useSession } from '../../../utils/hooks/useSession'
 import { PlannerForm } from '../../views/PlannerForm/PlannerForm'
 import { Button } from '../Button/Button'
 import { Card } from '../Card/Card'
@@ -30,6 +31,7 @@ const WORKOUTS_PLACEHOLDER = [
 export function ScheduledWorkouts() {
   const [isPlannerFormVisible, setIsPlannerFormVisible] = useState(false)
   const portalTarget = usePortal()
+  const { session } = useSession()
 
   function handlePlannerClose() {
     setIsPlannerFormVisible(false)
@@ -52,7 +54,7 @@ export function ScheduledWorkouts() {
       {isPlannerFormVisible &&
         createPortal(
           <Modal onClose={handlePlannerClose}>
-            <PlannerForm />
+            <PlannerForm userId={session.id} />
           </Modal>,
           portalTarget
         )}

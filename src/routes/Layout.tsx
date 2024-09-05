@@ -1,8 +1,6 @@
-import { ReactNode } from 'react'
+import { Children } from '../types/Children'
 
-type LayoutProps = {
-  children: ReactNode
-}
+type LayoutProps = Children
 
 export function Layout({ children }: LayoutProps) {
   return <>{children}</>
