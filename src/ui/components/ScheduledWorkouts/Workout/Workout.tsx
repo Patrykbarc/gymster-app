@@ -1,19 +1,29 @@
-import { Trash2Icon } from 'lucide-react'
 import styled from 'styled-components'
-import { Icon } from '../../Icon/Icon'
+import { Link } from '../../Link/Link'
+import { Actions } from './Actions/Actions'
+
+type WorkoutProps = {
+  name: string
+  date: string
+}
 
 const WorkoutContainer = styled.div`
   display: flex;
   justify-content: space-between;
   border-top: 2px solid ${({ theme }) => theme.colors.light};
-  padding-top: ${({ theme }) => theme.spacing.large};
-  margin-bottom: ${({ theme }) => theme.spacing.medium};
+  padding-block: ${({ theme }) => theme.spacing.medium};
+  padding-inline: ${({ theme }) => theme.spacing.large};
+
+  transition: background-color ${({ theme }) => theme.transitions.quick};
 
   h3 {
     font-size: ${({ theme }) => theme.fontSizes.large};
     margin-bottom: ${({ theme }) => theme.spacing.small};
   }
 
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.light};
+  }
   &:first-of-type {
     border-top: none;
   }
@@ -22,17 +32,16 @@ const WorkoutContainer = styled.div`
   }
 `
 
-export function Workout() {
+export function Workout({ name, date }: WorkoutProps) {
   return (
     <WorkoutContainer>
       <div>
-        <h3>June 15, 2023</h3>
-        <h2>Upper Body Strength</h2>
+        <Link to="workout-id">
+          <h3>{name}</h3>
+        </Link>
+        <h2>{date}</h2>
       </div>
-
-      <Icon>
-        <Trash2Icon />
-      </Icon>
+      <Actions />
     </WorkoutContainer>
   )
 }
