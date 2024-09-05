@@ -7,9 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "lint:fix": "prettier . --write && next lint",
     "preview": "vite preview",
-    "generate-types": "npx supabase gen types --lang=typescript --project-id gtaxqikwkerelzdmlojc --schema public > src/types/database.types.ts",
-    "lint:css": "stylelint ./src/**/*.tsx"
+    "generate-types": "npx supabase gen types --lang=typescript --project-id gtaxqikwkerelzdmlojc --schema public > src/types/database.types.ts"
   },
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
