@@ -2,10 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import { z } from 'zod'
+import { Button } from '../../components/Button/Button'
 import { Form } from '../../components/Form/Form/Form'
 import { FormField } from '../../components/Form/FormField/FormField'
 import { FormTitle } from '../../components/Form/FormTitle/FormTitle'
-import { ScheduledWorkouts } from '../../components/ScheduledWorkouts/ScheduledWorkouts'
 
 const PLANNER_FORM_SCHEMA = z.object({
   workout: z.string().min(3, { message: 'Workout must be named' }),
@@ -18,7 +18,7 @@ const PLANNER_FORM_SCHEMA = z.object({
 
 const PlannerFormContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
   gap: ${({ theme }) => theme.spacing.xl};
 `
 
@@ -33,11 +33,10 @@ export function PlannerForm() {
     defaultValues: { workout: '', workoutDate: '' },
   })
 
-  function submitForm(e) {
-    console.log(e)
+  function submitForm(data) {
+    console.log(data)
   }
 
-  console.log(errors)
   return (
     <PlannerFormContainer>
       <Form onSubmit={handleSubmit(submitForm)}>
@@ -67,9 +66,9 @@ export function PlannerForm() {
             $errorPosition="right"
           />
         </div>
-      </Form>
 
-      <ScheduledWorkouts />
+        <Button>Schedule workout</Button>
+      </Form>
     </PlannerFormContainer>
   )
 }

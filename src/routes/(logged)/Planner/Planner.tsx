@@ -1,10 +1,20 @@
+import styled from 'styled-components'
 import { Main } from '../../../ui/components/Main/Main'
-import { PlannerForm } from '../../../ui/views/PlannerForm/PlannerForm'
+import { ScheduledWorkouts } from '../../../ui/components/ScheduledWorkouts/ScheduledWorkouts'
+
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.xxl};
+  width: 100%;
+`
 
 export function Planner() {
   return (
     <Main>
-      <PlannerForm />
+      <MainContainer>
+        <ScheduledWorkouts />
+      </MainContainer>
     </Main>
   )
 }

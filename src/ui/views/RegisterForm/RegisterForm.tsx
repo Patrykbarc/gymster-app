@@ -40,7 +40,7 @@ export function RegisterForm() {
 
   return (
     <Wrapper $height="100dvh">
-      <Form onSubmit={handleSubmit(submitRegister)}>
+      <Form onSubmit={handleSubmit(submitRegister)} $maxWidth="25rem">
         <FormTitle>Join GymsterApp</FormTitle>
 
         <FormField

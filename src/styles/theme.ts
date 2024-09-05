@@ -47,7 +47,7 @@ export const theme = {
     large: '0 4px 8px rgba(0, 0, 0, 0.2)',
   },
   transitions: {
-    quick: '0.2s ease-in-out',
+    quick: '0.1s ease-in-out',
     normal: '0.3s ease-in-out',
     slow: '0.5s ease-in-out',
   },

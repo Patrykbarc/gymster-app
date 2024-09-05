@@ -35,6 +35,7 @@ export const Button = styled.button<ButtonProps>`
   transition: ${({ theme }) => theme.transitions.normal};
   cursor: pointer;
   display: inline-block;
+  height: fit-content;
 
   ${({ $variant = 'primary' }) => variantStyles[$variant]}
 

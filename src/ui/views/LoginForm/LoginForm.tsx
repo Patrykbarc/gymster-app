@@ -33,7 +33,7 @@ export function LoginForm() {
 
   return (
     <Wrapper $height="100dvh">
-      <Form onSubmit={handleSubmit(submitForm)}>
+      <Form onSubmit={handleSubmit(submitForm)} $maxWidth="25rem">
         <FormTitle>Login to continue</FormTitle>
 
         <FormField
