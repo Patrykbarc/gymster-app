@@ -1,12 +1,9 @@
-import { useContext } from 'react'
-import { SessionContext } from '../providers/contexts/SessionContext'
+import { useAppSelector } from './useAppSelector'
 
 export function useSession() {
-  const session = useContext(SessionContext)
-
+  const session = useAppSelector((state) => state.session)
   if (!session) {
     throw new Error('useSession hook must be used within SessionProvider')
   }
-
   return { session }
 }
