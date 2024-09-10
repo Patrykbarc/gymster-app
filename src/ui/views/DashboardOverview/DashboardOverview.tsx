@@ -1,9 +1,11 @@
+import { PlannedWorkouts } from './PlannedWorkouts/PlannedWorkouts'
 import { TotalProgressOverview } from './TotalProgressOverview/TotalProgressOverview'
 
 export function DashboardOverview() {
   return (
-    <section>
+    <div>
       <TotalProgressOverview />
-    </section>
+      <PlannedWorkouts />
+    </div>
   )
 }

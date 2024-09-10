@@ -1,26 +1,17 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
-import { z } from 'zod'
 import { supabase } from '../../../api/supabase'
 import { Button } from '../../components/Button/Button'
 import { Form } from '../../components/Form/Form/Form'
 import { FormField } from '../../components/Form/FormField/FormField'
 import { FormTitle } from '../../components/Form/FormTitle/FormTitle'
+import { PLANNER_FORM_SCHEMA } from './helpers/planner-form-schema'
 
 type SubmitFormWorkout = { workout: string; workoutDate: string }
 type PlannerFormProps = {
-  userId: string
+  userId?: string
 }
-
-const PLANNER_FORM_SCHEMA = z.object({
-  workout: z.string().min(3, { message: 'Workout must be named' }),
-  workoutDate: z.preprocess(
-    (arg) =>
-      typeof arg === 'string' || arg instanceof Date ? new Date(arg) : arg,
-    z.date({ message: 'Pick a date' })
-  ),
-})
 
 const PlannerFormContainer = styled.div`
   display: grid;

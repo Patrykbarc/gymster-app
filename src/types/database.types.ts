@@ -12,21 +12,21 @@ export type Database = {
       planned_workouts: {
         Row: {
           created_at: string
-          id: string | null
+          id: string
           user_id: string | null
           workout_date: string
           workout_name: string | null
         }
         Insert: {
           created_at?: string
-          id?: string | null
+          id?: string
           user_id?: string | null
           workout_date: string
           workout_name?: string | null
         }
         Update: {
           created_at?: string
-          id?: string | null
+          id?: string
           user_id?: string | null
           workout_date?: string
           workout_name?: string | null

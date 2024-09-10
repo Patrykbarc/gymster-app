@@ -1,10 +1,12 @@
 import styled from 'styled-components'
 import { Link } from '../../Link/Link'
+import { Workout as WorkoutTypes } from '../ScheduledWorkouts'
 import { Actions } from './Actions/Actions'
 
 type WorkoutProps = {
-  name: string
-  date: string
+  name: WorkoutTypes['workout_name']
+  date: WorkoutTypes['workout_date']
+  id: WorkoutTypes['id']
 }
 
 const WorkoutContainer = styled.div`
@@ -32,9 +34,9 @@ const WorkoutContainer = styled.div`
   }
 `
 
-export function Workout({ name, date }: WorkoutProps) {
+export function Workout({ name, date, id }: WorkoutProps) {
   return (
-    <WorkoutContainer>
+    <WorkoutContainer id={id}>
       <div>
         <Link to="workout-id">
           <h3>{name}</h3>

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { StatisticsCard } from '../../../components/StatisticsCard/StatisticsCard'
 import { MOCKED_OVERVIEW_DATA } from './helpers/mocked-overview-data'
 
-const TotalProgressOverviewContainer = styled.div`
+const TotalProgressOverviewContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { handleSignOut } from '../../../api/handleSignOut'
+import { handleSignOut } from '../../../api/signOut/handleSignOut'
 import { Link } from '../Link/Link'
 import { NAVIGATION_LINKS } from './helpers/navigation-links'
 

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
+import { useLoaderData } from 'react-router-dom'
 import styled from 'styled-components'
+import { Database } from '../../../types/database.types'
 import { usePortal } from '../../../utils/hooks/usePortal'
 import { useSession } from '../../../utils/hooks/useSession'
 import { PlannerForm } from '../../views/PlannerForm/PlannerForm'
@@ -19,16 +21,10 @@ export const ScheduledWorkoutsContainer = styled.div`
   }
 `
 
-const WORKOUTS_PLACEHOLDER = [
-  {
-    name: 'Upper Body Strength',
-    date: 'June 15, 2023',
-  },
-  { name: 'Arms training', date: 'June 17, 2023' },
-  { name: 'Legs workout', date: 'June 19, 2023' },
-]
+export type Workout = Database['public']['Tables']['planned_workouts']['Row']
 
 export function ScheduledWorkouts() {
+  const workouts = useLoaderData() as Workout[]
   const [isPlannerFormVisible, setIsPlannerFormVisible] = useState(false)
   const portalTarget = usePortal()
   const { session } = useSession()
@@ -42,8 +38,8 @@ export function ScheduledWorkouts() {
       <Card>
         <FormTitle>Scheduled Workouts</FormTitle>
         <ScheduledWorkoutsContainer>
-          {WORKOUTS_PLACEHOLDER.map((w) => (
-            <Workout key={w.name} name={w.name} date={w.date} />
+          {workouts.map((w: Workout) => (
+            <Workout key={w.id} name={w.workout_name} date={w.workout_date} id={w.id} />
           ))}
         </ScheduledWorkoutsContainer>
         <Button onClick={() => setIsPlannerFormVisible(true)}>
@@ -54,7 +50,7 @@ export function ScheduledWorkouts() {
       {isPlannerFormVisible &&
         createPortal(
           <Modal onClose={handlePlannerClose}>
-            <PlannerForm userId={session.id} />
+            <PlannerForm userId={session?.id} />
           </Modal>,
           portalTarget
         )}
