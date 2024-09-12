@@ -2,12 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
-import { addWorkout } from '../../../utils/redux/slices/workouts/workoutsSlice'
 import { Button } from '../../components/Button/Button'
 import { Form } from '../../components/Form/Form/Form'
 import { FormField } from '../../components/Form/FormField/FormField'
 import { FormTitle } from '../../components/Form/FormTitle/FormTitle'
 import { PLANNER_FORM_SCHEMA } from './helpers/planner-form-schema'
+import { submitPlannerForm } from './helpers/submitPlannerForm'
+import { WorkoutsTitles } from './WorkoutsTitles/WorkoutsTitles'
 
 type SubmitFormWorkout = { workout: string; workoutDate: string }
 type PlannerFormProps = {
@@ -23,6 +24,17 @@ const PlannerFormContainer = styled.div`
     display: grid;
     gap: ${({ theme }) => theme.spacing.xl};
   }
+
+  .form-workouts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: ${({ theme }) => theme.spacing.small};
+  }
+
+  .title {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
 `
 
 export function PlannerForm({ userId }: PlannerFormProps) {
@@ -30,7 +42,7 @@ export function PlannerForm({ userId }: PlannerFormProps) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<SubmitFormWorkout>({
     resolver: zodResolver(PLANNER_FORM_SCHEMA),
     mode: 'onBlur',
     defaultValues: { workout: '', workoutDate: '' },
@@ -38,31 +50,24 @@ export function PlannerForm({ userId }: PlannerFormProps) {
 
   const dispatch = useAppDispatch()
 
-  async function submitForm({ workout, workoutDate }: SubmitFormWorkout) {
-    const dateObject = new Date(workoutDate)
-
-    if (isNaN(dateObject.getTime())) {
-      console.error('Invalid date format')
-      return
-    }
-
-    const formattedDate = dateObject.toISOString().split('T')[0]
-
-    dispatch(
-      addWorkout({ userId, workoutName: workout, workoutDate: formattedDate })
-    )
+  function onSubmit(data: SubmitFormWorkout) {
+    submitPlannerForm({
+      workout: data.workout,
+      workoutDate: data.workoutDate,
+      userId,
+      dispatch,
+    })
   }
 
   return (
     <PlannerFormContainer>
-      <Form onSubmit={handleSubmit(submitForm)}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-fields">
           <FormTitle>Workout Planner</FormTitle>
-
           <FormField
             label="Workout"
             id="workout"
-            type="workout"
+            type="text"
             placeholder="Workout name"
             inputProps={register('workout')}
             error={errors.workout?.message}
@@ -70,7 +75,6 @@ export function PlannerForm({ userId }: PlannerFormProps) {
             $direction="horizontal"
             $errorPosition="right"
           />
-
           <FormField
             label="Date"
             id="workoutDate"
@@ -81,6 +85,40 @@ export function PlannerForm({ userId }: PlannerFormProps) {
             $direction="horizontal"
             $errorPosition="right"
           />
+
+          <div>
+            <WorkoutsTitles />
+            <div className="form-workouts">
+              <FormField
+                id="workoutDate"
+                type="number"
+                defaultValue={0}
+                min={0}
+                inputProps={register('workoutDate')}
+                error={errors.workoutDate?.message}
+                isError={!!errors.workoutDate}
+              />
+              <FormField
+                id="workoutDate"
+                type="number"
+                defaultValue={0}
+                min={0}
+                inputProps={register('workoutDate')}
+                error={errors.workoutDate?.message}
+                isError={!!errors.workoutDate}
+              />
+              <FormField
+                id="workoutDate"
+                type="number"
+                defaultValue={0}
+                min={0}
+                inputProps={register('workoutDate')}
+                error={errors.workoutDate?.message}
+                isError={!!errors.workoutDate}
+              />
+            </div>
+          </div>
+          <Button $variant="outline">Add set</Button>
         </div>
 
         <Button>Schedule workout</Button>

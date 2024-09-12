@@ -1,16 +1,14 @@
-import { HTMLInputTypeAttribute } from 'react'
+import { InputHTMLAttributes } from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
 import { Input } from '../../Input/Input'
 import { FormError, TextPosition } from '../FormError/FormError'
 import { FormItemsContainer } from './FormItemsContainer/FormItemsContainer'
 import { InputContainer, InputVariant } from './InputContainer/InputContainer'
 
-type FormFieldProps = {
-  label: string
+type FormFieldProps = InputHTMLAttributes<HTMLInputElement> & {
+  label?: string
   id: string
   inputProps: UseFormRegisterReturn
-  type?: HTMLInputTypeAttribute
-  placeholder?: string
   error?: string
   isError: boolean
   $direction?: InputVariant
@@ -27,6 +25,7 @@ export function FormField({
   isError,
   $direction = 'vertical',
   $errorPosition = 'left',
+  ...props
 }: FormFieldProps) {
   return (
     <FormItemsContainer>
@@ -38,6 +37,7 @@ export function FormField({
           {...inputProps}
           $isError={isError}
           placeholder={placeholder}
+          {...props}
         />
       </InputContainer>
       {error && <FormError error={error} $errorPosition={$errorPosition} />}

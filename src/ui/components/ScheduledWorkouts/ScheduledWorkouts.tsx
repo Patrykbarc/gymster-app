@@ -1,13 +1,20 @@
 // ScheduledWorkouts.js
 import { useEffect } from 'react'
+import styled from 'styled-components'
 import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useAppSelector } from '../../../utils/hooks/useAppSelector'
 import { selectScheduledWorkouts } from '../../../utils/redux/selectors/scheduledWorkouts'
 import { fetchWorkouts } from '../../../utils/redux/slices/workouts/workoutsSlice'
 import { PlannerForm } from '../../views/PlannerForm/PlannerForm'
+import { Card } from '../Card/Card'
 import { Modal } from '../Modal/Modal'
 import { Actions } from './Workout/Actions/Actions'
 import { Workout } from './Workout/Workout'
+
+const ScheduledWorkoutsContainer = styled(Card)`
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.large};
+`
 
 export function ScheduledWorkouts() {
   const dispatch = useAppDispatch()
@@ -25,7 +32,7 @@ export function ScheduledWorkouts() {
   if (!user) return
 
   return (
-    <div>
+    <ScheduledWorkoutsContainer>
       {workouts.map((workout) => (
         <Workout key={workout.id} {...workout}>
           <Actions workoutId={workout.id} />
@@ -35,6 +42,6 @@ export function ScheduledWorkouts() {
       <Modal buttonText="Add new workout">
         <PlannerForm userId={user.id} />
       </Modal>
-    </div>
+    </ScheduledWorkoutsContainer>
   )
 }
