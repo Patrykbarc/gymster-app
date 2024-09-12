@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 
 interface ButtonProps {
-  $variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'link'
+  $variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'link' | 'outline'
 }
 
 const variantStyles = {
@@ -24,6 +24,10 @@ const variantStyles = {
   link: css`
     background: none;
     padding: 0;
+  `,
+  outline: css`
+    background: none;
+    border: 1px solid ${({ theme }) => theme.colors.gray};
   `,
 }
 
