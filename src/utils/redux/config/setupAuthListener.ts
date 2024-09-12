@@ -1,5 +1,5 @@
 import { supabase } from '../../../api/supabase'
-import { clearSession, setSession } from '../slices/sessionSlice'
+import { clearSession, setSession } from '../slices/session/sessionSlice'
 import { AppDispatch } from '../store'
 
 export async function setupAuthListener(dispatch: AppDispatch) {

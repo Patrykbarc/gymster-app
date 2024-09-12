@@ -81,29 +81,29 @@ export const theme = {
       h1: {
         fontSize: '2em',
         fontWeight: 700,
-        lineHeight: '2.5em',
+        // lineHeight: '2.5em',
       },
       h2: {
         fontSize: '1.5em',
         fontWeight: 600,
-        lineHeight: '2em',
+        // lineHeight: '2em',
       },
       h3: {
         fontSize: '1.25em',
         fontWeight: 500,
-        lineHeight: '1.75em',
+        // lineHeight: '1.75em',
       },
     },
     body: {
       normal: {
         fontSize: '1em',
         fontWeight: 400,
-        lineHeight: '1.5em',
+        // lineHeight: '1.5em',
       },
       small: {
         fontSize: '0.875em',
         fontWeight: 400,
-        lineHeight: '1.25em',
+        // lineHeight: '1.25em',
       },
     },
   },

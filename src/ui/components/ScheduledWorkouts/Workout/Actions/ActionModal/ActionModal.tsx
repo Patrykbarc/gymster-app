@@ -1,15 +1,11 @@
-import { Dispatch, SetStateAction } from 'react'
-import { createPortal } from 'react-dom'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
-import { usePortal } from '../../../../../../utils/hooks/usePortal'
+import { useAppDispatch } from '../../../../../../utils/hooks/useAppDispatch'
+import { deleteWorkout } from '../../../../../../utils/redux/slices/workouts/workoutsSlice'
 import { Button } from '../../../../Button/Button'
 import { Form } from '../../../../Form/Form/Form'
-import { ModalBody } from '../../../../Modal/ModalBody/ModalBody'
 
 type ActionModalProps = {
-  isModalVisible: boolean
-  setIsModalVisible: Dispatch<SetStateAction<boolean>>
   workoutId: string
 }
 
@@ -17,27 +13,20 @@ const ActionModalContainer = styled(Form)`
   display: flex;
 `
 
-export function ActionModal({
-  isModalVisible,
-  setIsModalVisible,
-}: ActionModalProps) {
+export function ActionModal({ workoutId }: ActionModalProps) {
   const { handleSubmit } = useForm()
-  const portalTarget = usePortal()
+  const dispatch = useAppDispatch()
 
-  async function handleWorkoutDelete() {}
+  async function handleWorkoutDelete() {
+    dispatch(deleteWorkout(workoutId))
+  }
 
   return (
-    isModalVisible &&
-    createPortal(
-      <ModalBody onClose={() => setIsModalVisible(false)}>
-        <ActionModalContainer>
-          <Button $variant="danger" onClick={handleSubmit(handleWorkoutDelete)}>
-            Accept
-          </Button>
-          <Button $variant="outline">Cancel</Button>
-        </ActionModalContainer>
-      </ModalBody>,
-      portalTarget
-    )
+    <ActionModalContainer>
+      <Button $variant="danger" onClick={handleSubmit(handleWorkoutDelete)}>
+        Accept
+      </Button>
+      <Button $variant="outline">Cancel</Button>
+    </ActionModalContainer>
   )
 }

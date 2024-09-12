@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-interface ButtonProps {
+export type ButtonProps = {
   $variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'link' | 'outline'
 }
 

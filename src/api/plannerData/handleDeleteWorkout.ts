@@ -1,6 +1,6 @@
 import { supabase } from '../supabase'
 
-export async function deleteWorkout(workoutId: string) {
+export async function handleDeleteWorkout(workoutId: string) {
   const { data, error } = await supabase
     .from('planned_workouts')
     .delete()

@@ -1,59 +1,40 @@
-import { useState } from 'react'
-import { createPortal } from 'react-dom'
-import { useLoaderData } from 'react-router-dom'
-import styled from 'styled-components'
-import { Database } from '../../../types/database.types'
-import { usePortal } from '../../../utils/hooks/usePortal'
-import { useSession } from '../../../utils/hooks/useSession'
+// ScheduledWorkouts.js
+import { useEffect } from 'react'
+import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
+import { useAppSelector } from '../../../utils/hooks/useAppSelector'
+import { selectScheduledWorkouts } from '../../../utils/redux/selectors/scheduledWorkouts'
+import { fetchWorkouts } from '../../../utils/redux/slices/workouts/workoutsSlice'
 import { PlannerForm } from '../../views/PlannerForm/PlannerForm'
-import { Button } from '../Button/Button'
-import { Card } from '../Card/Card'
-import { FormTitle } from '../Form/FormTitle/FormTitle'
 import { Modal } from '../Modal/Modal'
+import { Actions } from './Workout/Actions/Actions'
 import { Workout } from './Workout/Workout'
 
-export const ScheduledWorkoutsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  p {
-    font-size: ${({ theme }) => theme.fontSizes.xxl};
-  }
-`
-
-export type Workout = Database['public']['Tables']['planned_workouts']['Row']
-
 export function ScheduledWorkouts() {
-  const workouts = useLoaderData() as Workout[]
-  const [isPlannerFormVisible, setIsPlannerFormVisible] = useState(false)
-  const portalTarget = usePortal()
-  const { session } = useSession()
+  const dispatch = useAppDispatch()
+  const { workouts, status, error, user } = useAppSelector(
+    selectScheduledWorkouts
+  )
 
-  function handlePlannerClose() {
-    setIsPlannerFormVisible(false)
-  }
+  useEffect(() => {
+    dispatch(fetchWorkouts())
+  }, [dispatch])
+
+  if (status === 'loading') return <p>Loading...</p>
+  if (status === 'failed') return <p>Error: {error}</p>
+
+  if (!user) return
 
   return (
-    <>
-      <Card>
-        <FormTitle>Scheduled Workouts</FormTitle>
-        <ScheduledWorkoutsContainer>
-          {workouts.map((w: Workout) => (
-            <Workout key={w.id} name={w.workout_name} date={w.workout_date} id={w.id} />
-          ))}
-        </ScheduledWorkoutsContainer>
-        <Button onClick={() => setIsPlannerFormVisible(true)}>
-          Add new workout
-        </Button>
-      </Card>
+    <div>
+      {workouts.map((workout) => (
+        <Workout key={workout.id} {...workout}>
+          <Actions workoutId={workout.id} />
+        </Workout>
+      ))}
 
-      {isPlannerFormVisible &&
-        createPortal(
-          <Modal onClose={handlePlannerClose}>
-            <PlannerForm userId={session?.id} />
-          </Modal>,
-          portalTarget
-        )}
-    </>
+      <Modal buttonText="Add new workout">
+        <PlannerForm userId={user.id} />
+      </Modal>
+    </div>
   )
 }

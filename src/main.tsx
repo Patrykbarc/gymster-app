@@ -4,7 +4,6 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
-import { getPlannerData } from './api/plannerData/getPlannerData.ts'
 import App from './App.tsx'
 import { Login } from './routes/(auth)/Login/Login.tsx'
 import { Register } from './routes/(auth)/Register/Register.tsx'
@@ -35,6 +34,11 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: '/',
+        element: <Dashboard />,
+        index: true,
+      },
+      {
         path: '/dashboard',
         element: <Dashboard />,
       },
@@ -45,7 +49,6 @@ const router = createBrowserRouter([
       {
         path: '/planner',
         element: <Planner />,
-        loader: () => getPlannerData(),
       },
       {
         path: '/calendar',

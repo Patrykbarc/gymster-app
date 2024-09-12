@@ -1,7 +1,7 @@
 import { supabase } from '../supabase'
 
-export async function getPlannerData() {
+export async function handleGetPlannedWorkouts() {
   const { data, error } = await supabase.from('planned_workouts').select()
-  console.log(data, error)
-  return data
+
+  return { data, error }
 }

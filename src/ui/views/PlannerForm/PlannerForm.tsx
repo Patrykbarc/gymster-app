@@ -1,7 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
-import { supabase } from '../../../api/supabase'
+import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
+import { addWorkout } from '../../../utils/redux/slices/workouts/workoutsSlice'
 import { Button } from '../../components/Button/Button'
 import { Form } from '../../components/Form/Form/Form'
 import { FormField } from '../../components/Form/FormField/FormField'
@@ -10,13 +11,18 @@ import { PLANNER_FORM_SCHEMA } from './helpers/planner-form-schema'
 
 type SubmitFormWorkout = { workout: string; workoutDate: string }
 type PlannerFormProps = {
-  userId?: string
+  userId: string
 }
 
 const PlannerFormContainer = styled.div`
   display: grid;
   width: 100%;
   gap: ${({ theme }) => theme.spacing.xl};
+
+  .form-fields {
+    display: grid;
+    gap: ${({ theme }) => theme.spacing.xl};
+  }
 `
 
 export function PlannerForm({ userId }: PlannerFormProps) {
@@ -30,6 +36,8 @@ export function PlannerForm({ userId }: PlannerFormProps) {
     defaultValues: { workout: '', workoutDate: '' },
   })
 
+  const dispatch = useAppDispatch()
+
   async function submitForm({ workout, workoutDate }: SubmitFormWorkout) {
     const dateObject = new Date(workoutDate)
 
@@ -40,23 +48,15 @@ export function PlannerForm({ userId }: PlannerFormProps) {
 
     const formattedDate = dateObject.toISOString().split('T')[0]
 
-    const { data, error } = await supabase
-      .from('planned_workouts')
-      .upsert({
-        user_id: userId,
-        workout_name: workout,
-        workout_date: formattedDate,
-      })
-      .select()
-
-    console.log(data)
-    console.log(error)
+    dispatch(
+      addWorkout({ userId, workoutName: workout, workoutDate: formattedDate })
+    )
   }
 
   return (
     <PlannerFormContainer>
       <Form onSubmit={handleSubmit(submitForm)}>
-        <div>
+        <div className="form-fields">
           <FormTitle>Workout Planner</FormTitle>
 
           <FormField

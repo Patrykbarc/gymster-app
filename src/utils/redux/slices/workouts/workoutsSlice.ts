@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { deleteWorkout as deleteWorkoutApi } from '../../../../api/plannerData/deleteWorkout'
-import { getPlannerData } from '../../../../api/plannerData/fetchWorkouts'
+import {
+  AddWorkoutArgs,
+  handleAddWorkout,
+} from '../../../../api/plannerData/handleAddWorkout'
+import { handleDeleteWorkout } from '../../../../api/plannerData/handleDeleteWorkout'
+import { handleGetPlannedWorkouts } from '../../../../api/plannerData/handleGetPlannedWorkouts'
 import { Database } from '../../../../types/database.types'
 
 export type PlannedWorkouts =
@@ -21,16 +25,25 @@ const initialState: WorkoutsState = {
 export const fetchWorkouts = createAsyncThunk(
   'workouts/fetchWorkouts',
   async (): Promise<PlannedWorkouts[]> => {
-    const { data, error } = await getPlannerData()
+    const { data, error } = await handleGetPlannedWorkouts()
     if (error) throw new Error(error.message)
     return data || []
+  }
+)
+
+export const addWorkout = createAsyncThunk(
+  'workouts/addWorkout',
+  async (workoutData: AddWorkoutArgs) => {
+    const { data, error } = await handleAddWorkout(workoutData)
+    if (error) throw new Error(error.message)
+    return data ? data[0] : null
   }
 )
 
 export const deleteWorkout = createAsyncThunk(
   'workouts/deleteWorkout',
   async (workoutId: string): Promise<string> => {
-    const { error } = await deleteWorkoutApi(workoutId)
+    const { error } = await handleDeleteWorkout(workoutId)
     if (error) throw new Error(error.message)
     return workoutId
   }
@@ -50,6 +63,16 @@ const workoutsSlice = createSlice({
         state.workouts = action.payload
       })
       .addCase(fetchWorkouts.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
+      .addCase(addWorkout.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        if (action.payload) {
+          state.workouts.push(action.payload)
+        }
+      })
+      .addCase(addWorkout.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.error.message
       })
