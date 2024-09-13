@@ -7,7 +7,6 @@ export function PlannedWorkouts() {
   return (
     <PlannedWorkoutsContainer>
       <FormTitle>Scheduled Workouts</FormTitle>
-      {/* <Card>asdasd</Card> */}
     </PlannedWorkoutsContainer>
   )
 }

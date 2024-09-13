@@ -8,23 +8,23 @@ import { InputContainer, InputVariant } from './InputContainer/InputContainer'
 type FormFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string
   id: string
-  inputProps: UseFormRegisterReturn
   error?: string
   isError: boolean
   $direction?: InputVariant
   $errorPosition?: TextPosition
+  register: UseFormRegisterReturn
 }
 
 export function FormField({
   label,
   id,
-  inputProps,
   type = 'text',
   placeholder,
   error,
   isError,
   $direction = 'vertical',
   $errorPosition = 'left',
+  register,
   ...props
 }: FormFieldProps) {
   return (
@@ -34,9 +34,9 @@ export function FormField({
         <Input
           id={id}
           type={type}
-          {...inputProps}
           $isError={isError}
           placeholder={placeholder}
+          {...register}
           {...props}
         />
       </InputContainer>

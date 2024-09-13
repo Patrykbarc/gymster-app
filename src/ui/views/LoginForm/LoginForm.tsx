@@ -41,7 +41,7 @@ export function LoginForm() {
           id="email"
           type="email"
           placeholder="Enter your email address"
-          inputProps={register('email', {
+          register={register('email', {
             pattern: {
               value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
               message: 'Invalid email address',
@@ -56,7 +56,7 @@ export function LoginForm() {
           id="password"
           type="password"
           placeholder="Enter password"
-          inputProps={register('password', {
+          register={register('password', {
             required: 'Password is required',
           })}
           error={errors.password?.message}

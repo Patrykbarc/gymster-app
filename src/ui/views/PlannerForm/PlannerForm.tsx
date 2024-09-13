@@ -1,61 +1,62 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import styled from 'styled-components'
+import { useFieldArray, useForm } from 'react-hook-form'
 import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { Button } from '../../components/Button/Button'
 import { Form } from '../../components/Form/Form/Form'
-import { FormField } from '../../components/Form/FormField/FormField'
 import { FormTitle } from '../../components/Form/FormTitle/FormTitle'
 import { PLANNER_FORM_SCHEMA } from './helpers/planner-form-schema'
+import { renderField } from './helpers/renderField'
 import { submitPlannerForm } from './helpers/submitPlannerForm'
+import { PlannerFormContainer } from './PlannerFormContainer/PlannerFormContainer'
+import { RenderFields } from './RenderFields/RenderFields'
 import { WorkoutsTitles } from './WorkoutsTitles/WorkoutsTitles'
 
-type SubmitFormWorkout = { workout: string; workoutDate: string }
+export type SubmitFormWorkout = {
+  info: {
+    workout: string
+    workoutDate: string
+  }
+  sets: {
+    set: number
+    weight: number
+    reps: number
+  }[]
+}
+
 type PlannerFormProps = {
   userId: string
 }
 
-const PlannerFormContainer = styled.div`
-  display: grid;
-  width: 100%;
-  gap: ${({ theme }) => theme.spacing.xl};
-
-  .form-fields {
-    display: grid;
-    gap: ${({ theme }) => theme.spacing.xl};
-  }
-
-  .form-workouts {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: ${({ theme }) => theme.spacing.small};
-  }
-
-  .title {
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-`
-
 export function PlannerForm({ userId }: PlannerFormProps) {
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
+    register,
   } = useForm<SubmitFormWorkout>({
     resolver: zodResolver(PLANNER_FORM_SCHEMA),
     mode: 'onBlur',
-    defaultValues: { workout: '', workoutDate: '' },
+    defaultValues: {
+      info: { workout: '', workoutDate: '' },
+      sets: [{ set: 1, weight: 0, reps: 0 }],
+    },
+  })
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'sets',
   })
 
   const dispatch = useAppDispatch()
 
-  function onSubmit(data: SubmitFormWorkout) {
-    submitPlannerForm({
-      workout: data.workout,
-      workoutDate: data.workoutDate,
-      userId,
-      dispatch,
+  const onSubmit = (data: SubmitFormWorkout) => {
+    data.sets.forEach((set) => {
+      submitPlannerForm({
+        workout: data.info.workout,
+        workoutDate: data.info.workoutDate,
+        userId,
+        dispatch,
+      })
     })
   }
 
@@ -64,64 +65,43 @@ export function PlannerForm({ userId }: PlannerFormProps) {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-fields">
           <FormTitle>Workout Planner</FormTitle>
-          <FormField
-            label="Workout"
-            id="workout"
-            type="text"
-            placeholder="Workout name"
-            inputProps={register('workout')}
-            error={errors.workout?.message}
-            isError={!!errors.workout}
-            $direction="horizontal"
-            $errorPosition="right"
-          />
-          <FormField
-            label="Date"
-            id="workoutDate"
-            type="date"
-            inputProps={register('workoutDate')}
-            error={errors.workoutDate?.message}
-            isError={!!errors.workoutDate}
-            $direction="horizontal"
-            $errorPosition="right"
+
+          {renderField({
+            id: 'info.workout',
+            label: 'Workout',
+            type: 'text',
+            registerName: 'info.workout',
+            error: errors.info?.workout?.message,
+            register,
+          })}
+          {renderField({
+            id: 'info.workoutDate',
+            label: 'Date',
+            type: 'date',
+            registerName: 'info.workoutDate',
+            error: errors.info?.workoutDate?.message,
+            register,
+          })}
+
+          <WorkoutsTitles />
+
+          <RenderFields
+            fields={fields}
+            register={register}
+            errors={errors}
+            remove={remove}
           />
 
-          <div>
-            <WorkoutsTitles />
-            <div className="form-workouts">
-              <FormField
-                id="workoutDate"
-                type="number"
-                defaultValue={0}
-                min={0}
-                inputProps={register('workoutDate')}
-                error={errors.workoutDate?.message}
-                isError={!!errors.workoutDate}
-              />
-              <FormField
-                id="workoutDate"
-                type="number"
-                defaultValue={0}
-                min={0}
-                inputProps={register('workoutDate')}
-                error={errors.workoutDate?.message}
-                isError={!!errors.workoutDate}
-              />
-              <FormField
-                id="workoutDate"
-                type="number"
-                defaultValue={0}
-                min={0}
-                inputProps={register('workoutDate')}
-                error={errors.workoutDate?.message}
-                isError={!!errors.workoutDate}
-              />
-            </div>
-          </div>
-          <Button $variant="outline">Add set</Button>
+          <Button
+            type="button"
+            onClick={() =>
+              append({ set: fields.length + 1, weight: 0, reps: 0 })
+            }
+          >
+            Add set
+          </Button>
         </div>
-
-        <Button>Schedule workout</Button>
+        <Button type="submit">Schedule workout</Button>
       </Form>
     </PlannerFormContainer>
   )

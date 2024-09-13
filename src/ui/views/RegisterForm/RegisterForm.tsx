@@ -46,7 +46,7 @@ export function RegisterForm() {
         <FormField
           label="First name"
           id="firstName"
-          inputProps={register('firstName')}
+          register={register('firstName')}
           error={errors.firstName?.message}
           isError={!!errors.firstName}
         />
@@ -54,7 +54,7 @@ export function RegisterForm() {
         <FormField
           label="Last name"
           id="lastName"
-          inputProps={register('lastName')}
+          register={register('lastName')}
           error={errors.lastName?.message}
           isError={!!errors.firstName}
         />
@@ -63,7 +63,7 @@ export function RegisterForm() {
           label="Email"
           id="email"
           type="email"
-          inputProps={register('email')}
+          register={register('email')}
           error={errors.email?.message}
           isError={!!errors.email}
         />
@@ -72,7 +72,7 @@ export function RegisterForm() {
           label="Password"
           id="password"
           type="password"
-          inputProps={register('password')}
+          register={register('password')}
           error={errors.password?.message}
           isError={!!errors.password}
         />
@@ -81,7 +81,7 @@ export function RegisterForm() {
           label="Confirm password"
           id="confirmPassword"
           type="password"
-          inputProps={register('confirmPassword')}
+          register={register('confirmPassword')}
           error={errors.confirmPassword?.message}
           isError={!!errors.confirmPassword}
         />
