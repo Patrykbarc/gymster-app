@@ -77,6 +77,13 @@ export const theme = {
     },
   },
   typography: {
+    fontWeights: {
+      bold: 700,
+      semibold: 600,
+      medium: 500,
+      regular: 400,
+      thin: 300,
+    },
     headings: {
       h1: {
         fontSize: '2em',

@@ -66,31 +66,34 @@ export function PlannerForm({ userId }: PlannerFormProps) {
         <div className="form-fields">
           <FormTitle>Workout Planner</FormTitle>
 
-          {renderField({
-            id: 'info.workout',
-            label: 'Workout',
-            type: 'text',
-            registerName: 'info.workout',
-            error: errors.info?.workout?.message,
-            register,
-          })}
-          {renderField({
-            id: 'info.workoutDate',
-            label: 'Date',
-            type: 'date',
-            registerName: 'info.workoutDate',
-            error: errors.info?.workoutDate?.message,
-            register,
-          })}
+          <div className="form-main-info ">
+            {renderField({
+              id: 'info.workout',
+              label: 'Workout',
+              type: 'text',
+              registerName: 'info.workout',
+              error: errors.info?.workout?.message,
+              register,
+            })}
+            {renderField({
+              id: 'info.workoutDate',
+              label: 'Date',
+              type: 'date',
+              registerName: 'info.workoutDate',
+              error: errors.info?.workoutDate?.message,
+              register,
+            })}
+          </div>
 
-          <WorkoutsTitles />
-
-          <RenderFields
-            fields={fields}
-            register={register}
-            errors={errors}
-            remove={remove}
-          />
+          <div>
+            <WorkoutsTitles />
+            <RenderFields
+              fields={fields}
+              register={register}
+              errors={errors}
+              remove={remove}
+            />
+          </div>
 
           <Button
             type="button"

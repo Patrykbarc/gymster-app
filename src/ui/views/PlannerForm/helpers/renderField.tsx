@@ -29,7 +29,7 @@ export function renderField({
       register={{ ...register(registerName as any), ...props }}
       error={error}
       isError={!!error}
-      $direction="horizontal"
+      $direction="vertical"
       $errorPosition="right"
     />
   )

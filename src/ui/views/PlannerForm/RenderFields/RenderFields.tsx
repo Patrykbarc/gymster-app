@@ -1,3 +1,4 @@
+import { XIcon } from 'lucide-react'
 import {
   FieldArrayWithId,
   FieldErrors,
@@ -40,6 +41,7 @@ export function RenderFields({
       error={error}
       isError={!!error}
       $errorPosition="right"
+      step={0.5}
     />
   )
 
@@ -47,12 +49,7 @@ export function RenderFields({
     <>
       {fields.map((field, index) => (
         <div key={field.id} className="form-workouts">
-          {renderField(
-            `sets.${index}.set`,
-            'number',
-            index + 1,
-            errors.sets?.[index]?.set?.message
-          )}
+          <p>{index + 1}</p>
           {renderField(
             `sets.${index}.weight`,
             'number',
@@ -65,8 +62,8 @@ export function RenderFields({
             0,
             errors.sets?.[index]?.reps?.message
           )}
-          <Button type="button" onClick={() => remove(index)}>
-            Remove
+          <Button type="button" $variant="danger" onClick={() => remove(index)}>
+            {<XIcon />}
           </Button>
         </div>
       ))}

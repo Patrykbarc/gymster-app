@@ -30,7 +30,7 @@ export function FormField({
   return (
     <FormItemsContainer>
       <InputContainer $direction={$direction}>
-        <label htmlFor={id}>{label}</label>
+        {label && <label htmlFor={id}>{label}</label>}
         <Input
           id={id}
           type={type}

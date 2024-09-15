@@ -8,6 +8,7 @@ type InputProps = {
 
 export const Input = styled.input<InputProps>`
   width: 100%;
+  height: 2.5rem;
 
   border-radius: ${({ theme }) => theme.borderRadius.small};
   padding: ${({ theme }) => theme.spacing.medium};

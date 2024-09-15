@@ -7,10 +7,11 @@ export const InputContainer = styled.div<{ $direction: InputVariant }>`
   flex-direction: ${({ $direction }) =>
     $direction === 'horizontal' ? 'row' : 'column'};
   align-items: ${({ $direction }) => $direction === 'horizontal' && 'center'};
-  gap: ${({ theme }) => theme.spacing.medium};
 
   label {
     width: ${({ $direction }) => $direction && '6rem'};
+    margin-bottom: ${({ $direction, theme }) =>
+      $direction === 'vertical' && theme.spacing.small};
     word-break: break-all;
   }
 `
