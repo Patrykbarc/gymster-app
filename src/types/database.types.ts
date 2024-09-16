@@ -13,23 +13,23 @@ export type Database = {
         Row: {
           created_at: string
           id: string
-          user_id: string | null
+          user_id: string
           workout_date: string
-          workout_name: string | null
+          workout_name: string
         }
         Insert: {
           created_at?: string
           id?: string
-          user_id?: string | null
+          user_id: string
           workout_date: string
-          workout_name?: string | null
+          workout_name: string
         }
         Update: {
           created_at?: string
           id?: string
-          user_id?: string | null
+          user_id?: string
           workout_date?: string
-          workout_name?: string | null
+          workout_name?: string
         }
         Relationships: []
       }
@@ -55,6 +55,38 @@ export type Database = {
             columns: ["id"]
             isOneToOne: true
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sets: {
+        Row: {
+          id: number
+          planned_workout_id: string | null
+          reps: number
+          set: number
+          weight: number
+        }
+        Insert: {
+          id?: number
+          planned_workout_id?: string | null
+          reps: number
+          set: number
+          weight: number
+        }
+        Update: {
+          id?: number
+          planned_workout_id?: string | null
+          reps?: number
+          set?: number
+          weight?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sets_planned_workout_id_fkey"
+            columns: ["planned_workout_id"]
+            isOneToOne: false
+            referencedRelation: "planned_workouts"
             referencedColumns: ["id"]
           },
         ]

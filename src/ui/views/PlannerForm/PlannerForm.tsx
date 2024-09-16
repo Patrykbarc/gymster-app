@@ -37,7 +37,10 @@ export function PlannerForm({ userId }: PlannerFormProps) {
     resolver: zodResolver(PLANNER_FORM_SCHEMA),
     mode: 'onBlur',
     defaultValues: {
-      info: { workout: '', workoutDate: '' },
+      info: {
+        workout: 'Test workout',
+        workoutDate: '2024-09-24T00:00:00.000Z',
+      },
       sets: [{ set: 1, weight: 0, reps: 0 }],
     },
   })
@@ -50,13 +53,12 @@ export function PlannerForm({ userId }: PlannerFormProps) {
   const dispatch = useAppDispatch()
 
   const onSubmit = (data: SubmitFormWorkout) => {
-    data.sets.forEach((set) => {
-      submitPlannerForm({
-        workout: data.info.workout,
-        workoutDate: data.info.workoutDate,
-        userId,
-        dispatch,
-      })
+    submitPlannerForm({
+      workout: data.info.workout,
+      workoutDate: data.info.workoutDate,
+      userId,
+      sets: data.sets,
+      dispatch,
     })
   }
 

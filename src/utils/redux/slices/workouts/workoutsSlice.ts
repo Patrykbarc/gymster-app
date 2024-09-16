@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
   AddWorkoutArgs,
   handleAddWorkout,
-} from '../../../../api/plannerData/handleAddWorkout'
+} from '../../../../api/plannerData/handleAddWorkout/handleAddWorkout'
 import { handleDeleteWorkout } from '../../../../api/plannerData/handleDeleteWorkout'
 import { handleGetPlannedWorkouts } from '../../../../api/plannerData/handleGetPlannedWorkouts'
 import { Database } from '../../../../types/database.types'
