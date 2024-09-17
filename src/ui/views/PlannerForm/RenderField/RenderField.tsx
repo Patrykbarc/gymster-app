@@ -9,16 +9,18 @@ type RenderFieldProps = {
   registerName: keyof SubmitFormWorkout['info'] | string
   error: string | undefined
   register: UseFormRegister<SubmitFormWorkout>
+  placeholder?: string
   props?: Record<string, any>
 }
 
-export function renderField({
+export function RenderField({
   id,
   label,
   type,
   registerName,
   error,
   register,
+  placeholder,
   props,
 }: RenderFieldProps) {
   return (
@@ -29,6 +31,7 @@ export function renderField({
       register={{ ...register(registerName as any), ...props }}
       error={error}
       isError={!!error}
+      placeholder={placeholder}
       $direction="vertical"
       $errorPosition="right"
     />

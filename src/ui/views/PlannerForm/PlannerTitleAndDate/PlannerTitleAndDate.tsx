@@ -1,5 +1,5 @@
 import { FieldErrors, UseFormRegister } from 'react-hook-form'
-import { renderField } from '../helpers/renderField'
+import { RenderField } from '../RenderField/RenderField'
 import { SubmitFormWorkout } from '../PlannerForm'
 
 type PlannerTitleAndDateProps = {
@@ -13,15 +13,16 @@ export function PlannerTitleAndDate({
 }: PlannerTitleAndDateProps) {
   return (
     <div className="form-main-info ">
-      {renderField({
+      {RenderField({
         id: 'info.workout',
         label: 'Workout',
         type: 'text',
         registerName: 'info.workout',
         error: errors.info?.workout?.message,
+        placeholder: 'Chest workout',
         register,
       })}
-      {renderField({
+      {RenderField({
         id: 'info.workoutDate',
         label: 'Date',
         type: 'date',

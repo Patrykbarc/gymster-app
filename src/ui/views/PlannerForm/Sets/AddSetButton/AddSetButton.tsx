@@ -8,11 +8,12 @@ export type AddSetButtonProps = {
 }
 
 export function AddSetButton({ append, fields }: AddSetButtonProps) {
+  function handleAppendSet() {
+    append({ set: fields.length + 1, weight: 0, reps: 0 })
+  }
+
   return (
-    <Button
-      type="button"
-      onClick={() => append({ set: fields.length + 1, weight: 0, reps: 0 })}
-    >
+    <Button type="button" onClick={handleAppendSet}>
       Add set
     </Button>
   )

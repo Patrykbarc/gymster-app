@@ -38,10 +38,10 @@ export function PlannerForm({ userId }: PlannerFormProps) {
     mode: 'onBlur',
     defaultValues: {
       info: {
-        workout: 'Test workout',
-        workoutDate: '2024-09-24T00:00:00.000Z',
+        workout: '',
+        workoutDate: '',
       },
-      sets: [{ set: 1, weight: 0, reps: 0 }],
+      sets: [{ set: 1, weight: 1, reps: 1 }],
     },
   })
 

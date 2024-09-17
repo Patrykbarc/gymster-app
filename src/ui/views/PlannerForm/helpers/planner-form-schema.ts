@@ -12,10 +12,10 @@ const workoutInfo = z.object({
 
 const workoutSetSchema = z.object({
   set: z.number().min(1),
-  weight: z.preprocess((val) => isString(val), z.number().min(0), {
+  weight: z.preprocess((val) => isString(val), z.number().min(1), {
     message: 'Weight must be a posivtive number',
   }),
-  reps: z.preprocess((val) => isString(val), z.number().min(0), {
+  reps: z.preprocess((val) => isString(val), z.number().min(1), {
     message: 'Reps must be a positive number',
   }),
 })

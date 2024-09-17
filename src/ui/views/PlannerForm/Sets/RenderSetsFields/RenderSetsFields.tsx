@@ -6,20 +6,15 @@ import {
   UseFormRegister,
 } from 'react-hook-form'
 import { Button } from '../../../../components/Button/Button'
-import { FormField } from '../../../../components/Form/FormField/FormField'
 import { SubmitFormWorkout } from '../../PlannerForm'
+import { RenderField } from './RenderField/RenderField'
 
-type RenderSetsFieldsProps = {
+export type RenderSetsFieldsProps = {
   fields: FieldArrayWithId<SubmitFormWorkout, 'sets', 'id'>[]
   register: UseFormRegister<SubmitFormWorkout>
   errors: FieldErrors<SubmitFormWorkout>
   remove: UseFieldArrayRemove
 }
-
-type IdType =
-  | `sets.${number}.set`
-  | `sets.${number}.weight`
-  | `sets.${number}.reps`
 
 export function RenderSetsFields({
   fields,
@@ -27,40 +22,24 @@ export function RenderSetsFields({
   errors,
   remove,
 }: RenderSetsFieldsProps) {
-  const renderField = (
-    id: IdType,
-    type: string,
-    defaultValue: number | string,
-    error: string | undefined
-  ) => (
-    <FormField
-      id={id}
-      type={type}
-      defaultValue={defaultValue}
-      register={register(id)}
-      error={error}
-      isError={!!error}
-      $errorPosition="right"
-      step={0.5}
-    />
-  )
-
   return (
     <>
       {fields.map((field, index) => (
         <div key={field.id} className="form-workouts">
           <p>{index + 1}</p>
-          {renderField(
+          {RenderField(
             `sets.${index}.weight`,
             'number',
             0,
-            errors.sets?.[index]?.weight?.message
+            errors.sets?.[index]?.weight?.message,
+            register
           )}
-          {renderField(
+          {RenderField(
             `sets.${index}.reps`,
             'number',
             0,
-            errors.sets?.[index]?.reps?.message
+            errors.sets?.[index]?.reps?.message,
+            register
           )}
           <Button type="button" $variant="danger" onClick={() => remove(index)}>
             {<XIcon />}
