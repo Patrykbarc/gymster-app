@@ -1,7 +1,5 @@
-import { Children } from '../types/Children'
+import styled from 'styled-components'
 
-type LayoutProps = Children
-
-export function Layout({ children }: LayoutProps) {
-  return <>{children}</>
-}
+export const Layout = styled.div`
+  display: flex;
+`

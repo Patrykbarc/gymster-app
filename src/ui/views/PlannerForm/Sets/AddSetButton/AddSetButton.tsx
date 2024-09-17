@@ -9,7 +9,7 @@ export type AddSetButtonProps = {
 
 export function AddSetButton({ append, fields }: AddSetButtonProps) {
   function handleAppendSet() {
-    append({ set: fields.length + 1, weight: 0, reps: 0 })
+    append({ set: fields.length + 1, weight: 1, reps: 1 })
   }
 
   return (

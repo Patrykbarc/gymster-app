@@ -5,13 +5,20 @@ import { NAVIGATION_LINKS } from './helpers/navigation-links'
 
 const NavigationContainer = styled.nav`
   display: flex;
-  justify-content: center;
-  gap: ${({ theme }) => theme.spacing.medium};
+  flex-direction: column;
+  height: 100dvh;
+  min-width: 20rem;
 
+  gap: ${({ theme }) => theme.spacing.medium};
   padding: ${({ theme }) => theme.spacing.xl};
-  background: ${({ theme }) => theme.colors.secondary};
+  background: ${({ theme }) => theme.colors.dark};
 
   text-transform: capitalize;
+  font-size: ${({ theme }) => theme.fontSizes.large};
+
+  a {
+    color: ${({ theme }) => theme.colors.light};
+  }
 `
 
 const Signout = styled.a`

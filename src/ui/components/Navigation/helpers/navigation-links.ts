@@ -4,10 +4,6 @@ export const NAVIGATION_LINKS = [
     href: '/dashboard',
   },
   {
-    name: 'workout',
-    href: '/workout',
-  },
-  {
     name: 'planner',
     href: '/planner',
   },

@@ -9,7 +9,6 @@ type IdType =
 export function RenderField(
   id: IdType,
   type: string,
-  defaultValue: number | string,
   error: string | undefined,
   register: RenderSetsFieldsProps['register']
 ) {
@@ -17,7 +16,6 @@ export function RenderField(
     <FormField
       id={id}
       type={type}
-      defaultValue={defaultValue}
       register={register(id)}
       error={error}
       isError={!!error}

@@ -10,7 +10,7 @@ export const Card = styled.div`
 
   border: 1px solid ${({ theme }) => theme.colors.secondary};
   border-radius: ${({ theme }) => theme.borderRadius.medium};
-  padding: ${({ theme }) => theme.spacing.xl};
+  padding: ${({ theme }) => theme.spacing.xxl};
   box-shadow: ${({ theme }) => theme.shadows.small};
 
   h3 {

@@ -1,14 +1,5 @@
-import { ReactNode } from 'react'
-import { Wrapper } from '../Wrapper/Wrapper'
+import styled from 'styled-components'
 
-type MainProps = {
-  children: ReactNode
-}
-
-export function Main({ children }: MainProps) {
-  return (
-    <main>
-      <Wrapper>{children}</Wrapper>
-    </main>
-  )
-}
+export const Main = styled.main`
+  width: 100%;
+`

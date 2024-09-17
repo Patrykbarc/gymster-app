@@ -30,14 +30,12 @@ export function RenderSetsFields({
           {RenderField(
             `sets.${index}.weight`,
             'number',
-            0,
             errors.sets?.[index]?.weight?.message,
             register
           )}
           {RenderField(
             `sets.${index}.reps`,
             'number',
-            0,
             errors.sets?.[index]?.reps?.message,
             register
           )}

@@ -5,7 +5,7 @@ import { Calendar } from '../../routes/(logged)/Calendar/Calendar.tsx'
 import { Dashboard } from '../../routes/(logged)/Dashboard/Dashboard.tsx'
 import { ErrorPage } from '../../routes/(logged)/ErrorPage/ErrorPage.tsx'
 import { Planner } from '../../routes/(logged)/Planner/Planner.tsx'
-import { Workout } from '../../routes/(logged)/Workout/Workout.tsx'
+import { Workout } from '../../routes/(logged)/Planner/Workout/Workout.tsx'
 
 export const routerConfig = [
   {
@@ -31,12 +31,14 @@ export const routerConfig = [
         element: <Dashboard />,
       },
       {
-        path: '/workout',
-        element: <Workout />,
-      },
-      {
         path: '/planner',
         element: <Planner />,
+        children: [
+          {
+            path: ':id',
+            element: <Workout />,
+          },
+        ],
       },
       {
         path: '/calendar',
