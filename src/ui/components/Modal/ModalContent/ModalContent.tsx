@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const ModalContent = styled.div`
-  padding: ${({ theme }) => theme.spacing.xl};
+  position: relative;
   border-radius: ${({ theme }) => theme.borderRadius.medium};
+  box-shadow: ${({ theme }) => theme.shadows.large};
 `

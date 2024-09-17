@@ -43,10 +43,14 @@ export const theme = {
     round: '50%',
   },
   shadows: {
-    small: '0 1px 2px rgba(0, 0, 0, 0.1)',
-    medium: '0 2px 4px rgba(0, 0, 0, 0.15)',
-    large: '0 4px 8px rgba(0, 0, 0, 0.2)',
+    small:
+      'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px',
+    medium:
+      'rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+    large:
+      'rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px',
   },
+
   transitions: {
     quick: '0.1s ease-in-out',
     normal: '0.3s ease-in-out',
