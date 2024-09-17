@@ -4,22 +4,24 @@ import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { Button } from '../../components/Button/Button'
 import { Form } from '../../components/Form/Form/Form'
 import { FormTitle } from '../../components/Form/FormTitle/FormTitle'
-import { PLANNER_FORM_SCHEMA } from './helpers/planner-form-schema'
-import { submitPlannerForm } from './helpers/submitPlannerForm'
+import { ExerciseFields } from './ExerciseFields/ExerciseFields'
+import { PLANNER_FORM_SCHEMA } from './_helpers/planner-form-schema'
+import { submitPlannerForm } from './_helpers/submitPlannerForm'
 import { PlannerFormContainer } from './PlannerFormContainer/PlannerFormContainer'
 import { PlannerTitleAndDate } from './PlannerTitleAndDate/PlannerTitleAndDate'
-import { RenderSetsFields } from './Sets/RenderSetsFields/RenderSetsFields'
-import { Sets } from './Sets/Sets'
 
 export type SubmitFormWorkout = {
   info: {
     workout: string
     workoutDate: string
   }
-  sets: {
-    set: number
-    weight: number
-    reps: number
+  exercises: {
+    name: string
+    sets: {
+      set: number
+      weight: number
+      reps: number
+    }[]
   }[]
 }
 
@@ -41,13 +43,22 @@ export function PlannerForm({ userId }: PlannerFormProps) {
         workout: '',
         workoutDate: '',
       },
-      sets: [{ set: 1, weight: 1, reps: 1 }],
+      exercises: [
+        {
+          name: '',
+          sets: [{ set: 1, weight: 1, reps: 1 }],
+        },
+      ],
     },
   })
 
-  const { fields, append, remove } = useFieldArray({
+  const {
+    fields: exerciseFields,
+    append: appendExercise,
+    remove: removeExercise,
+  } = useFieldArray({
     control,
-    name: 'sets',
+    name: 'exercises',
   })
 
   const dispatch = useAppDispatch()
@@ -57,7 +68,7 @@ export function PlannerForm({ userId }: PlannerFormProps) {
       workout: data.info.workout,
       workoutDate: data.info.workoutDate,
       userId,
-      sets: data.sets,
+      exercises: data.exercises,
       dispatch,
     })
   }
@@ -69,14 +80,27 @@ export function PlannerForm({ userId }: PlannerFormProps) {
           <FormTitle>Workout Planner</FormTitle>
           <PlannerTitleAndDate errors={errors} register={register} />
 
-          <Sets append={append} fields={fields}>
-            <RenderSetsFields
-              fields={fields}
+          {exerciseFields.map((exercise, exerciseIndex) => (
+            <ExerciseFields
+              key={exercise.id}
+              control={control}
               register={register}
+              exerciseIndex={exerciseIndex}
               errors={errors}
-              remove={remove}
+              removeExercise={removeExercise}
             />
-          </Sets>
+          ))}
+
+          <Button
+            onClick={() =>
+              appendExercise({
+                name: '',
+                sets: [{ set: 1, weight: 1, reps: 1 }],
+              })
+            }
+          >
+            Add new exercise
+          </Button>
         </div>
         <Button type="submit">Schedule workout</Button>
       </Form>

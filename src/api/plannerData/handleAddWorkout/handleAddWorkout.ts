@@ -7,7 +7,7 @@ export type AddWorkoutArgs = {
   userId: string
   workoutName: string
   workoutDate: string
-  sets: SubmitFormWorkout['sets']
+  sets: SubmitFormWorkout['exercises']
 }
 
 export async function handleAddWorkout({

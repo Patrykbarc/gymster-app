@@ -1,11 +1,11 @@
 import { ReactNode } from 'react'
-import { AddSetButton, AddSetButtonProps } from './AddSetButton/AddSetButton'
+import { AddSetButton } from './AddSetButton/AddSetButton'
 import { SetsTitles } from './SetsTitles/SetsTitles'
 
 type SetsProps = {
   children: ReactNode
-  append: AddSetButtonProps['append']
-  fields: AddSetButtonProps['fields']
+  append: (set: { set: number; weight: number; reps: number }) => void
+  fields: { id: string; set: number; weight: number; reps: number }[]
 }
 
 export function Sets({ children, append, fields }: SetsProps) {
@@ -15,7 +15,10 @@ export function Sets({ children, append, fields }: SetsProps) {
         <SetsTitles />
         {children}
       </div>
-      <AddSetButton append={append} fields={fields} />
+      <AddSetButton
+        append={() => append({ set: fields.length + 1, weight: 1, reps: 1 })}
+        fields={fields}
+      />
     </>
   )
 }

@@ -6,7 +6,7 @@ type FormWorkout = {
   workout: string
   workoutDate: string
   userId: string
-  sets: SubmitFormWorkout['sets']
+  exercises: SubmitFormWorkout['exercises']
   dispatch: AppDispatch
 }
 
@@ -14,7 +14,7 @@ export async function submitPlannerForm({
   workout,
   workoutDate,
   userId,
-  sets,
+  exercises,
   dispatch,
 }: FormWorkout) {
   const dateObject = new Date(workoutDate)
@@ -30,7 +30,7 @@ export async function submitPlannerForm({
       userId,
       workoutName: workout,
       workoutDate: formattedDate,
-      sets,
+      exercises,
     })
   )
 }
