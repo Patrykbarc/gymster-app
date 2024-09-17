@@ -5,11 +5,11 @@ import { Button } from '../../components/Button/Button'
 import { Form } from '../../components/Form/Form/Form'
 import { FormTitle } from '../../components/Form/FormTitle/FormTitle'
 import { PLANNER_FORM_SCHEMA } from './helpers/planner-form-schema'
-import { renderField } from './helpers/renderField'
 import { submitPlannerForm } from './helpers/submitPlannerForm'
 import { PlannerFormContainer } from './PlannerFormContainer/PlannerFormContainer'
-import { RenderFields } from './RenderFields/RenderFields'
-import { WorkoutsTitles } from './WorkoutsTitles/WorkoutsTitles'
+import { PlannerTitleAndDate } from './PlannerTitleAndDate/PlannerTitleAndDate'
+import { RenderSetsFields } from './Sets/RenderSetsFields/RenderSetsFields'
+import { Sets } from './Sets/Sets'
 
 export type SubmitFormWorkout = {
   info: {
@@ -67,44 +67,16 @@ export function PlannerForm({ userId }: PlannerFormProps) {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-fields">
           <FormTitle>Workout Planner</FormTitle>
+          <PlannerTitleAndDate errors={errors} register={register} />
 
-          <div className="form-main-info ">
-            {renderField({
-              id: 'info.workout',
-              label: 'Workout',
-              type: 'text',
-              registerName: 'info.workout',
-              error: errors.info?.workout?.message,
-              register,
-            })}
-            {renderField({
-              id: 'info.workoutDate',
-              label: 'Date',
-              type: 'date',
-              registerName: 'info.workoutDate',
-              error: errors.info?.workoutDate?.message,
-              register,
-            })}
-          </div>
-
-          <div>
-            <WorkoutsTitles />
-            <RenderFields
+          <Sets append={append} fields={fields}>
+            <RenderSetsFields
               fields={fields}
               register={register}
               errors={errors}
               remove={remove}
             />
-          </div>
-
-          <Button
-            type="button"
-            onClick={() =>
-              append({ set: fields.length + 1, weight: 0, reps: 0 })
-            }
-          >
-            Add set
-          </Button>
+          </Sets>
         </div>
         <Button type="submit">Schedule workout</Button>
       </Form>

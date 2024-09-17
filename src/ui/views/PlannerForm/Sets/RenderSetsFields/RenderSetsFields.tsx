@@ -5,11 +5,11 @@ import {
   UseFieldArrayRemove,
   UseFormRegister,
 } from 'react-hook-form'
-import { Button } from '../../../components/Button/Button'
-import { FormField } from '../../../components/Form/FormField/FormField'
-import { SubmitFormWorkout } from '../PlannerForm'
+import { Button } from '../../../../components/Button/Button'
+import { FormField } from '../../../../components/Form/FormField/FormField'
+import { SubmitFormWorkout } from '../../PlannerForm'
 
-type RenderFieldsProps = {
+type RenderSetsFieldsProps = {
   fields: FieldArrayWithId<SubmitFormWorkout, 'sets', 'id'>[]
   register: UseFormRegister<SubmitFormWorkout>
   errors: FieldErrors<SubmitFormWorkout>
@@ -21,12 +21,12 @@ type IdType =
   | `sets.${number}.weight`
   | `sets.${number}.reps`
 
-export function RenderFields({
+export function RenderSetsFields({
   fields,
   register,
   errors,
   remove,
-}: RenderFieldsProps) {
+}: RenderSetsFieldsProps) {
   const renderField = (
     id: IdType,
     type: string,
