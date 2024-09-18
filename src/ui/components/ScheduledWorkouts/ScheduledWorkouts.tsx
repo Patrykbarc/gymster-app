@@ -7,7 +7,6 @@ import { selectScheduledWorkouts } from '../../../utils/redux/selectors/schedule
 import { fetchWorkouts } from '../../../utils/redux/slices/workouts/workoutsSlice'
 import { PlannerForm } from '../../views/PlannerForm/PlannerForm'
 import { Card } from '../Card/Card'
-import { Modal } from '../Modal/Modal'
 import { Actions } from './Workout/Actions/Actions'
 import { Workout } from './Workout/Workout'
 
@@ -39,9 +38,7 @@ export function ScheduledWorkouts() {
         </Workout>
       ))}
 
-      <Modal buttonText="Add new workout">
-        <PlannerForm userId={user.id} />
-      </Modal>
+      <PlannerForm />
     </ScheduledWorkoutsContainer>
   )
 }
