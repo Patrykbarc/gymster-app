@@ -7,8 +7,4 @@ export const NAVIGATION_LINKS = [
     name: 'planner',
     href: '/planner',
   },
-  {
-    name: 'calendar',
-    href: '/calendar',
-  },
 ]
