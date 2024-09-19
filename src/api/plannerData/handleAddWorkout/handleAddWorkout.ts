@@ -1,33 +1,37 @@
-import { SubmitFormWorkout } from '../../../ui/views/PlannerForm/PlannerForm'
+import { FormWorkout } from '../../../ui/views/PlannerForm/_helpers/submitPlannerForm'
 import { rollbackWorkout } from '../_queries/rollbackWorkout'
+import { upsertExecise } from '../_queries/upsertExecise'
 import { upsertSets } from '../_queries/upsertSets'
 import { upsertWorkout } from '../_queries/upsertWorkout'
 
-export type AddWorkoutArgs = {
-  userId: string
-  workoutName: string
-  workoutDate: string
-  sets: SubmitFormWorkout['exercises']
-}
+export type AddWorkoutArgs = FormWorkout
 
 export async function handleAddWorkout({
   userId,
-  workoutName,
-  workoutDate,
-  sets,
+  info: { workout, workoutDate },
+  exercises,
 }: AddWorkoutArgs) {
-  const workoutResult = await upsertWorkout(userId, workoutName, workoutDate)
+  const workoutResult = await upsertWorkout(userId, workout, workoutDate)
 
-  if (!workoutResult || !workoutResult.workoutId) {
-    return { data: null, error: new Error('Failed to upsert workout') }
-  }
+  if (!workoutResult) return
 
   const { workoutId } = workoutResult
-  const { error } = await upsertSets(sets, workoutId)
 
-  if (error) {
+  const { data: exerciseData, error: exerciseError } = await upsertExecise(
+    workoutId,
+    exercises
+  )
+
+  if (!exerciseData) return
+
+  const { error: upsertError } = await upsertSets(
+    workoutId,
+    exercises,
+    exerciseData
+  )
+  if (exerciseError || upsertError) {
     await rollbackWorkout(workoutId)
-    return { data: null, error }
+    return { data: null, error: exerciseError || upsertError }
   }
 
   return { data: workoutResult.data, error: null }

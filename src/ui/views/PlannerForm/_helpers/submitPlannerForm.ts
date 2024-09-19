@@ -2,35 +2,24 @@ import { addWorkout } from '../../../../utils/redux/slices/workouts/workoutsSlic
 import { AppDispatch } from '../../../../utils/redux/store'
 import { SubmitFormWorkout } from '../PlannerForm'
 
-type FormWorkout = {
-  workout: string
-  workoutDate: string
+export type FormWorkout = SubmitFormWorkout & {
   userId: string
-  exercises: SubmitFormWorkout['exercises']
-  dispatch: AppDispatch
 }
 
-export async function submitPlannerForm({
-  workout,
-  workoutDate,
-  userId,
-  exercises,
-  dispatch,
-}: FormWorkout) {
-  const dateObject = new Date(workoutDate)
+export async function submitPlannerForm(
+  data: FormWorkout,
+  dispatch: AppDispatch
+) {
+  // console.log(data)
+
+  const dateObject = new Date(data.info.workoutDate)
 
   if (isNaN(dateObject.getTime())) {
     console.error('Invalid date format')
     return
   }
 
-  const formattedDate = dateObject.toISOString().split('T')[0]
-  dispatch(
-    addWorkout({
-      userId,
-      workoutName: workout,
-      workoutDate: formattedDate,
-      exercises,
-    })
-  )
+  // const formattedDate = dateObject.toISOString().split('T')[0]
+
+  dispatch(addWorkout(data))
 }

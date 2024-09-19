@@ -1,12 +1,22 @@
+import { useEffect, useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { Fragment } from 'react/jsx-runtime'
 import styled from 'styled-components'
+import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
+import { useSession } from '../../../utils/hooks/useSession'
 import { PlannerFormContainer } from './PlannerFormContainer/PlannerFormContainer'
 import { SetsFields } from './SetsFields/SetsFields'
+import { submitPlannerForm } from './_helpers/submitPlannerForm'
 
 export const Flex = styled.div`
   display: flex;
 `
+
+export type Sets = {
+  set: number
+  weight: number
+  reps: number
+}
 
 export type SubmitFormWorkout = {
   info: {
@@ -15,22 +25,33 @@ export type SubmitFormWorkout = {
   }
   exercises: {
     name: string
-    sets: {
-      set: number
-      weight: number
-      reps: number
-    }[]
+    sets: Sets[]
   }[]
 }
 
+type UserSessionState = undefined | { userId: string }
+
 export function PlannerForm() {
+  const { session } = useSession()
+  const [userId, setUserId] = useState<UserSessionState>(undefined)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    session?.id && setUserId({ userId: session?.id })
+  }, [])
+
   const { control, handleSubmit, register } = useForm<SubmitFormWorkout>({
     defaultValues: {
       info: {
-        workout: '',
+        workout: 'Workout name placeholder',
         workoutDate: '',
       },
-      exercises: [{ name: '', sets: [{ set: 1, weight: 1, reps: 1 }] }],
+      exercises: [
+        {
+          name: 'Exercise placeholder',
+          sets: [{ set: 1, weight: 1, reps: 1 }],
+        },
+      ],
     },
   })
 
@@ -44,10 +65,12 @@ export function PlannerForm() {
   })
 
   const onSubmit = (data: SubmitFormWorkout) => {
-    console.log(data)
+    const mutatedData = Object.assign(data, userId)
+
+    submitPlannerForm(mutatedData, dispatch)
   }
 
-  logData(exerciseFields)
+  // logData(exerciseFields)
 
   return (
     <PlannerFormContainer>
@@ -103,5 +126,5 @@ export function PlannerForm() {
 }
 
 function logData(data: any) {
-  console.log(data)
+  console.table(data)
 }

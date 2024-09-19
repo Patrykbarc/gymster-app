@@ -20,15 +20,14 @@ export function ScheduledWorkouts() {
   const { workouts, status, error, user } = useAppSelector(
     selectScheduledWorkouts
   )
-  console.log(status)
+
   useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchWorkouts())
-    }
-  }, [])
+    dispatch(fetchWorkouts())
+  }, [dispatch])
 
   if (status === 'loading') return <p>Loading...</p>
   if (status === 'failed') return <p>Error: {error}</p>
+
   if (!user) return
 
   return (

@@ -1,11 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import {
-  AddWorkoutArgs,
-  handleAddWorkout,
-} from '../../../../api/plannerData/handleAddWorkout/handleAddWorkout'
+import { handleAddWorkout } from '../../../../api/plannerData/handleAddWorkout/handleAddWorkout'
 import { handleDeleteWorkout } from '../../../../api/plannerData/handleDeleteWorkout'
 import { handleGetPlannedWorkouts } from '../../../../api/plannerData/handleGetPlannedWorkouts'
 import { Database } from '../../../../types/database.types'
+import { FormWorkout } from '../../../../ui/views/PlannerForm/_helpers/submitPlannerForm'
 
 export type PlannedWorkouts =
   Database['public']['Tables']['planned_workouts']['Row']
@@ -33,8 +31,7 @@ export const fetchWorkouts = createAsyncThunk(
 
 export const addWorkout = createAsyncThunk(
   'workouts/addWorkout',
-  async (workoutData: AddWorkoutArgs) => {
-    console.log(workoutData)
+  async (workoutData: FormWorkout) => {    
     const { data, error } = await handleAddWorkout(workoutData)
     if (error) throw new Error(error.message)
     return data ? data[0] : null
