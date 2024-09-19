@@ -1,36 +1,25 @@
 import { useEffect, useState } from 'react'
-import { useFieldArray, useForm } from 'react-hook-form'
-import { Fragment } from 'react/jsx-runtime'
+import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useSession } from '../../../utils/hooks/useSession'
-import { Input } from '../../components/Input/Input'
-import { WorkoutFormContainer } from './WorkoutFormContainer/WorkoutFormContainer'
-import { SetsFields } from './SetsFields/SetsFields'
+import { Button } from '../../components/Button/Button'
 import { submitPlannerForm } from './_helpers/submitPlannerForm'
+import { SubmitFormWorkout } from './_types/SubmitFormWorkout'
+import { ExerciseFields } from './ExerciseFields/ExerciseFields'
+import { WorkoutFormContainer } from './WorkoutFormContainer/WorkoutFormContainer'
+import { WorkoutInfo } from './WorkoutInfo/WorkoutInfo'
 
 export const Flex = styled.div`
   display: flex;
 `
 
-export type Sets = {
-  set: number
-  weight: number
-  reps: number
-}
-
-export type SubmitFormWorkout = {
-  info: {
-    workout: string
-    workoutDate: string
-  }
-  exercises: {
-    name: string
-    sets: Sets[]
-  }[]
-}
-
 type UserSessionState = undefined | { userId: string }
+
+const FormContainer = styled.form`
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.xl};
+`
 
 export function PlannerForm() {
   const { session } = useSession()
@@ -56,70 +45,19 @@ export function PlannerForm() {
     },
   })
 
-  const {
-    fields: exerciseFields,
-    append: appendExercise,
-    remove: removeExercise,
-  } = useFieldArray({
-    control,
-    name: 'exercises',
-  })
-
   const onSubmit = (data: SubmitFormWorkout) => {
     const mutatedData = Object.assign(data, userId)
-
     submitPlannerForm(mutatedData, dispatch)
   }
 
   return (
     <WorkoutFormContainer>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Flex>
-          <div>
-            <label>Workout Name</label>
-            <Input {...register('info.workout')} />
-          </div>
-          <div>
-            <label>Workout Date</label>
-            <Input type="date" {...register('info.workoutDate')} />
-          </div>
-        </Flex>
-        <br />
-        {exerciseFields.map((field, exerciseIndex) => {
-          return (
-            <Fragment key={field.id}>
-              <Flex>
-                <div>
-                  <label>Exercise name</label>
-                  <Input {...register(`exercises.${exerciseIndex}.name`)} />
-                </div>
-                <button onClick={() => removeExercise(exerciseIndex)}>x</button>
-              </Flex>
-              <br />
-              <SetsFields
-                control={control}
-                register={register}
-                exerciseIndex={exerciseIndex}
-              />
-            </Fragment>
-          )
-        })}
+      <FormContainer onSubmit={handleSubmit(onSubmit)}>
+        <WorkoutInfo register={register} />
+        <ExerciseFields control={control} register={register} />
 
-        <br />
-        <button
-          type="button"
-          onClick={() =>
-            appendExercise({ name: '', sets: [{ set: 1, weight: 1, reps: 1 }] })
-          }
-        >
-          Add Exercise
-        </button>
-
-        <br />
-        <br />
-
-        <button type="submit">Submit</button>
-      </form>
+        <Button type="submit">Save</Button>
+      </FormContainer>
     </WorkoutFormContainer>
   )
 }

@@ -29,14 +29,17 @@ export function Workouts() {
   if (!user) return
 
   return (
-    <WorkoutsContainer>
-      {workouts.map((workout) => (
-        <Workout key={workout.id} {...workout}>
-          <Actions workoutId={workout.id} />
-        </Workout>
-      ))}
-
+    <>
+      {workouts.length > 0 && (
+        <WorkoutsContainer>
+          {workouts.map((workout) => (
+            <Workout key={workout.id} {...workout}>
+              <Actions workoutId={workout.id} />
+            </Workout>
+          ))}
+        </WorkoutsContainer>
+      )}
       <PlannerForm />
-    </WorkoutsContainer>
+    </>
   )
 }

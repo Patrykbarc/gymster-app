@@ -4,6 +4,9 @@ export const WorkoutFormContainer = styled.div`
   display: grid;
   width: 100%;
   gap: ${({ theme }) => theme.spacing.xl};
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  padding: ${({ theme }) => theme.spacing.xxl};
 
   .form-main-info {
     display: grid;

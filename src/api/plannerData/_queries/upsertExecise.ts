@@ -1,4 +1,4 @@
-import { SubmitFormWorkout } from '../../../ui/views/WorkoutForm/WorkoutForm'
+import { SubmitFormWorkout } from '../../../ui/views/WorkoutForm/_types/SubmitFormWorkout'
 import { supabase } from '../../supabase'
 import { printError } from '../_helpers/printError'
 
