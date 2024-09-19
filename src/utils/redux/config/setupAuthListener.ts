@@ -1,3 +1,4 @@
+import { handleSignOut } from '../../../api/signOut/handleSignOut'
 import { supabase } from '../../../api/supabase'
 import { clearSession, setSession } from '../slices/session/sessionSlice'
 import { AppDispatch } from '../store'
@@ -7,9 +8,13 @@ export async function setupAuthListener(dispatch: AppDispatch) {
     data: { session },
   } = await supabase.auth.getSession()
 
-  if (session) {
-    dispatch(setSession(session.user))
+  if (!session) {
+    handleSignOut()
+    dispatch(clearSession())
+    return
   }
+
+  dispatch(setSession(session.user))
 
   supabase.auth.onAuthStateChange((event, session) => {
     console.log(event)
