@@ -3,10 +3,9 @@ import { handleAddWorkout } from '../../../../api/plannerData/handleAddWorkout/h
 import { handleDeleteWorkout } from '../../../../api/plannerData/handleDeleteWorkout'
 import { handleGetPlannedWorkouts } from '../../../../api/plannerData/handleGetPlannedWorkouts'
 import { Database } from '../../../../types/database.types'
-import { FormWorkout } from '../../../../ui/views/PlannerForm/_helpers/submitPlannerForm'
+import { FormWorkout } from '../../../../ui/views/WorkoutForm/_helpers/submitPlannerForm'
 
-export type PlannedWorkouts =
-  Database['public']['Tables']['planned_workouts']['Row']
+export type PlannedWorkouts = Database['public']['Tables']['workouts']['Row']
 
 export type WorkoutsState = {
   workouts: PlannedWorkouts[]
@@ -31,7 +30,7 @@ export const fetchWorkouts = createAsyncThunk(
 
 export const addWorkout = createAsyncThunk(
   'workouts/addWorkout',
-  async (workoutData: FormWorkout) => {    
+  async (workoutData: FormWorkout) => {
     const { data, error } = await handleAddWorkout(workoutData)
     if (error) throw new Error(error.message)
     return data ? data[0] : null

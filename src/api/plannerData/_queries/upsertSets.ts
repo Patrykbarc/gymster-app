@@ -1,11 +1,11 @@
-import { SubmitFormWorkout } from '../../../ui/views/PlannerForm/PlannerForm'
+import { SubmitFormWorkout } from '../../../ui/views/WorkoutForm/WorkoutForm'
 import { supabase } from '../../supabase'
 import { printError } from '../_helpers/printError'
 
 type ExeciseDataArgs = {
   id: number
   name: string
-  planned_workout_id: string
+  workout_id: string
 }[]
 
 export async function upsertSets(
@@ -20,7 +20,7 @@ export async function upsertSets(
         weight: s.weight,
         reps: s.reps,
         exercise_id: exerciseData[index]?.id,
-        planned_workout_id: workoutId,
+        workout_id: workoutId,
       }
     })
   )

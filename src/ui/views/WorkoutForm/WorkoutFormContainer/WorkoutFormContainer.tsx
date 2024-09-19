@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const PlannerFormContainer = styled.div`
+export const WorkoutFormContainer = styled.div`
   display: grid;
   width: 100%;
   gap: ${({ theme }) => theme.spacing.xl};

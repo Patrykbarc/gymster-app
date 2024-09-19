@@ -6,7 +6,7 @@ const selectStatus = (state: RootState) => state.workouts.status
 const selectError = (state: RootState) => state.workouts.error
 const selectUser = (state: RootState) => state.session.user
 
-export const selectScheduledWorkouts = createSelector(
+export const workoutsSelector = createSelector(
   [selectWorkouts, selectStatus, selectError, selectUser],
   (workouts, status, error, user) => ({
     workouts,

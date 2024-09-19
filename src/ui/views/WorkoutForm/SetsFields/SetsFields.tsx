@@ -1,5 +1,6 @@
 import { Control, useFieldArray, UseFormRegister } from 'react-hook-form'
-import { Flex, SubmitFormWorkout } from '../PlannerForm'
+import { Input } from '../../../components/Input/Input'
+import { Flex, SubmitFormWorkout } from '../WorkoutForm'
 
 type SetsFieldsProps = {
   control: Control<SubmitFormWorkout>
@@ -22,7 +23,7 @@ export function SetsFields({
   })
 
   return (
-    <div>
+    <fieldset>
       {setFields.map((setField, setIndex) => {
         return (
           <Flex key={setField.id}>
@@ -33,7 +34,7 @@ export function SetsFields({
 
             <div>
               <label>Reps</label>
-              <input
+              <Input
                 type="number"
                 {...register(
                   `exercises.${exerciseIndex}.sets.${setIndex}.reps`
@@ -42,7 +43,7 @@ export function SetsFields({
             </div>
             <div>
               <label>Weight</label>
-              <input
+              <Input
                 type="number"
                 {...register(
                   `exercises.${exerciseIndex}.sets.${setIndex}.weight`
@@ -52,16 +53,22 @@ export function SetsFields({
 
             <button
               type="button"
-              onClick={() => appendSet({ set: setIndex, reps: 1, weight: 1 })}
+              disabled={setFields.length === 1}
+              onClick={() => removeSet(setIndex)}
             >
-              Add set
-            </button>
-            <button type="button" onClick={() => removeSet(setIndex)}>
               Remove set
             </button>
           </Flex>
         )
       })}
-    </div>
+      <button
+        type="button"
+        onClick={() =>
+          appendSet({ set: setFields.length + 1, reps: 1, weight: 1 })
+        }
+      >
+        Add set
+      </button>
+    </fieldset>
   )
 }

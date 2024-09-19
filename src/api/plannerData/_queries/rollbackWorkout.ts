@@ -2,7 +2,7 @@ import { supabase } from "../../supabase"
 
 export async function rollbackWorkout(workoutId: string) {
   const { error: deleteError } = await supabase
-    .from('planned_workouts')
+    .from('workouts')
     .delete()
     .eq('id', workoutId)
 

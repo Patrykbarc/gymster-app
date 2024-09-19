@@ -7,7 +7,7 @@ export async function upsertWorkout(
   workoutDate: string
 ) {
   const { data, error } = await supabase
-    .from('planned_workouts')
+    .from('workouts')
     .upsert({
       user_id: userId,
       workout_name: workoutName,

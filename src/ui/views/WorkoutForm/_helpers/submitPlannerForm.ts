@@ -1,6 +1,6 @@
 import { addWorkout } from '../../../../utils/redux/slices/workouts/workoutsSlice'
 import { AppDispatch } from '../../../../utils/redux/store'
-import { SubmitFormWorkout } from '../PlannerForm'
+import { SubmitFormWorkout } from '../WorkoutForm'
 
 export type FormWorkout = SubmitFormWorkout & {
   userId: string

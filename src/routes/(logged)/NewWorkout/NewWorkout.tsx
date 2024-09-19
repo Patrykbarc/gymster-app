@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import styled from 'styled-components'
 import { Main } from '../../../ui/components/Main/Main'
-import { ScheduledWorkouts } from '../../../ui/components/ScheduledWorkouts/ScheduledWorkouts'
+import { Workouts } from '../../../ui/components/Workouts/Workouts'
 
 const MainContainer = styled.div`
   display: flex;
@@ -9,11 +9,11 @@ const MainContainer = styled.div`
   gap: ${({ theme }) => theme.spacing.xxl};
 `
 
-export function Planner() {
+export function NewWorkout() {
   return (
     <Main>
       <MainContainer>
-        <ScheduledWorkouts />
+        <Workouts />
         <Outlet />
       </MainContainer>
     </Main>

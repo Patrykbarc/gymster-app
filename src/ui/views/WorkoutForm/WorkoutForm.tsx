@@ -4,7 +4,8 @@ import { Fragment } from 'react/jsx-runtime'
 import styled from 'styled-components'
 import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useSession } from '../../../utils/hooks/useSession'
-import { PlannerFormContainer } from './PlannerFormContainer/PlannerFormContainer'
+import { Input } from '../../components/Input/Input'
+import { WorkoutFormContainer } from './WorkoutFormContainer/WorkoutFormContainer'
 import { SetsFields } from './SetsFields/SetsFields'
 import { submitPlannerForm } from './_helpers/submitPlannerForm'
 
@@ -70,19 +71,17 @@ export function PlannerForm() {
     submitPlannerForm(mutatedData, dispatch)
   }
 
-  // logData(exerciseFields)
-
   return (
-    <PlannerFormContainer>
+    <WorkoutFormContainer>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Flex>
           <div>
             <label>Workout Name</label>
-            <input {...register('info.workout')} />
+            <Input {...register('info.workout')} />
           </div>
           <div>
             <label>Workout Date</label>
-            <input type="date" {...register('info.workoutDate')} />
+            <Input type="date" {...register('info.workoutDate')} />
           </div>
         </Flex>
         <br />
@@ -92,7 +91,7 @@ export function PlannerForm() {
               <Flex>
                 <div>
                   <label>Exercise name</label>
-                  <input {...register(`exercises.${exerciseIndex}.name`)} />
+                  <Input {...register(`exercises.${exerciseIndex}.name`)} />
                 </div>
                 <button onClick={() => removeExercise(exerciseIndex)}>x</button>
               </Flex>
@@ -121,10 +120,6 @@ export function PlannerForm() {
 
         <button type="submit">Submit</button>
       </form>
-    </PlannerFormContainer>
+    </WorkoutFormContainer>
   )
-}
-
-function logData(data: any) {
-  console.table(data)
 }

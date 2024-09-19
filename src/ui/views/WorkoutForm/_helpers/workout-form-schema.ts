@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { isString } from './isString'
 
-const workoutSchema = z.object({
+const workoutInfoSchema = z.object({
   workout: z.string().min(3, { message: 'Workout must be named' }),
   workoutDate: z.preprocess(
     (arg) =>
@@ -10,7 +10,7 @@ const workoutSchema = z.object({
   ),
 })
 
-const workoutSetSchema = z.object({
+const setsSchema = z.object({
   set: z.number().min(1),
   weight: z.preprocess((val) => isString(val), z.number().min(1), {
     message: 'Weight must be a posivtive number',
@@ -22,10 +22,10 @@ const workoutSetSchema = z.object({
 
 const exersiceSchema = z.object({
   name: z.string().min(1, { message: 'Exercise must be named' }),
-  sets: z.array(workoutSetSchema).min(1, { message: 'Add at least one set' }),
+  sets: z.array(setsSchema).min(1, { message: 'Add at least one set' }),
 })
 
-export const PLANNER_FORM_SCHEMA = z.object({
-  info: workoutSchema,
+export const WORKOUT_FORM_SCHEMA = z.object({
+  info: workoutInfoSchema,
   excercises: exersiceSchema,
 })

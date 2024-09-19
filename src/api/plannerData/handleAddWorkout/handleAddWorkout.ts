@@ -1,4 +1,4 @@
-import { FormWorkout } from '../../../ui/views/PlannerForm/_helpers/submitPlannerForm'
+import { FormWorkout } from '../../../ui/views/WorkoutForm/_helpers/submitPlannerForm'
 import { rollbackWorkout } from '../_queries/rollbackWorkout'
 import { upsertExecise } from '../_queries/upsertExecise'
 import { upsertSets } from '../_queries/upsertSets'
@@ -29,6 +29,7 @@ export async function handleAddWorkout({
     exercises,
     exerciseData
   )
+
   if (exerciseError || upsertError) {
     await rollbackWorkout(workoutId)
     return { data: null, error: exerciseError || upsertError }
