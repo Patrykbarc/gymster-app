@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 
 export type ButtonProps = {
   $variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'link' | 'outline'
+  $noHover?: boolean
 }
 
 const variantStyles = {
@@ -23,11 +24,18 @@ const variantStyles = {
   `,
   link: css`
     background: none;
-    padding: 0;
+    padding: 0 0.5rem;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.light};
+    }
   `,
   outline: css`
     background: none;
     border: 1px solid ${({ theme }) => theme.colors.gray};
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.light};
+    }
   `,
 }
 
@@ -38,23 +46,33 @@ export const Button = styled.button<ButtonProps>`
   border-radius: ${({ theme }) => theme.borderRadius.sm};
   transition: ${({ theme }) => theme.transitions.normal};
   cursor: pointer;
-  display: inline-block;
+
+  display: flex;
+  align-items: center;
   height: 2.5rem;
+  max-width: fit-content;
 
-  ${({ $variant = 'primary' }) => variantStyles[$variant]}
+  ${({ $variant = 'primary' }) => variantStyles[$variant]};
 
-  &:hover {
-    opacity: 0.9;
-  }
+  ${({ $noHover }) =>
+    $noHover &&
+    css`
+      &:hover {
+        opacity: 1;
+        background-color: inherit;
+        cursor: default;
+      }
+    `}
 
   &:active {
     transform: translateY(1px);
   }
 
   &:disabled {
-    background: ${({ theme }) => theme.colors.secondary};
-    color: ${({ theme }) => theme.colors.light};
     cursor: not-allowed;
     opacity: 0.6;
+
+    background: ${({ $variant, theme }) =>
+      $variant === 'outline' && theme.colors.light};
   }
 `
