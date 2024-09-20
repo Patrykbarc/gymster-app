@@ -3,16 +3,11 @@ import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useSession } from '../../../utils/hooks/useSession'
-import { Button } from '../../components/Button/Button'
+import { Card } from '../../components/Card/Card'
 import { submitPlannerForm } from './_helpers/submitPlannerForm'
 import { SubmitFormWorkout } from './_types/SubmitFormWorkout'
 import { ExerciseFields } from './ExerciseFields/ExerciseFields'
-import { WorkoutFormContainer } from './WorkoutFormContainer/WorkoutFormContainer'
 import { WorkoutInfo } from './WorkoutInfo/WorkoutInfo'
-
-export const Flex = styled.div`
-  display: flex;
-`
 
 type UserSessionState = undefined | { userId: string }
 
@@ -51,13 +46,11 @@ export function WorkoutForm() {
   }
 
   return (
-    <WorkoutFormContainer>
+    <Card>
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
         <WorkoutInfo register={register} />
         <ExerciseFields control={control} register={register} />
-
-        <Button type="submit">Save</Button>
       </FormContainer>
-    </WorkoutFormContainer>
+    </Card>
   )
 }

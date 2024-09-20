@@ -6,9 +6,11 @@ export const Card = styled.div`
   flex-grow: 1;
   flex-basis: 0;
 
+  background-color: ${({ theme }) => theme.colors.white};
+
   gap: ${({ theme }) => theme.spacing.lg};
 
-  border: 1px solid ${({ theme }) => theme.colors.gray};
+  border: 1px solid ${({ theme }) => theme.colors.secondary};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   padding: ${({ theme }) => theme.spacing.xxl};
 

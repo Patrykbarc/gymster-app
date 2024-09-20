@@ -3,11 +3,11 @@ import styled from 'styled-components'
 
 type InputProps = {
   $isError?: boolean
-  $width?: Property.Height
+  $width?: Property.Width
 }
 
 export const Input = styled.input<InputProps>`
-  width: 100%;
+  width: ${({ $width = '100%' }) => $width};
   height: 2.5rem;
 
   border-radius: ${({ theme }) => theme.borderRadius.sm};

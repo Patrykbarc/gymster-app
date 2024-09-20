@@ -12,7 +12,7 @@ import { Workout } from './Workout/Workout'
 
 const Container = styled.div`
   display: grid;
-  max-width: 50%;
+  max-width: 40%;
   gap: ${({ theme }) => theme.spacing.xl};
 `
 

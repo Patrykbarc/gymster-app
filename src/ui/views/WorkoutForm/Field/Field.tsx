@@ -4,11 +4,11 @@ import styled from 'styled-components'
 import { Input } from '../../../components/Input/Input'
 
 type FieldProps = InputHTMLAttributes<HTMLInputElement> & {
-  label: string
+  label?: string | boolean
   register?: UseFormRegisterReturn
 }
 
-const Label = styled.label`
+export const Label = styled.label`
   display: block;
   margin-bottom: ${({ theme }) => theme.spacing.sm};
 `
@@ -16,7 +16,7 @@ const Label = styled.label`
 export function Field({ label, register, ...props }: FieldProps) {
   return (
     <div>
-      <Label>{label}</Label>
+      {label && <Label>{label}</Label>}
       <Input {...props} {...register} />
     </div>
   )

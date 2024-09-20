@@ -5,11 +5,11 @@ export const theme = {
     primary: '#007bff',
     secondary: '#e3e3e4',
     gray: '#c7c7c7',
+    white: '#ffffff',
     success: '#28a745',
     danger: '#dc3545',
-    light: '#f4f4f5',
+    light: '#f2f2f2',
     dark: '#343a40',
-    background: '#f2f2f2',
     text: '#212529',
   },
   fontSizes: {
