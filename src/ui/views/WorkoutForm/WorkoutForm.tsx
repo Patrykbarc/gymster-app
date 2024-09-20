@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useSession } from '../../../utils/hooks/useSession'
 import { Card } from '../../components/Card/Card'
 import { submitPlannerForm } from './_helpers/submitPlannerForm'
+import { WORKOUT_DEFAULT_VALUES } from './_helpers/workout-default-values'
 import { SubmitFormWorkout } from './_types/SubmitFormWorkout'
 import { ExerciseFields } from './ExerciseFields/ExerciseFields'
 import { WorkoutInfo } from './WorkoutInfo/WorkoutInfo'
@@ -25,20 +26,9 @@ export function WorkoutForm() {
     session?.id && setUserId({ userId: session?.id })
   }, [])
 
-  const { control, handleSubmit, register } = useForm<SubmitFormWorkout>({
-    defaultValues: {
-      info: {
-        workout: 'Workout name placeholder',
-        workoutDate: '',
-      },
-      exercises: [
-        {
-          name: 'Exercise placeholder',
-          sets: [{ set: 1, weight: 1, reps: 1 }],
-        },
-      ],
-    },
-  })
+  const { control, handleSubmit, register } = useForm<SubmitFormWorkout>(
+    WORKOUT_DEFAULT_VALUES
+  )
 
   const onSubmit = (data: SubmitFormWorkout) => {
     const mutatedData = Object.assign(data, userId)

@@ -24,7 +24,10 @@ const FieldsContainer = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing.lg};
 `
 
-
+const ButtonActions = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
 
 export function ExerciseFields({ control, register }: ExerciseFieldsProps) {
   const {
@@ -44,12 +47,13 @@ export function ExerciseFields({ control, register }: ExerciseFieldsProps) {
             <FieldsContainer>
               <Field
                 label="Exercise name"
+                placeholder="Bench press"
                 register={register(`exercises.${exerciseIndex}.name`)}
               />
 
               <Button
                 disabled={exerciseFields.length === 1}
-                $variant="danger"
+                $variant="outline"
                 onClick={() => removeExercise(exerciseIndex)}
               >
                 <Trash2 />
@@ -65,19 +69,21 @@ export function ExerciseFields({ control, register }: ExerciseFieldsProps) {
         )
       })}
 
-      <Button
-        type="button"
-        $variant="outline"
-        onClick={() =>
-          appendExercise({ name: '', sets: [{ set: 1, weight: 1, reps: 1 }] })
-        }
-      >
-        Add exercise
-      </Button>
+      <ButtonActions>
+        <Button
+          type="button"
+          $variant="outline"
+          onClick={() =>
+            appendExercise({ name: '', sets: [{ set: 1, weight: 1, reps: 1 }] })
+          }
+        >
+          Add exercise
+        </Button>
 
-      <div>
-        <Button type="submit">Save</Button>
-      </div>
+        <div>
+          <Button type="submit">Save</Button>
+        </div>
+      </ButtonActions>
     </div>
   )
 }

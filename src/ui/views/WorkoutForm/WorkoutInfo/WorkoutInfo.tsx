@@ -11,13 +11,16 @@ const WorkoutInfoContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: ${({ theme }) => theme.spacing.md};
-  /* margin-bottom: ${({ theme }) => theme.spacing.lg}; */
 `
 
 export function WorkoutInfo({ register }: WorkoutInfoProps) {
   return (
     <WorkoutInfoContainer>
-      <Field label="Workout name" register={register('info.workout')} />
+      <Field
+        label="Workout name"
+        placeholder="Chest workout"
+        register={register('info.workout')}
+      />
       <Field
         label="Workout Date"
         type="date"

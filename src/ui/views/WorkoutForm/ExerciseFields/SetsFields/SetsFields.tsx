@@ -2,6 +2,7 @@ import { Trash2 } from 'lucide-react'
 import { Control, useFieldArray, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
 import { Button } from '../../../../components/Button/Button'
+import { WORKOUT_DEFAULT_VALUES } from '../../_helpers/workout-default-values'
 import { SubmitFormWorkout } from '../../_types/SubmitFormWorkout'
 import { Field } from '../../Field/Field'
 import { SetField } from './SetField/SetField'
@@ -12,12 +13,25 @@ type SetsFieldsProps = {
   exerciseIndex: number
 }
 
+const Fieldset = styled.fieldset`
+  .add-set-button {
+    margin-top: ${({ theme }) => theme.spacing.md};
+  }
+`
+const defaultValues = WORKOUT_DEFAULT_VALUES.defaultValues.exercises[0].sets[0]
+const newSetRep = defaultValues.reps
+const newSetWeight = defaultValues.weight
+
 const FieldsContainer = styled.div`
   display: grid;
   grid-template-columns: min-content 2fr 2fr 0fr;
   align-items: end;
   gap: ${({ theme }) => theme.spacing.md};
   margin-bottom: ${({ theme }) => theme.spacing.sm};
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 `
 
 export function SetsFields({
@@ -35,7 +49,7 @@ export function SetsFields({
   })
 
   return (
-    <fieldset>
+    <Fieldset>
       {setFields.map((setField, setIndex) => {
         const firstIndex = setIndex === 0
         return (
@@ -68,15 +82,21 @@ export function SetsFields({
           </FieldsContainer>
         )
       })}
-      <Button
-        type="button"
-        $variant="outline"
-        onClick={() =>
-          appendSet({ set: setFields.length + 1, reps: 1, weight: 1 })
-        }
-      >
-        Add set
-      </Button>
-    </fieldset>
+      <div className="add-set-button">
+        <Button
+          type="button"
+          $variant="outline"
+          onClick={() =>
+            appendSet({
+              set: setFields.length + 1,
+              reps: newSetRep,
+              weight: newSetWeight,
+            })
+          }
+        >
+          Add set
+        </Button>
+      </div>
+    </Fieldset>
   )
 }

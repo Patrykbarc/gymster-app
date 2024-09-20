@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Button } from '../../../../../components/Button/Button'
-import { Label } from '../../../Field/Field'
+import { Label } from '../../../../../components/Label/Label'
 
 type SetFieldProps = {
   isFirstIndex: boolean

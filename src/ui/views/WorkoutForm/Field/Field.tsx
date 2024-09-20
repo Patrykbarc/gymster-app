@@ -1,23 +1,25 @@
+import { Property } from 'csstype'
 import { InputHTMLAttributes } from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
 import styled from 'styled-components'
 import { Input } from '../../../components/Input/Input'
+import { Label } from '../../../components/Label/Label'
 
 type FieldProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string | boolean
   register?: UseFormRegisterReturn
+  $width?: Property.Width
 }
 
-export const Label = styled.label`
-  display: block;
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
+const FieldContainer = styled.div<FieldProps>`
+  width: 100%;
 `
 
-export function Field({ label, register, ...props }: FieldProps) {
+export function Field({ label, register, $width, ...props }: FieldProps) {
   return (
-    <div>
+    <FieldContainer>
       {label && <Label>{label}</Label>}
       <Input {...props} {...register} />
-    </div>
+    </FieldContainer>
   )
 }

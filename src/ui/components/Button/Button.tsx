@@ -41,6 +41,7 @@ const variantStyles = {
 
 export const Button = styled.button<ButtonProps>`
   padding: ${({ theme }) => theme.spacing.sm};
+
   font-size: ${({ theme }) => theme.fontSizes.md};
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius.sm};
