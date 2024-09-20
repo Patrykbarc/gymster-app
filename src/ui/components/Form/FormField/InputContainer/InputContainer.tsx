@@ -11,7 +11,7 @@ export const InputContainer = styled.div<{ $direction: InputVariant }>`
   label {
     width: ${({ $direction }) => $direction && '6rem'};
     margin-bottom: ${({ $direction, theme }) =>
-      $direction === 'vertical' && theme.spacing.small};
+      $direction === 'vertical' && theme.spacing.sm};
     word-break: break-all;
   }
 `

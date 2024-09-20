@@ -14,41 +14,38 @@ export const theme = {
   },
   fontSizes: {
     xs: '0.75rem',
-    small: '0.875rem',
-    medium: '1rem',
-    large: '1.25rem',
+    sm: '0.875rem',
+    md: '1rem',
+    lg: '1.25rem',
     xl: '1.5rem',
     xxl: '2rem',
   },
   spacing: {
     xs: '0.25rem',
-    small: '0.5rem',
-    medium: '0.75rem',
-    large: '1rem',
+    sm: '0.5rem',
+    md: '0.75rem',
+    lg: '1rem',
     xl: '1.5rem',
     xxl: '2rem',
   },
   sizes: {
-    small: '1.5rem',
-    medium: '4rem',
-    large: '8rem',
+    sm: '1.5rem',
+    md: '4rem',
+    lg: '8rem',
     full: '100%',
     auto: 'auto',
   },
   borderRadius: {
     none: '0',
-    small: '0.25rem',
-    medium: '0.5rem',
-    large: '1rem',
+    sm: '0.25rem',
+    md: '0.5rem',
+    lg: '1rem',
     round: '50%',
   },
   shadows: {
-    small:
-      'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px',
-    medium:
-      'rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
-    large:
-      'rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px',
+    sm: 'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px',
+    md: 'rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+    lg: 'rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px',
   },
 
   transitions: {

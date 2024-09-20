@@ -32,10 +32,10 @@ const variantStyles = {
 }
 
 export const Button = styled.button<ButtonProps>`
-  padding: ${({ theme }) => theme.spacing.small};
-  font-size: ${({ theme }) => theme.fontSizes.medium};
+  padding: ${({ theme }) => theme.spacing.sm};
+  font-size: ${({ theme }) => theme.fontSizes.md};
   border: none;
-  border-radius: ${({ theme }) => theme.borderRadius.small};
+  border-radius: ${({ theme }) => theme.borderRadius.sm};
   transition: ${({ theme }) => theme.transitions.normal};
   cursor: pointer;
   display: inline-block;

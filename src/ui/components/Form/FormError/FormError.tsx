@@ -9,7 +9,7 @@ type FormErrorProps = {
 
 const Error = styled.p<{ $errorPosition?: TextPosition }>`
   color: ${({ theme }) => theme.colors.danger};
-  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-size: ${({ theme }) => theme.fontSizes.sm};
   text-align: ${({ $errorPosition }) => $errorPosition};
 `
 

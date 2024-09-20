@@ -1,3 +1,4 @@
+import { X as RemoveIcon } from 'lucide-react'
 import { Control, useFieldArray, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
 import { Button } from '../../../../components/Button/Button'
@@ -12,8 +13,8 @@ type SetsFieldsProps = {
 
 const FieldsContainer = styled.div`
   display: flex;
-  gap: ${({ theme }) => theme.spacing.medium};
-  margin-bottom: ${({ theme }) => theme.spacing.small};
+  gap: ${({ theme }) => theme.spacing.md};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
 `
 
 const InputFieldsContainer = styled.div`
@@ -66,7 +67,7 @@ export function SetsFields({
                 disabled={setFields.length === 1}
                 onClick={() => removeSet(setIndex)}
               >
-                Remove set
+                <RemoveIcon />
               </Button>
             </InputFieldsContainer>
           </FieldsContainer>

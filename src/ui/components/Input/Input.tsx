@@ -10,8 +10,8 @@ export const Input = styled.input<InputProps>`
   width: 100%;
   height: 2.5rem;
 
-  border-radius: ${({ theme }) => theme.borderRadius.small};
-  padding: ${({ theme }) => theme.spacing.medium};
+  border-radius: ${({ theme }) => theme.borderRadius.sm};
+  padding: ${({ theme }) => theme.spacing.md};
   border: 1px solid ${({ theme }) => theme.colors.secondary};
 
   border-color: ${({ theme, $isError }) =>

@@ -5,12 +5,12 @@ export const WorkoutFormContainer = styled.div`
   width: 100%;
   gap: ${({ theme }) => theme.spacing.xl};
   border: 1px solid ${({ theme }) => theme.colors.gray};
-  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
   padding: ${({ theme }) => theme.spacing.xxl};
 
   .form-main-info {
     display: grid;
-    gap: ${({ theme }) => theme.spacing.small};
+    gap: ${({ theme }) => theme.spacing.sm};
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -23,8 +23,8 @@ export const WorkoutFormContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
-    gap: ${({ theme }) => theme.spacing.small};
-    margin-bottom: ${({ theme }) => theme.spacing.medium};
+    gap: ${({ theme }) => theme.spacing.sm};
+    margin-bottom: ${({ theme }) => theme.spacing.md};
 
     &:last-child {
       margin-bottom: 0;

@@ -14,7 +14,7 @@ const CloseButton = styled.div`
   right: 0;
   font-size: 2em;
 
-  padding: ${({ theme }) => theme.spacing.medium};
+  padding: ${({ theme }) => theme.spacing.md};
   cursor: pointer;
 `
 

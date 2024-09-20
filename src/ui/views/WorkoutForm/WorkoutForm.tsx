@@ -21,7 +21,7 @@ const FormContainer = styled.form`
   gap: ${({ theme }) => theme.spacing.xl};
 `
 
-export function PlannerForm() {
+export function WorkoutForm() {
   const { session } = useSession()
   const [userId, setUserId] = useState<UserSessionState>(undefined)
   const dispatch = useAppDispatch()

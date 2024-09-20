@@ -9,12 +9,12 @@ const NavigationContainer = styled.nav`
   height: 100dvh;
   min-width: 20rem;
 
-  gap: ${({ theme }) => theme.spacing.medium};
+  gap: ${({ theme }) => theme.spacing.md};
   padding: ${({ theme }) => theme.spacing.xl};
   background: ${({ theme }) => theme.colors.dark};
 
   text-transform: capitalize;
-  font-size: ${({ theme }) => theme.fontSizes.large};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
 
   a {
     color: ${({ theme }) => theme.colors.light};

@@ -8,8 +8,8 @@ type IconProps = {
 
 const IconWrapper = styled.div`
   cursor: pointer;
-  padding: ${({ theme }) => theme.spacing.small};
-  border-radius: ${({ theme }) => theme.borderRadius.small};
+  padding: ${({ theme }) => theme.spacing.sm};
+  border-radius: ${({ theme }) => theme.borderRadius.sm};
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.secondary};

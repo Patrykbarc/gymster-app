@@ -10,8 +10,8 @@ type WorkoutInfoProps = {
 const WorkoutInfoContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: ${({ theme }) => theme.spacing.medium};
-  /* margin-bottom: ${({ theme }) => theme.spacing.large}; */
+  gap: ${({ theme }) => theme.spacing.md};
+  /* margin-bottom: ${({ theme }) => theme.spacing.lg}; */
 `
 
 export function WorkoutInfo({ register }: WorkoutInfoProps) {

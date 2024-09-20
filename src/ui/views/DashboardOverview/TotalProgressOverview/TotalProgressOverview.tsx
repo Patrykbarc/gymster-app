@@ -7,7 +7,7 @@ const TotalProgressOverviewContainer = styled.section`
   grid-template-columns: repeat(1, 1fr);
 
   width: 100%;
-  gap: ${({ theme }) => theme.spacing.large};
+  gap: ${({ theme }) => theme.spacing.lg};
 
   @media (min-width: ${({ theme }) => theme.breakPoints.sm}) {
     grid-template-columns: repeat(2, 1fr);

@@ -5,14 +5,20 @@ import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useAppSelector } from '../../../utils/hooks/useAppSelector'
 import { workoutsSelector } from '../../../utils/redux/selectors/scheduledWorkouts'
 import { fetchWorkouts } from '../../../utils/redux/slices/workouts/workoutsSlice'
-import { PlannerForm } from '../../views/WorkoutForm/WorkoutForm'
+import { WorkoutForm } from '../../views/WorkoutForm/WorkoutForm'
 import { Card } from '../Card/Card'
 import { Actions } from './Workout/Actions/Actions'
 import { Workout } from './Workout/Workout'
 
+const Container = styled.div`
+  display: grid;
+  max-width: 50%;
+  gap: ${({ theme }) => theme.spacing.xl};
+`
+
 const WorkoutsContainer = styled(Card)`
   display: grid;
-  gap: ${({ theme }) => theme.spacing.large};
+  gap: ${({ theme }) => theme.spacing.lg};
 `
 
 export function Workouts() {
@@ -29,7 +35,7 @@ export function Workouts() {
   if (!user) return
 
   return (
-    <>
+    <Container>
       {workouts.length > 0 && (
         <WorkoutsContainer>
           {workouts.map((workout) => (
@@ -39,7 +45,7 @@ export function Workouts() {
           ))}
         </WorkoutsContainer>
       )}
-      <PlannerForm />
-    </>
+      <WorkoutForm />
+    </Container>
   )
 }

@@ -10,7 +10,7 @@ export const Form = styled.form<FormProps>`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.light};
   padding: ${({ theme }) => theme.spacing.xl};
-  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
 
   ${({ $maxWidth }) => $maxWidth && `max-width: ${$maxWidth}`};
 `

@@ -10,7 +10,7 @@ type FieldProps = InputHTMLAttributes<HTMLInputElement> & {
 
 const Label = styled.label`
   display: block;
-  margin-bottom: ${({ theme }) => theme.spacing.small};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
 `
 
 export function Field({ label, register, ...props }: FieldProps) {
