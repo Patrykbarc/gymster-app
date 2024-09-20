@@ -12,3 +12,6 @@ export const WORKOUT_DEFAULT_VALUES = {
     ],
   },
 }
+
+export const workoutDefaultValues =
+  WORKOUT_DEFAULT_VALUES.defaultValues.exercises[0].sets[0]

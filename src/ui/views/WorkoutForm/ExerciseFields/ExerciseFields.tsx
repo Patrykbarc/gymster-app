@@ -2,6 +2,7 @@ import { Trash2 } from 'lucide-react'
 import { Control, useFieldArray, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
 import { Button } from '../../../components/Button/Button'
+import { workoutDefaultValues } from '../_helpers/workout-default-values'
 import { SubmitFormWorkout } from '../_types/SubmitFormWorkout'
 import { Field } from '../Field/Field'
 import { SetsFields } from './SetsFields/SetsFields'
@@ -28,6 +29,9 @@ const ButtonActions = styled.div`
   display: flex;
   justify-content: space-between;
 `
+
+const newExerciseRep = workoutDefaultValues.reps
+const newExerciseWeight = workoutDefaultValues.weight
 
 export function ExerciseFields({ control, register }: ExerciseFieldsProps) {
   const {
@@ -74,7 +78,12 @@ export function ExerciseFields({ control, register }: ExerciseFieldsProps) {
           type="button"
           $variant="outline"
           onClick={() =>
-            appendExercise({ name: '', sets: [{ set: 1, weight: 1, reps: 1 }] })
+            appendExercise({
+              name: '',
+              sets: [
+                { set: 1, weight: newExerciseWeight, reps: newExerciseRep },
+              ],
+            })
           }
         >
           Add exercise

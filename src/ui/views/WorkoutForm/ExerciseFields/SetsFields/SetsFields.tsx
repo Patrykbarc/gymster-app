@@ -2,9 +2,10 @@ import { Trash2 } from 'lucide-react'
 import { Control, useFieldArray, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
 import { Button } from '../../../../components/Button/Button'
-import { WORKOUT_DEFAULT_VALUES } from '../../_helpers/workout-default-values'
 import { SubmitFormWorkout } from '../../_types/SubmitFormWorkout'
 import { Field } from '../../Field/Field'
+import { FieldError } from '../../Field/FieldError/FieldError'
+import { NewSetButton } from './NewSetButton/NewSetButton'
 import { SetField } from './SetField/SetField'
 
 type SetsFieldsProps = {
@@ -18,9 +19,6 @@ const Fieldset = styled.fieldset`
     margin-top: ${({ theme }) => theme.spacing.md};
   }
 `
-const defaultValues = WORKOUT_DEFAULT_VALUES.defaultValues.exercises[0].sets[0]
-const newSetRep = defaultValues.reps
-const newSetWeight = defaultValues.weight
 
 const FieldsContainer = styled.div`
   display: grid;
@@ -53,49 +51,41 @@ export function SetsFields({
       {setFields.map((setField, setIndex) => {
         const firstIndex = setIndex === 0
         return (
-          <FieldsContainer key={setField.id}>
-            <SetField isFirstIndex={firstIndex} set={setIndex} />
-            <Field
-              label={firstIndex && 'Reps'}
-              type="number"
-              register={register(
-                `exercises.${exerciseIndex}.sets.${setIndex}.reps`
-              )}
-            />
+          <div key={setField.id}>
+            <FieldsContainer>
+              <SetField isFirstIndex={firstIndex} set={setIndex} />
 
-            <Field
-              label={firstIndex && 'Weight'}
-              type="number"
-              register={register(
-                `exercises.${exerciseIndex}.sets.${setIndex}.weight`
-              )}
-            />
+              <Field
+                label={firstIndex && 'Reps'}
+                type="number"
+                register={register(
+                  `exercises.${exerciseIndex}.sets.${setIndex}.reps`
+                )}
+              />
 
-            <Button
-              type="button"
-              $variant="outline"
-              disabled={setFields.length === 1}
-              onClick={() => removeSet(setIndex)}
-            >
-              <Trash2 />
-            </Button>
-          </FieldsContainer>
+              <Field
+                label={firstIndex && 'Weight'}
+                type="number"
+                register={register(
+                  `exercises.${exerciseIndex}.sets.${setIndex}.weight`
+                )}
+              />
+
+              <Button
+                type="button"
+                $variant="outline"
+                disabled={setFields.length === 1}
+                onClick={() => removeSet(setIndex)}
+              >
+                <Trash2 />
+              </Button>
+            </FieldsContainer>
+            <FieldError>Error message</FieldError>
+          </div>
         )
       })}
       <div className="add-set-button">
-        <Button
-          type="button"
-          $variant="outline"
-          onClick={() =>
-            appendSet({
-              set: setFields.length + 1,
-              reps: newSetRep,
-              weight: newSetWeight,
-            })
-          }
-        >
-          Add set
-        </Button>
+        <NewSetButton appendSet={appendSet} setFields={setFields} />
       </div>
     </Fieldset>
   )
