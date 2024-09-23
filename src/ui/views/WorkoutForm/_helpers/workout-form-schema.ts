@@ -1,23 +1,24 @@
 import { z } from 'zod'
 import { isString } from './isString'
-
 const workoutInfoSchema = z.object({
   workout: z.string().min(3, { message: 'Workout must be named' }),
   workoutDate: z.preprocess(
     (arg) =>
       typeof arg === 'string' || arg instanceof Date ? new Date(arg) : arg,
-    z.date({ message: 'Pick a date' })
+    z.date({ message: 'Pick a valid date' })
   ),
 })
 
 const setsSchema = z.object({
-  set: z.number().min(1),
-  weight: z.preprocess((val) => isString(val), z.number().min(1), {
-    message: 'Weight must be a posivtive number',
-  }),
-  reps: z.preprocess((val) => isString(val), z.number().min(1), {
-    message: 'Reps must be a positive number',
-  }),
+  set: z.number().min(1, { message: 'Set number must be at least 1' }),
+  weight: z.preprocess(
+    (val) => isString(val),
+    z.number().positive({ message: 'Weight must be a positive number' })
+  ),
+  reps: z.preprocess(
+    (val) => isString(val),
+    z.number().min(1, { message: 'Reps must be at least 1' })
+  ),
 })
 
 const exersiceSchema = z.object({
@@ -27,5 +28,7 @@ const exersiceSchema = z.object({
 
 export const WORKOUT_FORM_SCHEMA = z.object({
   info: workoutInfoSchema,
-  excercises: exersiceSchema,
+  exercises: z
+    .array(exersiceSchema)
+    .min(1, { message: 'Add at least one exercise' }),
 })

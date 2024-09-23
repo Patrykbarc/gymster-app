@@ -38,7 +38,6 @@ export function WorkoutForm() {
     resolver: zodResolver(WORKOUT_FORM_SCHEMA),
   })
 
-  console.log(errors)
   const onSubmit = (data: SubmitFormWorkout) => {
     const mutatedData = Object.assign(data, userId)
     submitPlannerForm(mutatedData, dispatch)

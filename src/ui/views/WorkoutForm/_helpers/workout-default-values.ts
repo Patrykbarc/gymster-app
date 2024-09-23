@@ -1,3 +1,6 @@
+const DEFAULT_WEIGHT = 10
+const DEFAULT_REPS = 8
+
 export const WORKOUT_DEFAULT_VALUES = {
   defaultValues: {
     info: {
@@ -7,7 +10,7 @@ export const WORKOUT_DEFAULT_VALUES = {
     exercises: [
       {
         name: '',
-        sets: [{ set: 1, weight: 10, reps: 8 }],
+        sets: [{ set: 1, weight: DEFAULT_WEIGHT, reps: DEFAULT_REPS }],
       },
     ],
   },

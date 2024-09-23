@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { UseFormRegister } from 'react-hook-form'
+import { get, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
 import { ErrorContext } from '../../../../utils/providers/contexts/ErrorContext'
 import { SubmitFormWorkout } from '../_types/SubmitFormWorkout'
@@ -18,7 +18,10 @@ const WorkoutInfoContainer = styled.div`
 
 export function WorkoutInfo({ register }: WorkoutInfoProps) {
   const errors = useContext(ErrorContext)
-  console.log(errors?.info?.workout.message)
+
+  const workoutError = get(errors, 'info.workout')?.message
+  const dateError = get(errors, 'info.workoutDate')?.message
+
   return (
     <WorkoutInfoContainer>
       <div>
@@ -27,7 +30,7 @@ export function WorkoutInfo({ register }: WorkoutInfoProps) {
           placeholder="Chest workout"
           register={register('info.workout')}
         />
-        {/* <FieldError>{errors}</FieldError> */}
+        <FieldError>{workoutError}</FieldError>
       </div>
 
       <div>
@@ -36,7 +39,7 @@ export function WorkoutInfo({ register }: WorkoutInfoProps) {
           type="date"
           register={register('info.workoutDate')}
         />
-        <FieldError></FieldError>
+        <FieldError>{dateError}</FieldError>
       </div>
     </WorkoutInfoContainer>
   )

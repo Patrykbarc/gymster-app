@@ -1,9 +1,10 @@
+import { ReactNode } from 'react'
 import { FieldErrors, FieldValues } from 'react-hook-form'
-import { Children } from '../../types/Children'
 import { ErrorContext } from './contexts/ErrorContext'
 
-type ErrorProviderProps<T extends FieldValues> = Children & {
+type ErrorProviderProps<T extends FieldValues> = {
   errors: FieldErrors<T>
+  children: ReactNode
 }
 
 export function ErrorProvider<T extends FieldValues>({
