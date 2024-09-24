@@ -7,8 +7,8 @@ import { useSession } from '../../../utils/hooks/useSession'
 import { ErrorProvider } from '../../../utils/providers/ErrorProvider'
 import { Card } from '../../components/Card/Card'
 import { submitPlannerForm } from './_helpers/submitPlannerForm'
-import { WORKOUT_DEFAULT_VALUES } from './_helpers/workout-default-values'
 import { WORKOUT_FORM_SCHEMA } from './_helpers/workout-form-schema'
+import { useWorkoutFormData } from './_hooks/useWorkoutFormData'
 import { SubmitFormWorkout } from './_types/SubmitFormWorkout'
 import { ExerciseFields } from './ExerciseFields/ExerciseFields'
 import { WorkoutInfo } from './WorkoutInfo/WorkoutInfo'
@@ -24,6 +24,8 @@ export function WorkoutForm() {
   const { session } = useSession()
   const [userId, setUserId] = useState<UserSessionState>(undefined)
   const dispatch = useAppDispatch()
+  const { defaultValues } = useWorkoutFormData({ watch: undefined })
+
   useEffect(() => {
     session?.id && setUserId({ userId: session?.id })
   }, [])
@@ -32,11 +34,14 @@ export function WorkoutForm() {
     control,
     handleSubmit,
     register,
+    watch,
     formState: { errors },
   } = useForm<SubmitFormWorkout>({
-    ...WORKOUT_DEFAULT_VALUES,
+    defaultValues,
     resolver: zodResolver(WORKOUT_FORM_SCHEMA),
   })
+
+  useWorkoutFormData({ watch })
 
   const onSubmit = (data: SubmitFormWorkout) => {
     const mutatedData = Object.assign(data, userId)
