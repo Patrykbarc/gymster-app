@@ -1,10 +1,13 @@
 import { Trash2 } from 'lucide-react'
-import { Control, useFieldArray, UseFormRegister } from 'react-hook-form'
+import { useContext } from 'react'
+import { Control, get, useFieldArray, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
+import { ErrorContext } from '../../../../utils/providers/contexts/ErrorContext'
 import { Button } from '../../../components/Button/Button'
 import { workoutDefaultValues } from '../_helpers/workout-default-values'
 import { SubmitFormWorkout } from '../_types/SubmitFormWorkout'
 import { Field } from '../Field/Field'
+import { FieldError } from '../Field/FieldError/FieldError'
 import { SetsFields } from './SetsFields/SetsFields'
 
 type ExerciseFieldsProps = {
@@ -22,7 +25,6 @@ const FieldsContainer = styled.div`
   display: flex;
   align-items: end;
   gap: ${({ theme }) => theme.spacing.md};
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
 `
 
 const ButtonActions = styled.div`
@@ -43,9 +45,14 @@ export function ExerciseFields({ control, register }: ExerciseFieldsProps) {
     name: 'exercises',
   })
 
+  const errors = useContext(ErrorContext)
+
   return (
     <div>
       {exerciseFields.map((field, exerciseIndex) => {
+        const exerciseError = get(errors, `exercises[${exerciseIndex}]`)
+        const exerciseName = exerciseError?.name?.message
+
         return (
           <ExerciseFieldsContainer key={field.id}>
             <FieldsContainer>
@@ -53,6 +60,7 @@ export function ExerciseFields({ control, register }: ExerciseFieldsProps) {
                 label="Exercise name"
                 placeholder="Bench press"
                 register={register(`exercises.${exerciseIndex}.name`)}
+                $isError={exerciseError}
               />
 
               <Button
@@ -63,6 +71,8 @@ export function ExerciseFields({ control, register }: ExerciseFieldsProps) {
                 <Trash2 />
               </Button>
             </FieldsContainer>
+
+            <FieldError $marginBlock>{exerciseName}</FieldError>
 
             <SetsFields
               control={control}

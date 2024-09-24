@@ -16,12 +16,13 @@ type SetsFieldsProps = {
 }
 
 type FieldsContainerProps = {
-  isErrorSet: boolean
+  $isErrorSet: boolean
 }
 
 const Fieldset = styled.fieldset<FieldsContainerProps>`
   display: grid;
   gap: ${({ theme }) => theme.spacing.sm};
+  margin-top: ${({ theme }) => theme.spacing.md};
 
   .add-set-button {
     margin-top: ${({ theme }) => theme.spacing.md};
@@ -56,7 +57,7 @@ export function SetsFields({
   })
 
   return (
-    <Fieldset isErrorSet={isAnyErrorSet}>
+    <Fieldset $isErrorSet={isAnyErrorSet}>
       {setFields.map((setField, setIndex) => {
         const firstIndex = setIndex === 0
 

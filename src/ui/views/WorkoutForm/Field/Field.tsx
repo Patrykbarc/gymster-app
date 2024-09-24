@@ -9,17 +9,24 @@ type FieldProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string | boolean
   register?: UseFormRegisterReturn
   $width?: Property.Width
+  $isError?: boolean
 }
 
 const FieldContainer = styled.div<FieldProps>`
   width: 100%;
 `
 
-export function Field({ label, register, $width, ...props }: FieldProps) {
+export function Field({
+  label,
+  register,
+  $width,
+  $isError,
+  ...props
+}: FieldProps) {
   return (
     <FieldContainer>
       {label && <Label>{label}</Label>}
-      <Input {...props} {...register} />
+      <Input $isError={$isError} {...props} {...register} />
     </FieldContainer>
   )
 }

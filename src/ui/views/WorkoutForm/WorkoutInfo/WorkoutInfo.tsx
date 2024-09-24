@@ -29,6 +29,7 @@ export function WorkoutInfo({ register }: WorkoutInfoProps) {
           label="Workout name"
           placeholder="Chest workout"
           register={register('info.workout')}
+          $isError={workoutError}
         />
         <FieldError>{workoutError}</FieldError>
       </div>
@@ -38,6 +39,7 @@ export function WorkoutInfo({ register }: WorkoutInfoProps) {
           label="Workout Date"
           type="date"
           register={register('info.workoutDate')}
+          $isError={dateError}
         />
         <FieldError>{dateError}</FieldError>
       </div>

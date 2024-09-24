@@ -1,7 +1,13 @@
 import styled from 'styled-components'
 
-export const FieldError = styled.p`
+type FieldErrorProps = {
+  $marginBlock?: boolean
+}
+
+export const FieldError = styled.p<FieldErrorProps>`
   color: ${({ theme }) => theme.colors.danger};
-  margin-top: ${({ theme }) => theme.spacing.sm};
   font-size: ${({ theme }) => theme.fontSizes.sm};
+
+  margin-top: ${({ theme }) => theme.spacing.sm};
+  margin-block: ${({ theme, $marginBlock }) => $marginBlock && theme.spacing.sm};
 `

@@ -1,7 +1,7 @@
 import { Property } from 'csstype'
 import styled from 'styled-components'
 
-type InputProps = {
+export type InputProps = {
   $isError?: boolean
   $width?: Property.Width
 }
@@ -12,8 +12,8 @@ export const Input = styled.input<InputProps>`
 
   border-radius: ${({ theme }) => theme.borderRadius.sm};
   padding: ${({ theme }) => theme.spacing.md};
-  border: 1px solid ${({ theme }) => theme.colors.secondary};
 
+  border: 1px solid;
   border-color: ${({ theme, $isError }) =>
     $isError ? theme.colors.danger : theme.colors.secondary};
 `

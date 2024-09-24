@@ -35,6 +35,7 @@ export function Errors({
     errors,
     `exercises[${exerciseIndex}].sets[${setIndex}]`
   )
+
   const exerciseRepsError = exercisesError?.reps?.message
   const exerciseWeightError = exercisesError?.weight?.message
 

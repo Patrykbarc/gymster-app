@@ -24,6 +24,7 @@ const Container = styled.div`
 const WorkoutsContainer = styled(Card)`
   display: grid;
   gap: ${({ theme }) => theme.spacing.lg};
+  height: fit-content;
 `
 
 export function Workouts() {
@@ -41,8 +42,10 @@ export function Workouts() {
 
   return (
     <Container>
+      <WorkoutForm />
       {workouts.length > 0 && (
         <WorkoutsContainer>
+          <h1 className="title">Your workouts</h1>
           {workouts.map((workout) => (
             <Workout key={workout.id} {...workout}>
               <Actions workoutId={workout.id} />
@@ -50,7 +53,6 @@ export function Workouts() {
           ))}
         </WorkoutsContainer>
       )}
-      <WorkoutForm />
     </Container>
   )
 }

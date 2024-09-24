@@ -6,7 +6,7 @@ import { NAVIGATION_LINKS } from './helpers/navigation-links'
 const NavigationContainer = styled.nav`
   display: flex;
   flex-direction: column;
-  height: 100dvh;
+  min-height: 100dvh;
   min-width: 20rem;
 
   gap: ${({ theme }) => theme.spacing.md};

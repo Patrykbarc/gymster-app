@@ -14,6 +14,11 @@ export const Card = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.md};
   padding: ${({ theme }) => theme.spacing.xxl};
 
+  .title {
+    font-weight: ${({ theme }) => theme.typography.fontWeights.medium};
+    font-size: ${({ theme }) => theme.fontSizes.lg};
+  }
+
   h3 {
     font-size: ${({ theme }) => theme.fontSizes.xl};
     font-weight: bold;
