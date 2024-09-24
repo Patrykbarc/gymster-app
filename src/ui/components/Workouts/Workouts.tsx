@@ -12,8 +12,13 @@ import { Workout } from './Workout/Workout'
 
 const Container = styled.div`
   display: grid;
-  max-width: 40%;
+  width: 100%;
+  max-width: clamp(300px, 100%, 100%);
   gap: ${({ theme }) => theme.spacing.xl};
+
+  @media (min-width: ${({ theme }) => theme.breakPoints.xxl}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 
 const WorkoutsContainer = styled(Card)`

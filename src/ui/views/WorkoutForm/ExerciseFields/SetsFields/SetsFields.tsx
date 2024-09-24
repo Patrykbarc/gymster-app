@@ -1,12 +1,11 @@
 import { Trash2 } from 'lucide-react'
-import { useContext } from 'react'
-import { Control, get, useFieldArray, UseFormRegister } from 'react-hook-form'
+import { useState } from 'react'
+import { Control, useFieldArray, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
-import { ErrorContext } from '../../../../../utils/providers/contexts/ErrorContext'
 import { Button } from '../../../../components/Button/Button'
 import { SubmitFormWorkout } from '../../_types/SubmitFormWorkout'
 import { Field } from '../../Field/Field'
-import { FieldError } from '../../Field/FieldError/FieldError'
+import { Errors } from './Errors/Errors'
 import { NewSetButton } from './NewSetButton/NewSetButton'
 import { SetField } from './SetField/SetField'
 
@@ -16,7 +15,14 @@ type SetsFieldsProps = {
   exerciseIndex: number
 }
 
-const Fieldset = styled.fieldset`
+type FieldsContainerProps = {
+  isErrorSet: boolean
+}
+
+const Fieldset = styled.fieldset<FieldsContainerProps>`
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.sm};
+
   .add-set-button {
     margin-top: ${({ theme }) => theme.spacing.md};
   }
@@ -27,25 +33,9 @@ const FieldsContainer = styled.div`
   grid-template-columns: 0fr 2fr 2fr 0fr;
   align-items: end;
   gap: ${({ theme }) => theme.spacing.md};
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
 
   &:last-of-type {
     margin-bottom: 0;
-  }
-`
-
-const ErrorsContainer = styled.div`
-  display: grid;
-  grid-template-columns: 0fr 2fr 2fr 0fr;
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
-
-  .reps-error {
-    margin-left: 42px;
-    grid-column: 2/3;
-  }
-
-  .weight-error {
-    grid-column: 3/4;
   }
 `
 
@@ -54,6 +44,8 @@ export function SetsFields({
   register,
   exerciseIndex,
 }: SetsFieldsProps) {
+  const [isAnyErrorSet, setIsAnyErrorSet] = useState(false)
+
   const {
     fields: setFields,
     append: appendSet,
@@ -63,21 +55,11 @@ export function SetsFields({
     name: `exercises.${exerciseIndex}.sets`,
   })
 
-  const errors = useContext(ErrorContext)
-
   return (
-    <Fieldset>
+    <Fieldset isErrorSet={isAnyErrorSet}>
       {setFields.map((setField, setIndex) => {
         const firstIndex = setIndex === 0
-        const exercisesError = get(
-          errors,
-          `exercises[${exerciseIndex}].sets[${setIndex}]`
-        )
-        const exerciseRepsError = exercisesError?.reps?.message
-        const exerciseWeightError = exercisesError?.weight?.message
 
-        const isAnyErrorVisible = exerciseRepsError || exerciseWeightError
- 
         return (
           <div key={setField.id}>
             <FieldsContainer>
@@ -86,6 +68,7 @@ export function SetsFields({
               <Field
                 label={firstIndex && 'Reps'}
                 type="number"
+                min={1}
                 register={register(
                   `exercises.${exerciseIndex}.sets.${setIndex}.reps`
                 )}
@@ -94,6 +77,7 @@ export function SetsFields({
               <Field
                 label={firstIndex && 'Weight'}
                 type="number"
+                min={1}
                 register={register(
                   `exercises.${exerciseIndex}.sets.${setIndex}.weight`
                 )}
@@ -108,16 +92,12 @@ export function SetsFields({
                 <Trash2 />
               </Button>
             </FieldsContainer>
-            {isAnyErrorVisible && (
-              <ErrorsContainer>
-                <FieldError className="reps-error">
-                  {exerciseRepsError}
-                </FieldError>
-                <FieldError className="weight-error">
-                  {exerciseWeightError}
-                </FieldError>
-              </ErrorsContainer>
-            )}
+
+            <Errors
+              exerciseIndex={exerciseIndex}
+              setIndex={setIndex}
+              setIsAnyErrorSet={setIsAnyErrorSet}
+            />
           </div>
         )
       })}
