@@ -46,6 +46,7 @@ export function WorkoutForm() {
   const onSubmit = (data: SubmitFormWorkout) => {
     const mutatedData = Object.assign(data, userId)
     submitPlannerForm(mutatedData, dispatch)
+    localStorage.removeItem('workoutForm')
   }
 
   return (
