@@ -9,5 +9,6 @@ export const FieldError = styled.p<FieldErrorProps>`
   font-size: ${({ theme }) => theme.fontSizes.sm};
 
   margin-top: ${({ theme }) => theme.spacing.sm};
-  margin-block: ${({ theme, $marginBlock }) => $marginBlock && theme.spacing.sm};
+  margin-block: ${({ theme, $marginBlock }) =>
+    $marginBlock && theme.spacing.sm};
 `

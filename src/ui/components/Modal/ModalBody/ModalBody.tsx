@@ -21,7 +21,9 @@ const CloseButton = styled.div`
 export function ModalBody({ onClose, children }: ModalBodyProps) {
   function handleOnClose() {
     const confirmed = confirm('Are you sure? This action cannot be undone')
-    confirmed && onClose()
+    if (confirmed) {
+      onClose()
+    }
   }
 
   return (

@@ -31,9 +31,19 @@ export const fetchWorkouts = createAsyncThunk(
 export const addWorkout = createAsyncThunk(
   'workouts/addWorkout',
   async (workoutData: FormWorkout) => {
-    const { data, error } = await handleAddWorkout(workoutData)
-    if (error) throw new Error(error.message)
-    return data ? data[0] : null
+    const result = await handleAddWorkout(workoutData)
+
+    if (!result) {
+      throw new Error('No response from handleAddWorkout')
+    }
+
+    const { data, error } = result
+
+    if (error) {
+      throw new Error(error.message)
+    }
+
+    return data && data.length > 0 ? data[0] : null
   }
 )
 

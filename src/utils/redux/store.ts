@@ -5,7 +5,7 @@ import workoutsReducer from './slices/workouts/workoutsSlice'
 export const store = configureStore({
   reducer: {
     session: sessionReducer,
-    workouts: workoutsReducer
+    workouts: workoutsReducer,
   },
 })
 

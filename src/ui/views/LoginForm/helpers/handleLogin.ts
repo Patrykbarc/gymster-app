@@ -34,7 +34,7 @@ export async function handleLogin({
     } else {
       return router('/dashboard')
     }
-  } catch (err) {
+  } catch {
     setError('root', {
       type: 'custom',
       message: 'Unexpected error occurred during login.',

@@ -3,7 +3,7 @@ import { useRouteError } from 'react-router-dom'
 type RouteError = {
   statusText?: string
   message?: string
-  data?: any
+  data?: unknown
   status?: number
 }
 

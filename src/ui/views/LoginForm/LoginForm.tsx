@@ -43,7 +43,7 @@ export function LoginForm() {
           placeholder="Enter your email address"
           register={register('email', {
             pattern: {
-              value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+              value: /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/,
               message: 'Invalid email address',
             },
           })}

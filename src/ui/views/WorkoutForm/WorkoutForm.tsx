@@ -27,7 +27,9 @@ export function WorkoutForm() {
   const { defaultValues } = useWorkoutFormData({ watch: undefined })
 
   useEffect(() => {
-    session?.id && setUserId({ userId: session?.id })
+    if (session?.id) {
+      setUserId({ userId: session?.id })
+    }
   }, [])
 
   const {
