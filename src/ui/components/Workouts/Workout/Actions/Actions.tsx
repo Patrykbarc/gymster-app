@@ -1,6 +1,9 @@
 import { SquarePen, Trash2Icon } from 'lucide-react'
 import styled from 'styled-components'
-import { Dialog } from '../../../Dialog/Dialog'
+import { AlertDialog } from '../../../AlertDialog/AlertDialog'
+import { DialogDescription } from '../../../Dialog/DialogContent/DialogHeader/DialogDescription/DialogDescription'
+import { DialogHeader } from '../../../Dialog/DialogContent/DialogHeader/DialogHeader'
+import { DialogTitle } from '../../../Dialog/DialogContent/DialogTitle/DialogTitle'
 import { Icon } from '../../../Icon/Icon'
 import { ActionModal } from './ActionModal/ActionModal'
 
@@ -20,9 +23,13 @@ export function Actions({ workoutId }: ActionsProps) {
         <SquarePen />
       </Icon>
 
-      <Dialog buttonVariant="danger" buttonText={<Trash2Icon />}>
+      <AlertDialog buttonVariant="danger" buttonText={<Trash2Icon />}>
+        <DialogHeader>
+          <DialogTitle>Are you sure?</DialogTitle>
+          <DialogDescription>This action cannot be undone.</DialogDescription>
+        </DialogHeader>
         <ActionModal workoutId={workoutId} />
-      </Dialog>
+      </AlertDialog>
     </ActionsContainer>
   )
 }

@@ -3,14 +3,15 @@ import styled from 'styled-components'
 import { useAppDispatch } from '../../../../../../utils/hooks/useAppDispatch'
 import { deleteWorkout } from '../../../../../../utils/redux/slices/workouts/workoutsSlice'
 import { Button } from '../../../../Button/Button'
-import { Form } from '../../../../Form/Form/Form'
 
 type ActionModalProps = {
   workoutId: string
 }
 
-const ActionModalContainer = styled(Form)`
+const ActionModalContainer = styled.form`
   display: flex;
+  justify-content: end;
+  gap: ${({ theme }) => theme.spacing.md};
 `
 
 export function ActionModal({ workoutId }: ActionModalProps) {
@@ -23,10 +24,10 @@ export function ActionModal({ workoutId }: ActionModalProps) {
 
   return (
     <ActionModalContainer>
+      <Button $variant="outline">Cancel</Button>
       <Button $variant="danger" onClick={handleSubmit(handleWorkoutDelete)}>
         Accept
       </Button>
-      <Button $variant="outline">Cancel</Button>
     </ActionModalContainer>
   )
 }
