@@ -1,8 +1,8 @@
 import { ReactElement } from 'react'
 import styled from 'styled-components'
-import { useValidComponent } from '../../../../../utils/hooks/useValidComponent'
-import { DialogTitle } from '../DialogTitle/DialogTitle'
+import { useValidComponent } from '../../../../../../utils/hooks/useValidComponent'
 import { DialogDescription } from './DialogDescription/DialogDescription'
+import { DialogTitle } from './DialogTitle/DialogTitle'
 
 export type ReactElements =
   | ReactElement<typeof DialogTitle>

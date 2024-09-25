@@ -1,23 +1,24 @@
 import { ReactNode } from 'react'
-import { DialogBody } from '../Dialog/DialogBody/DialogBody'
-import { DialogDescription } from '../Dialog/DialogContent/DialogHeader/DialogDescription/DialogDescription'
-import {
-  DialogHeader,
-  DialogHeaderProps,
-} from '../Dialog/DialogContent/DialogHeader/DialogHeader'
-import { DialogTitle } from '../Dialog/DialogContent/DialogTitle/DialogTitle'
+import { CloseDialog } from '../../Dialog/CloseDialog/CloseDialog'
+import { DialogBody } from '../../Dialog/DialogBody/DialogBody'
+import { DialogDescription } from './DialogHeader/DialogDescription/DialogDescription'
+import { DialogHeader, DialogHeaderProps } from './DialogHeader/DialogHeader'
+import { DialogTitle } from './DialogHeader/DialogTitle/DialogTitle'
 
 type DialogContentProps = {
+  onClose?: () => void
   children?: ReactNode
   dialogHeaderProps?: Partial<DialogHeaderProps>
 }
 
 export function DialogContent({
+  onClose,
   children,
   dialogHeaderProps,
 }: DialogContentProps) {
   return (
     <DialogBody>
+      {onClose && <CloseDialog onClose={onClose} />}
       {dialogHeaderProps && (
         <DialogHeader {...dialogHeaderProps}>
           <DialogTitle />

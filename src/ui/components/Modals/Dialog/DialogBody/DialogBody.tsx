@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import styled from 'styled-components'
-import { Card } from '../../Card/Card'
-import { DialogOverlay } from '../DialogOverlay/DialogOverlay'
+import { Card } from '../../../Card/Card'
+import { DialogOverlay } from '../../_shared/DialogOverlay/DialogOverlay'
 
 type DialogBodyProps = {
   children: ReactNode

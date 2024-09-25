@@ -1,4 +1,3 @@
-// ScheduledWorkouts.js
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
@@ -7,8 +6,8 @@ import { workoutsSelector } from '../../../utils/redux/selectors/scheduledWorkou
 import { fetchWorkouts } from '../../../utils/redux/slices/workouts/workoutsSlice'
 import { WorkoutForm } from '../../views/WorkoutForm/WorkoutForm'
 import { Card } from '../Card/Card'
-import { Actions } from './Workout/Actions/Actions'
 import { Workout } from './Workout/Workout'
+import { WorkoutActions } from './Workout/WorkoutActions/WorkoutActions'
 
 const Container = styled.div`
   display: grid;
@@ -48,7 +47,7 @@ export function Workouts() {
           <h1 className="title">Your workouts</h1>
           {workouts.map((workout) => (
             <Workout key={workout.id} {...workout}>
-              <Actions workoutId={workout.id} />
+              <WorkoutActions workoutId={workout.id} />
             </Workout>
           ))}
         </WorkoutsContainer>
