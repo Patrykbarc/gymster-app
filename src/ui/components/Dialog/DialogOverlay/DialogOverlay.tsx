@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ModalOverlay = styled.div`
+export const DialogOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -9,5 +9,5 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.75);
 `

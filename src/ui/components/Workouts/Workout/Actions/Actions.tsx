@@ -1,7 +1,7 @@
 import { SquarePen, Trash2Icon } from 'lucide-react'
 import styled from 'styled-components'
+import { Dialog } from '../../../Dialog/Dialog'
 import { Icon } from '../../../Icon/Icon'
-import { Modal } from '../../../Modal/Modal'
 import { ActionModal } from './ActionModal/ActionModal'
 
 type ActionsProps = {
@@ -20,9 +20,9 @@ export function Actions({ workoutId }: ActionsProps) {
         <SquarePen />
       </Icon>
 
-      <Modal buttonVariant="danger" buttonText={<Trash2Icon />}>
+      <Dialog buttonVariant="danger" buttonText={<Trash2Icon />}>
         <ActionModal workoutId={workoutId} />
-      </Modal>
+      </Dialog>
     </ActionsContainer>
   )
 }

@@ -4,6 +4,7 @@ import { FieldArrayWithId, get, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
 import { ErrorContext } from '../../../../../utils/providers/contexts/ErrorContext'
 import { Button } from '../../../../components/Button/Button'
+import { Dialog } from '../../../../components/Dialog/Dialog'
 import { SubmitFormWorkout } from '../../_types/SubmitFormWorkout'
 import { Field } from '../../Field/Field'
 import { FieldError } from '../../Field/FieldError/FieldError'
@@ -48,6 +49,14 @@ export function ExerciseField({
         >
           <Trash2 />
         </Button>
+
+        <Dialog
+          buttonVariant="danger"
+          disabled={exerciseFields.length === 1}
+          buttonText={<Trash2 />}
+        >
+          <p>exercise fields modal</p>
+        </Dialog>
       </FieldsContainer>
 
       <FieldError $marginBlock>{exerciseName}</FieldError>
