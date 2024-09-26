@@ -16,15 +16,8 @@ const StyledCloseDialog = styled.div`
 `
 
 export function CloseDialog({ onClose }: CloseDialogProps) {
-  function handleOnClose() {
-    const confirmed = confirm('Are you sure? This action cannot be undone')
-    if (confirmed) {
-      onClose()
-    }
-  }
-
   return (
-    <StyledCloseDialog onClick={handleOnClose}>
+    <StyledCloseDialog onClick={onClose}>
       <X />
     </StyledCloseDialog>
   )

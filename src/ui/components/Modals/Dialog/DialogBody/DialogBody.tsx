@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { ReactNode } from 'react'
 import styled from 'styled-components'
 import { Card } from '../../../Card/Card'
@@ -7,12 +8,14 @@ type DialogBodyProps = {
   children: ReactNode
 }
 
-const StyledDialogBody = styled(Card)`
-  position: relative;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
+const StyledDialogBody = styled(motion(Card)).attrs(() => ({
+  initial: { scale: 0.8 },
+  animate: { scale: 1 },
+  transition: { duration: 0.3, ease: 'easeInOut' },
+}))`
   box-shadow: ${({ theme }) => theme.shadows.lg};
-  padding: ${({ theme }) => theme.spacing.lg};
-
+  padding: ${({ theme }) => theme.spacing.xl};
+  z-index: ${({ theme }) => theme.zIndex.modal};
   @media (min-width: ${({ theme }) => theme.breakPoints.sm}) {
     max-width: 500px;
   }

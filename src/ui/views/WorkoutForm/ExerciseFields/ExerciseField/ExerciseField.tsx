@@ -1,9 +1,8 @@
-import { Trash2, Trash2Icon } from 'lucide-react'
+import { Trash2Icon } from 'lucide-react'
 import { useContext } from 'react'
 import { FieldArrayWithId, get, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
 import { ErrorContext } from '../../../../../utils/providers/contexts/ErrorContext'
-import { Button } from '../../../../components/Button/Button'
 import { Alert } from '../../../../components/Modals/Alert/Alert'
 import { SubmitFormWorkout } from '../../_types/SubmitFormWorkout'
 import { Field } from '../../Field/Field'
@@ -41,14 +40,6 @@ export function ExerciseField({
           register={register(`exercises.${exerciseIndex}.name`)}
           $isError={exerciseError}
         />
-
-        <Button
-          disabled={exerciseFields.length === 1}
-          $variant="outline"
-          onClick={() => removeExercise(exerciseIndex)}
-        >
-          <Trash2 />
-        </Button>
 
         <Alert
           actions={{ onAccept: () => removeExercise(exerciseIndex) }}
