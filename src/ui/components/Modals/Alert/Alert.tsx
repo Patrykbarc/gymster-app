@@ -3,11 +3,15 @@ import { createPortal } from 'react-dom'
 import { useDialog } from '../../../../utils/hooks/useDialog'
 import { ButtonProps, Button as DialogTrigger } from '../../Button/Button'
 import { DialogContent } from '../_shared/DialogContent/DialogContent'
+import { DialogDescription } from '../_shared/DialogContent/DialogHeader/DialogDescription/DialogDescription'
+import { DialogHeader } from '../_shared/DialogContent/DialogHeader/DialogHeader'
+import { DialogTitle } from '../_shared/DialogContent/DialogHeader/DialogTitle/DialogTitle'
 import { ActionButtons } from './ActionButtons/ActionButtons'
 
 type AlertProps = {
   buttonText: string | ReactNode
-  children: ReactNode
+  title?: string
+  description?: string
   buttonVariant?: ButtonProps['$variant']
   disabled?: boolean
   actions: {
@@ -16,23 +20,33 @@ type AlertProps = {
 }
 
 /**
- * The `Alert` component is a modal dialog that displays a warning and prompts the user to confirm an action.
- * It is triggered by a button, and upon opening, it shows content along with action buttons.
+ * `Alert` component provides a modal dialog to warn the user and request confirmation.
+ * It is triggered by a button click and presents a dialog with title, description, and action buttons.
+
  * @example
+ * // Basic usage with default title and description
  * <Alert
- *   actions={{ onAccept: handleSubmit(handleWorkoutDelete) }}
+ *   actions={{ onAccept: () => removeExercise(exerciseIndex) }}
+ *   disabled={exerciseFields.length === 1}
  *   buttonVariant="danger"
  *   buttonText={<Trash2Icon />}
- * >
- *   <DialogHeader>
- *     <DialogTitle>Are you sure?</DialogTitle>
- *     <DialogDescription>This action cannot be undone.</DialogDescription>
- *   </DialogHeader>
- * </Alert>
+ * />
+ *
+ * @example
+ * // Usage with custom title and description
+ * <Alert
+ *   title="Delete Exercise"
+ *   description="Are you sure you want to delete this exercise? This action is permanent."
+ *   actions={{ onAccept: () => removeExercise(exerciseIndex) }}
+ *   disabled={exerciseFields.length === 1}
+ *   buttonVariant="danger"
+ *   buttonText="Delete"
+ * />
  */
 export function Alert({
   buttonText,
-  children,
+  title = 'Are you sure?',
+  description = 'This action cannot be undone.',
   buttonVariant = 'primary',
   disabled,
   actions: { onAccept },
@@ -52,7 +66,10 @@ export function Alert({
       {isDialogVisible &&
         createPortal(
           <DialogContent>
-            {children}
+            <DialogHeader>
+              <DialogTitle>{title}</DialogTitle>
+              <DialogDescription>{description}</DialogDescription>
+            </DialogHeader>
             <ActionButtons onAccept={onAccept} onClose={handleClose} />
           </DialogContent>,
           portalTarget

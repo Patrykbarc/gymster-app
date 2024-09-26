@@ -1,10 +1,10 @@
-import { Trash2 } from 'lucide-react'
+import { Trash2, Trash2Icon } from 'lucide-react'
 import { useContext } from 'react'
 import { FieldArrayWithId, get, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
 import { ErrorContext } from '../../../../../utils/providers/contexts/ErrorContext'
 import { Button } from '../../../../components/Button/Button'
-import { Dialog } from '../../../../components/Modals/Dialog/Dialog'
+import { Alert } from '../../../../components/Modals/Alert/Alert'
 import { SubmitFormWorkout } from '../../_types/SubmitFormWorkout'
 import { Field } from '../../Field/Field'
 import { FieldError } from '../../Field/FieldError/FieldError'
@@ -50,13 +50,12 @@ export function ExerciseField({
           <Trash2 />
         </Button>
 
-        <Dialog
-          buttonVariant="danger"
+        <Alert
+          actions={{ onAccept: () => removeExercise(exerciseIndex) }}
           disabled={exerciseFields.length === 1}
-          buttonText={<Trash2 />}
-        >
-          <p>exercise fields modal</p>
-        </Dialog>
+          buttonVariant="danger"
+          buttonText={<Trash2Icon />}
+        />
       </FieldsContainer>
 
       <FieldError $marginBlock>{exerciseName}</FieldError>
