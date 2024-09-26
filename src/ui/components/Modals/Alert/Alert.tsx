@@ -59,6 +59,7 @@ export function Alert({
         $variant={buttonVariant}
         disabled={disabled}
         onClick={handleOpen}
+        type="button"
       >
         {buttonText}
       </DialogTrigger>
