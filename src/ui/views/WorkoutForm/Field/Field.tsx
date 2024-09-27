@@ -17,8 +17,8 @@ const FieldContainer = styled.div<FieldProps>`
 export function Field({ label, register, $isError, ...props }: FieldProps) {
   return (
     <FieldContainer>
-      {label && <Label>{label}</Label>}
-      <Input $isError={$isError} {...props} {...register} />
+      {label && <Label htmlFor={register?.name}>{label}</Label>}
+      <Input $isError={$isError} id={register?.name} {...props} {...register} />
     </FieldContainer>
   )
 }
