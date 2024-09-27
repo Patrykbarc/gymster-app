@@ -8,7 +8,7 @@ type DialogBodyProps = {
   children: ReactNode
 }
 
-const StyledDialogBody = styled(motion(Card)).attrs(() => ({
+const StyledDialogBody = styled(motion.create(Card)).attrs(() => ({
   initial: { scale: 0.8 },
   animate: { scale: 1 },
   transition: { duration: 0.3, ease: 'easeInOut' },

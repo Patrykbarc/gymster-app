@@ -16,6 +16,7 @@ const ErrorsContainer = styled.div`
 
   .reps-error {
     margin-left: 42px;
+    margin-right: ${({ theme }) => theme.spacing.md};
     grid-column: 2/3;
   }
 
@@ -46,8 +47,12 @@ export function Errors({
   return (
     isAnyErrorSet && (
       <ErrorsContainer>
-        <FieldError className="reps-error">{exerciseRepsError}</FieldError>
-        <FieldError className="weight-error">{exerciseWeightError}</FieldError>
+        <FieldError className="reps-error truncate">
+          {exerciseRepsError}
+        </FieldError>
+        <FieldError className="weight-error truncate">
+          {exerciseWeightError}
+        </FieldError>
       </ErrorsContainer>
     )
   )

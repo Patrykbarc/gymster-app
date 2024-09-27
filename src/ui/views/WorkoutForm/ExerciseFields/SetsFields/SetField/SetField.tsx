@@ -14,7 +14,7 @@ const Set = styled(Button)`
 export function SetField({ isFirstIndex, set }: SetFieldProps) {
   return (
     <div>
-      {isFirstIndex && <Label>Sets</Label>}
+      {isFirstIndex && <Label $cursor="default">Sets</Label>}
       <Set as="div" $variant="link" $noHover>
         {set + 1}.
       </Set>

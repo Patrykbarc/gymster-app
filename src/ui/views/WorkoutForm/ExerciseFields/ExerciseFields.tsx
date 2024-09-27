@@ -12,14 +12,16 @@ type ExerciseFieldsProps = {
 }
 
 const ExerciseFieldsContainer = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-  padding-bottom: ${({ theme }) => theme.spacing.lg};
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.md};
+  padding-block: ${({ theme }) => theme.spacing.lg};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary};
 `
 
 const ButtonActions = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: ${({ theme }) => theme.spacing.lg};
 `
 
 export function ExerciseFields({ control, register }: ExerciseFieldsProps) {

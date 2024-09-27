@@ -29,10 +29,10 @@ export function ExerciseField({
 }: ExericseFieldProps) {
   const errors = useContext(ErrorContext)
   const exerciseError = get(errors, `exercises[${exerciseIndex}]`)
-  const exerciseName = exerciseError?.name?.message
+  const exerciseNameError = exerciseError?.name?.message
 
   return (
-    <>
+    <div>
       <FieldsContainer>
         <Field
           label="Exercise name"
@@ -49,7 +49,9 @@ export function ExerciseField({
         />
       </FieldsContainer>
 
-      <FieldError $marginBlock>{exerciseName}</FieldError>
-    </>
+      {exerciseNameError && (
+        <FieldError $marginBlock>{exerciseNameError}</FieldError>
+      )}
+    </div>
   )
 }

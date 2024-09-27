@@ -66,7 +66,7 @@ export function Alert({
 
       {isDialogVisible &&
         createPortal(
-          <DialogContent onClose={handleClose}>
+          <DialogContent>
             <DialogHeader>
               <DialogTitle>{title}</DialogTitle>
               <DialogDescription>{description}</DialogDescription>

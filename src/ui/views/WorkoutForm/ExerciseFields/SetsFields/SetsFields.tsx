@@ -22,7 +22,6 @@ type FieldsContainerProps = {
 const Fieldset = styled.fieldset<FieldsContainerProps>`
   display: grid;
   gap: ${({ theme }) => theme.spacing.sm};
-  margin-top: ${({ theme }) => theme.spacing.md};
 
   .add-set-button {
     margin-top: ${({ theme }) => theme.spacing.md};
