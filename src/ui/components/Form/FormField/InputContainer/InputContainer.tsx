@@ -9,7 +9,7 @@ export const InputContainer = styled.div<{ $direction: InputVariant }>`
   align-items: ${({ $direction }) => $direction === 'horizontal' && 'center'};
 
   label {
-    width: ${({ $direction }) => $direction && '6rem'};
+    width: ${({ $direction }) => $direction && '100%'};
     margin-bottom: ${({ $direction, theme }) =>
       $direction === 'vertical' && theme.spacing.sm};
     word-break: break-all;

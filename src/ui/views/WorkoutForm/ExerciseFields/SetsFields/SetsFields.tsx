@@ -78,6 +78,7 @@ export function SetsFields({
                 label={firstIndex && 'Weight'}
                 type="number"
                 min={1}
+                step={0.5}
                 register={register(
                   `exercises.${exerciseIndex}.sets.${setIndex}.weight`
                 )}

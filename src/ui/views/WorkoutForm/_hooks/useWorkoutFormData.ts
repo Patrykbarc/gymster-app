@@ -1,5 +1,9 @@
 import { useEffect } from 'react'
 import { UseFormWatch } from 'react-hook-form'
+import toast from 'react-hot-toast'
+import { useAppDispatch } from '../../../../utils/hooks/useAppDispatch'
+import { setIsLoading } from '../../../../utils/redux/slices/loading/loadingSlice'
+import { debounce } from '../_helpers/debounce'
 import { WORKOUT_DEFAULT_VALUES } from '../_helpers/workout-default-values'
 import { SubmitFormWorkout } from '../_types/SubmitFormWorkout'
 
@@ -17,18 +21,47 @@ const STORAGE_ITEM_NAME = 'workout-draft'
  */
 export function useWorkoutFormData({ watch }: Props) {
   const savedFormData = localStorage.getItem(STORAGE_ITEM_NAME)
+  const dispatch = useAppDispatch()
 
   const defaultValues = savedFormData
     ? JSON.parse(savedFormData)
     : WORKOUT_DEFAULT_VALUES.defaultValues
 
   useEffect(() => {
+    dispatch(setIsLoading(false))
+  }, [])
+
+  useEffect(() => {
     if (!watch) return
 
+    const debouncedLoading = debounce((value: boolean) => {
+      dispatch(setIsLoading(value))
+    }, 300)
+
+    const debouncedSave = debounce((value: any) => {
+      const loadingPromise = new Promise((resolve) => {
+        localStorage.setItem(STORAGE_ITEM_NAME, JSON.stringify(value))
+        resolve(true)
+      })
+
+      toast.promise(loadingPromise, {
+        loading: 'Saving draft...',
+        success: 'Draft saved!',
+        error: 'Failed to save draft',
+      })
+    }, 300)
+
     const subscription = watch((value) => {
-      localStorage.setItem(STORAGE_ITEM_NAME, JSON.stringify(value))
+      dispatch(setIsLoading(true))
+      debouncedSave(value)
+      debouncedLoading(false)
     })
-    return () => subscription.unsubscribe()
+
+    return () => {
+      subscription.unsubscribe()
+      debouncedLoading.cancel()
+      debouncedSave.cancel()
+    }
   }, [watch])
 
   return { defaultValues }

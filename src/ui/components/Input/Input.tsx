@@ -16,4 +16,8 @@ export const Input = styled.input<InputProps>`
   border: 1px solid;
   border-color: ${({ theme, $isError }) =>
     $isError ? theme.colors.danger : theme.colors.secondary};
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.secondary};
+  }
 `
