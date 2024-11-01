@@ -6,10 +6,11 @@ export function usePortal() {
 
   useEffect(() => {
     const currentElement = elementRef.current
-    portalRootRef.current?.appendChild(currentElement)
+    const portalRoot = portalRootRef.current
+    portalRoot?.appendChild(currentElement)
 
     return () => {
-      portalRootRef.current?.removeChild(currentElement)
+      portalRoot?.removeChild(currentElement)
     }
   }, [])
 

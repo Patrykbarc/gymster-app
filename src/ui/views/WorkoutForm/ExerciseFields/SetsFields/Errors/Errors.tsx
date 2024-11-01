@@ -42,7 +42,10 @@ export function Errors({
 
   const isAnyErrorSet = exerciseRepsError || exerciseWeightError
 
-  useEffect(() => setIsAnyErrorSet(isAnyErrorSet), [isAnyErrorSet])
+  useEffect(
+    () => setIsAnyErrorSet(isAnyErrorSet),
+    [isAnyErrorSet, setIsAnyErrorSet]
+  )
 
   return (
     isAnyErrorSet && (

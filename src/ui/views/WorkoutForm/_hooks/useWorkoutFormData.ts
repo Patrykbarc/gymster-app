@@ -29,16 +29,16 @@ export function useWorkoutFormData({ watch }: Props) {
 
   useEffect(() => {
     dispatch(setIsLoading(false))
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     if (!watch) return
 
-    const debouncedLoading = debounce((value: boolean) => {
+    const debouncedLoading = debounce((value) => {
       dispatch(setIsLoading(value))
     }, 300)
 
-    const debouncedSave = debounce((value: any) => {
+    const debouncedSave = debounce((value) => {
       const loadingPromise = new Promise((resolve) => {
         localStorage.setItem(STORAGE_ITEM_NAME, JSON.stringify(value))
         resolve(true)
@@ -62,7 +62,7 @@ export function useWorkoutFormData({ watch }: Props) {
       debouncedLoading.cancel()
       debouncedSave.cancel()
     }
-  }, [watch])
+  }, [watch, dispatch])
 
   return { defaultValues }
 }
