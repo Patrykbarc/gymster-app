@@ -1,13 +1,10 @@
-import { ReactNode } from 'react'
 import { PlannedWorkouts } from '../../../../utils/redux/slices/workouts/workoutsSlice'
 import { Link } from '../../Link/Link'
 import { WorkoutContainer } from './WorkoutContainer/WorkoutContainer'
 
-type WorkoutProps = {
-  children: ReactNode
-} & PlannedWorkouts
+type WorkoutProps = PlannedWorkouts
 
-export function Workout({ children, ...workout }: WorkoutProps) {
+export function Workout({ ...workout }: WorkoutProps) {
   return (
     <WorkoutContainer id={workout.id}>
       <div>
@@ -16,7 +13,6 @@ export function Workout({ children, ...workout }: WorkoutProps) {
         </Link>
         <h2>{workout.workout_date}</h2>
       </div>
-      {children}
     </WorkoutContainer>
   )
 }

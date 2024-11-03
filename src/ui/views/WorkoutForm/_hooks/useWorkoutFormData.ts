@@ -49,7 +49,7 @@ export function useWorkoutFormData({ watch }: Props) {
         success: 'Draft saved!',
         error: 'Failed to save draft',
       })
-    }, 300)
+    }, 1000)
 
     const subscription = watch((value) => {
       dispatch(setIsLoading(true))

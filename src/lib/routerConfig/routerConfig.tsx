@@ -7,7 +7,7 @@ import { ErrorPage } from '../../routes/(logged)/ErrorPage/ErrorPage.tsx'
 import { NewWorkout } from '../../routes/(logged)/NewWorkout/NewWorkout.tsx'
 import { Workout } from '../../routes/(logged)/Planner/Workout/Workout.tsx'
 
-export const routerConfig = [
+export const ROUTER_CONFIG = [
   {
     path: '/login',
     element: <Login />,

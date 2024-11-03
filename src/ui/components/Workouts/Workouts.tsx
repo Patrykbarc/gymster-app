@@ -4,10 +4,8 @@ import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useAppSelector } from '../../../utils/hooks/useAppSelector'
 import { workoutsSelector } from '../../../utils/redux/selectors/scheduledWorkouts'
 import { fetchWorkouts } from '../../../utils/redux/slices/workouts/workoutsSlice'
+import { SavedWorkouts } from '../../views/SavedWorkouts/SavedWorkouts'
 import { WorkoutForm } from '../../views/WorkoutForm/WorkoutForm'
-import { Card } from '../Card/Card'
-import { Workout } from './Workout/Workout'
-import { WorkoutActions } from './Workout/WorkoutActions/WorkoutActions'
 
 const Container = styled.div`
   display: grid;
@@ -20,15 +18,9 @@ const Container = styled.div`
   }
 `
 
-const WorkoutsContainer = styled(Card)`
-  display: grid;
-  gap: ${({ theme }) => theme.spacing.lg};
-  height: fit-content;
-`
-
 export function Workouts() {
   const dispatch = useAppDispatch()
-  const { workouts, status, error, user } = useAppSelector(workoutsSelector)
+  const { status, error, user } = useAppSelector(workoutsSelector)
 
   useEffect(() => {
     dispatch(fetchWorkouts())
@@ -42,16 +34,7 @@ export function Workouts() {
   return (
     <Container>
       <WorkoutForm />
-      {workouts.length > 0 && (
-        <WorkoutsContainer>
-          <h1 className="title">Your workouts</h1>
-          {workouts.map((workout) => (
-            <Workout key={workout.id} {...workout}>
-              <WorkoutActions workoutId={workout.id} />
-            </Workout>
-          ))}
-        </WorkoutsContainer>
-      )}
+      <SavedWorkouts />
     </Container>
   )
 }

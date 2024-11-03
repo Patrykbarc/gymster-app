@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const WorkoutContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
+  width: 100%;
+
   border-top: 2px solid ${({ theme }) => theme.colors.light};
   padding-block: ${({ theme }) => theme.spacing.md};
   padding-inline: ${({ theme }) => theme.spacing.lg};
@@ -14,9 +14,6 @@ export const WorkoutContainer = styled.div`
     margin-bottom: ${({ theme }) => theme.spacing.sm};
   }
 
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.light};
-  }
   &:first-of-type {
     border-top: none;
   }

@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "lint:fix": "prettier . --write && next lint",
+    "lint": "eslint ./src",
+    "lint:fix": "prettier . --write",
     "preview": "vite preview",
     "generate-types": "npx --yes supabase gen types --lang=typescript --project-id gtaxqikwkerelzdmlojc --schema public > src/types/database.types.ts",
     "husky:prepare": "pnpm husky && pnpm husky:add-precommit && pnpm husky:add-prepush",
