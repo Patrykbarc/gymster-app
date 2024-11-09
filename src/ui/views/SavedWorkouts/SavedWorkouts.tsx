@@ -32,12 +32,12 @@ export function SavedWorkouts() {
       <WorkoutsCard>
         <h1 className="title">Your workouts</h1>
         {workouts.map((workout) => (
-          <Link to={workout.id}>
-            <WorkoutsContainer>
-              <Workout key={workout.id} {...workout} />
-              <WorkoutActions workoutId={workout.id} />
-            </WorkoutsContainer>
-          </Link>
+          <WorkoutsContainer key={workout.id}>
+            <Link to={workout.id}>
+              <Workout {...workout} />
+            </Link>
+            <WorkoutActions workoutId={workout.id} />
+          </WorkoutsContainer>
         ))}
       </WorkoutsCard>
     )

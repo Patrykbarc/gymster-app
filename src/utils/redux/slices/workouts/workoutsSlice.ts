@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { handleAddWorkout } from '../../../../api/plannerData/handleAddWorkout/handleAddWorkout'
 import { handleDeleteWorkout } from '../../../../api/plannerData/handleDeleteWorkout'
 import { handleGetPlannedWorkouts } from '../../../../api/plannerData/handleGetPlannedWorkouts'
+import { handleGetWorkout } from '../../../../api/plannerData/handleGetWorkout'
 import { Database } from '../../../../types/database.types'
 import { FormWorkout } from '../../../../ui/views/WorkoutForm/_helpers/submitPlannerForm'
 
@@ -9,12 +10,14 @@ export type PlannedWorkouts = Database['public']['Tables']['workouts']['Row']
 
 export type WorkoutsState = {
   workouts: PlannedWorkouts[]
+  selectedWorkout: PlannedWorkouts | null
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: string | null | undefined
 }
 
 const initialState: WorkoutsState = {
   workouts: [],
+  selectedWorkout: null,
   status: 'idle',
   error: null,
 }
@@ -25,6 +28,15 @@ export const fetchWorkouts = createAsyncThunk(
     const { data, error } = await handleGetPlannedWorkouts()
     if (error) throw new Error(error.message)
     return data || []
+  }
+)
+
+export const fetchWorkout = createAsyncThunk(
+  'workouts/fetchWorkout',
+  async (workoutId: string) => {
+    const { data, error } = await handleGetWorkout(workoutId)
+    if (error) throw new Error(error.message)
+    return data || null
   }
 )
 
@@ -56,42 +68,57 @@ export const deleteWorkout = createAsyncThunk(
   }
 )
 
+const setPending = (state: WorkoutsState) => {
+  state.status = 'loading'
+}
+
+const setError = (state: WorkoutsState, action: any) => {
+  state.status = 'failed'
+  state.error = action.error.message
+}
+
+const setSuccess = (state: WorkoutsState) => {
+  state.status = 'succeeded'
+}
+
 const workoutsSlice = createSlice({
   name: 'workouts',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchWorkouts.pending, (state) => {
-        state.status = 'loading'
-      })
+      // Fetch Workouts
+      .addCase(fetchWorkouts.pending, setPending)
       .addCase(fetchWorkouts.fulfilled, (state, action) => {
-        state.status = 'succeeded'
+        setSuccess(state)
         state.workouts = action.payload
       })
-      .addCase(fetchWorkouts.rejected, (state, action) => {
-        state.status = 'failed'
-        state.error = action.error.message
-      })
+      .addCase(fetchWorkouts.rejected, setError)
+
+      // Add Workout
       .addCase(addWorkout.fulfilled, (state, action) => {
-        state.status = 'succeeded'
+        setSuccess(state)
         if (action.payload) {
           state.workouts.push(action.payload)
         }
       })
-      .addCase(addWorkout.rejected, (state, action) => {
-        state.status = 'failed'
-        state.error = action.error.message
-      })
+      .addCase(addWorkout.rejected, setError)
+
+      // Delete Workout
       .addCase(deleteWorkout.fulfilled, (state, action) => {
         state.workouts = state.workouts.filter(
           (workout) => workout.id !== action.payload
         )
       })
-      .addCase(deleteWorkout.rejected, (state, action) => {
-        state.status = 'failed'
-        state.error = action.error.message
+      .addCase(deleteWorkout.rejected, setError)
+
+      // Fetch Single Workout
+      .addCase(fetchWorkout.pending, setPending)
+      .addCase(fetchWorkout.fulfilled, (state, action) => {
+        setSuccess(state)
+        state.selectedWorkout = action.payload
       })
+      .addCase(fetchWorkout.rejected, setError)
   },
 })
 

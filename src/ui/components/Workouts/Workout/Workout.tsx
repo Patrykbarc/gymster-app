@@ -1,5 +1,4 @@
 import { PlannedWorkouts } from '../../../../utils/redux/slices/workouts/workoutsSlice'
-import { Link } from '../../Link/Link'
 import { WorkoutContainer } from './WorkoutContainer/WorkoutContainer'
 
 type WorkoutProps = PlannedWorkouts
@@ -7,12 +6,8 @@ type WorkoutProps = PlannedWorkouts
 export function Workout({ ...workout }: WorkoutProps) {
   return (
     <WorkoutContainer id={workout.id}>
-      <div>
-        <Link to={workout.id}>
-          <h3>{workout.workout_name}</h3>
-        </Link>
-        <h2>{workout.workout_date}</h2>
-      </div>
+      <h3>{workout.workout_name}</h3>
+      <h2>{workout.workout_date}</h2>
     </WorkoutContainer>
   )
 }
