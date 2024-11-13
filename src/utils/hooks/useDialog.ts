@@ -24,12 +24,16 @@ export function useDialog() {
   // }, [])
 
   useEffect(() => {
-    document.body.style.overflowY = 'hidden'
+    const docBodyStyle = document.body.style
 
-    return () => {
-      document.body.style.overflowY = 'auto'
+    if (isDialogVisible) {
+      docBodyStyle.overflowY = 'hidden'
+
+      return () => {
+        docBodyStyle.overflowY = 'auto'
+      }
     }
-  }, [])
+  }, [isDialogVisible])
 
   return { isDialogVisible, portalTarget, handleOpen, handleClose }
 }

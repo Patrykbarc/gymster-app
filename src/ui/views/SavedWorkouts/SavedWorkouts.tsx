@@ -1,7 +1,10 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useAppSelector } from '../../../utils/hooks/useAppSelector'
 import { workoutsSelector } from '../../../utils/redux/selectors/scheduledWorkouts'
+import { fetchWorkouts } from '../../../utils/redux/slices/workouts/actions'
 import { Card } from '../../components/Card/Card'
 import { Workout } from '../../components/Workouts/Workout/Workout'
 import { WorkoutActions } from '../../components/Workouts/Workout/WorkoutActions/WorkoutActions'
@@ -26,6 +29,17 @@ const WorkoutsContainer = styled.div`
 
 export function SavedWorkouts() {
   const { workouts } = useAppSelector(workoutsSelector)
+  const dispatch = useAppDispatch()
+  const { status, error, user } = useAppSelector(workoutsSelector)
+
+  useEffect(() => {
+    dispatch(fetchWorkouts())
+  }, [dispatch])
+
+  if (status === 'loading') return <p>Loading...</p>
+  if (status === 'failed') return <p>Error: {error}</p>
+
+  if (!user) return
 
   return (
     workouts.length > 0 && (
