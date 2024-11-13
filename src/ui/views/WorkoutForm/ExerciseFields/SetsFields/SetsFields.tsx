@@ -28,7 +28,7 @@ const Fieldset = styled.fieldset<FieldsContainerProps>`
   }
 `
 
-const FieldsContainer = styled.div`
+export const FieldsContainer = styled.div`
   display: grid;
   grid-template-columns: 0fr 2fr 2fr 0fr;
   align-items: end;

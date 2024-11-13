@@ -102,6 +102,11 @@ export const theme = {
         fontWeight: 500,
         // lineHeight: '1.75em',
       },
+      h4: {
+        fontSize: '1.1em',
+        fontWeight: 500,
+        // lineHeight: '1.75em',
+      },
     },
     body: {
       normal: {

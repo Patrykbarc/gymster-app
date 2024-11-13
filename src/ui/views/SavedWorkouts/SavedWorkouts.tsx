@@ -35,9 +35,7 @@ export function SavedWorkouts() {
     dispatch(fetchWorkouts())
   }, [dispatch])
 
-  if (status === 'loading') return <p>Loading...</p>
   if (status === 'failed') return <p>Error: {error}</p>
-
   if (!user) return
 
   return (

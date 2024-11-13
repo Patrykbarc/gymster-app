@@ -1,26 +1,38 @@
-import { Fragment } from 'react/jsx-runtime'
+import { useState } from 'react'
 import styled from 'styled-components'
 import { WorkoutData } from '../../../../../api/plannerData/handleGetWorkout'
+import { EditForm } from '../EditWorkout/EditWorkout'
 
-type ExercisesListProps = {
+export type ExercisesListProps = {
   exercises: WorkoutData['data']
 }
 
-const Title = styled.p`
-  ${({ theme }) => theme.typography.headings.h3};
+const UlContainer = styled.ul`
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.xs};
+`
+
+export const Title = styled.p`
+  ${({ theme }) => theme.typography.headings.h4};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
 `
 
 export function ExercisesList({ exercises }: ExercisesListProps) {
+  const [isEditSet] = useState(true)
+
+  if (isEditSet) return <EditForm exercises={exercises} />
+
   return exercises?.exercises.map((e) => (
-    <Fragment key={e.id}>
+    <div key={e.id}>
       <Title>{e.name}</Title>
-      <ul key={e.id}>
+
+      <UlContainer>
         {e.sets.map((s, index) => (
           <li key={s.id}>
-            set: {index + 1} | reps: {s.reps} | weight: {s.weight}
+            Set: {index + 1} | Reps: {s.reps} | Weight: {s.weight}
           </li>
         ))}
-      </ul>
-    </Fragment>
+      </UlContainer>
+    </div>
   ))
 }

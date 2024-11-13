@@ -10,6 +10,7 @@ export const useSessionListener = () => {
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, session) => {
+        console.log({ event, session })
         if (event === 'SIGNED_OUT' || !session) {
           dispatch(clearSession())
         } else if (session) {

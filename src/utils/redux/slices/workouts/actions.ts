@@ -1,8 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { UpdateWorkoutParams } from '../../../../api/plannerData/_queries/updateWorkout'
 import { handleAddWorkout } from '../../../../api/plannerData/handleAddWorkout/handleAddWorkout'
 import { handleDeleteWorkout } from '../../../../api/plannerData/handleDeleteWorkout'
+import { handleEditWorkout } from '../../../../api/plannerData/handleEditWorkout/handleEditWorkout'
 import { handleGetPlannedWorkouts } from '../../../../api/plannerData/handleGetPlannedWorkouts'
 import { handleGetWorkout } from '../../../../api/plannerData/handleGetWorkout'
+import { debounce } from '../../../../ui/views/WorkoutForm/_helpers/debounce'
 import { FormWorkout } from '../../../../ui/views/WorkoutForm/_helpers/submitPlannerForm'
 import { PlannedWorkouts } from './types'
 
@@ -37,6 +40,14 @@ export const addWorkout = createAsyncThunk(
     }
     return data && data.length > 0 ? data[0] : null
   }
+)
+
+export const updateSet = createAsyncThunk(
+  'workouts/updateSet',
+
+  debounce(async (data: UpdateWorkoutParams) => {
+    await handleEditWorkout(data)
+  }, 300)
 )
 
 export const deleteWorkout = createAsyncThunk(
