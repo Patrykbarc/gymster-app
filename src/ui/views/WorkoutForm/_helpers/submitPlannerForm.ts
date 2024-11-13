@@ -1,4 +1,4 @@
-import { addWorkout } from '../../../../utils/redux/slices/workouts/workoutsSlice'
+import { addWorkout } from '../../../../utils/redux/slices/workouts/actions'
 import { AppDispatch } from '../../../../utils/redux/store'
 import { SubmitFormWorkout } from '../_types/SubmitFormWorkout'
 

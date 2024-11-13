@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useAppSelector } from '../../../utils/hooks/useAppSelector'
 import { workoutsSelector } from '../../../utils/redux/selectors/scheduledWorkouts'
-import { fetchWorkouts } from '../../../utils/redux/slices/workouts/workoutsSlice'
+import { fetchWorkouts } from '../../../utils/redux/slices/workouts/actions'
 import { SavedWorkouts } from '../../views/SavedWorkouts/SavedWorkouts'
 import { WorkoutForm } from '../../views/WorkoutForm/WorkoutForm'
 

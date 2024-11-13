@@ -2,7 +2,7 @@ import { SquarePen, Trash2Icon } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import { useAppDispatch } from '../../../../../utils/hooks/useAppDispatch'
-import { deleteWorkout } from '../../../../../utils/redux/slices/workouts/workoutsSlice'
+import { deleteWorkout } from '../../../../../utils/redux/slices/workouts/actions'
 import { Icon } from '../../../Icon/Icon'
 import { Alert } from '../../../Modals/Alert/Alert'
 
