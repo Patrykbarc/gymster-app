@@ -28,9 +28,8 @@ const WorkoutsContainer = styled.div`
 `
 
 export function SavedWorkouts() {
-  const { workouts } = useAppSelector(workoutsSelector)
+  const { workouts, status, error, user } = useAppSelector(workoutsSelector)
   const dispatch = useAppDispatch()
-  const { status, error, user } = useAppSelector(workoutsSelector)
 
   useEffect(() => {
     dispatch(fetchWorkouts())
