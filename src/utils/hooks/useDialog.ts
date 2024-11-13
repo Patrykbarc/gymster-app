@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { usePortal } from './usePortal'
 
 export function useDialog() {
@@ -22,6 +22,14 @@ export function useDialog() {
   //     window.removeEventListener('keydown', handleClose)
   //   }
   // }, [])
+
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden'
+
+    return () => {
+      document.body.style.overflowY = 'auto'
+    }
+  }, [])
 
   return { isDialogVisible, portalTarget, handleOpen, handleClose }
 }

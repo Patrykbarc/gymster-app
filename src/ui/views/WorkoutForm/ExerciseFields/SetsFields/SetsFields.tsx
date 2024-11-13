@@ -63,7 +63,7 @@ export function SetsFields({
         return (
           <div key={setField.id}>
             <FieldsContainer>
-              <SetField isFirstIndex={firstIndex} set={setIndex} />
+              <SetField isFirstIndex={firstIndex} set={setIndex + 1} />
 
               <Field
                 label={firstIndex && 'Reps'}

@@ -2,7 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { handleAddWorkout } from '../../../../api/plannerData/handleAddWorkout/handleAddWorkout'
 import { handleDeleteWorkout } from '../../../../api/plannerData/handleDeleteWorkout'
 import { handleGetPlannedWorkouts } from '../../../../api/plannerData/handleGetPlannedWorkouts'
-import { handleGetWorkout } from '../../../../api/plannerData/handleGetWorkout'
+import {
+  handleGetWorkout,
+  WorkoutData,
+} from '../../../../api/plannerData/handleGetWorkout'
 import { Database } from '../../../../types/database.types'
 import { FormWorkout } from '../../../../ui/views/WorkoutForm/_helpers/submitPlannerForm'
 
@@ -10,7 +13,7 @@ export type PlannedWorkouts = Database['public']['Tables']['workouts']['Row']
 
 export type WorkoutsState = {
   workouts: PlannedWorkouts[]
-  selectedWorkout: PlannedWorkouts | null
+  selectedWorkout: WorkoutData | null
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: string | null | undefined
 }
@@ -116,7 +119,7 @@ const workoutsSlice = createSlice({
       .addCase(fetchWorkout.pending, setPending)
       .addCase(fetchWorkout.fulfilled, (state, action) => {
         setSuccess(state)
-        state.selectedWorkout = action.payload
+        state.selectedWorkout = { data: action.payload } as WorkoutData
       })
       .addCase(fetchWorkout.rejected, setError)
   },

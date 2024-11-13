@@ -14,12 +14,14 @@ export type WorkoutData = {
         })[]
       })
     | null
+}
+
+type ReturnType = {
+  data: WorkoutData['data']
   error: PostgrestError | null
 }
 
-export async function handleGetWorkout(
-  workoutId: string
-): Promise<WorkoutData> {
+export async function handleGetWorkout(workoutId: string): Promise<ReturnType> {
   const { data, error } = await supabase
     .from('workouts')
     .select(
