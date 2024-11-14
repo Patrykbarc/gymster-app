@@ -1,5 +1,6 @@
 import { SquarePen, Trash2Icon } from 'lucide-react'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useAppDispatch } from '../../../../../utils/hooks/useAppDispatch'
 import { deleteWorkout } from '../../../../../utils/redux/slices/workouts/actions'
@@ -25,9 +26,12 @@ export function WorkoutActions({ workoutId }: ActionsProps) {
 
   return (
     <ActionsContainer>
-      <Icon>
-        <SquarePen />
-      </Icon>
+      <Link to={`${workoutId}?edit=true`}>
+        <Icon>
+          <SquarePen />
+        </Icon>
+      </Link>
+
       <Alert
         actions={{ onAccept: handleSubmit(handleWorkoutDelete) }}
         buttonVariant="danger"

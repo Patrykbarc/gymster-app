@@ -31,7 +31,7 @@ export function Workout() {
   const navigate = useNavigate()
   const { status, error, selectedWorkout } = useAppSelector(workoutsSelector)
   const data = selectedWorkout?.data
-  console.log(data)
+
   useEffect(() => {
     if (id) {
       handleOpen()

@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { WorkoutData } from '../../../../../api/plannerData/handleGetWorkout'
 import { EditForm } from '../EditWorkout/EditWorkout'
@@ -18,7 +19,16 @@ export const Title = styled.p`
 `
 
 export function ExercisesList({ exercises }: ExercisesListProps) {
-  const [isEditSet] = useState(true)
+  const [isEditSet, setIsEditSet] = useState(false)
+
+  const location = useLocation()
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const isEditParamSet = params.get('edit') === 'true'
+
+    setIsEditSet(isEditParamSet)
+  }, [location.search])
 
   if (isEditSet) return <EditForm exercises={exercises} />
 
