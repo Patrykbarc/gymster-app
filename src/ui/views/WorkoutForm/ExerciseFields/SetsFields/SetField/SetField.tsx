@@ -16,7 +16,7 @@ export function SetField({ isFirstIndex, set }: SetFieldProps) {
     <div>
       {isFirstIndex && <Label $cursor="default">Sets</Label>}
       <Set as="div" $variant="link" $noHover>
-        {set + 1}.
+        {set}.
       </Set>
     </div>
   )

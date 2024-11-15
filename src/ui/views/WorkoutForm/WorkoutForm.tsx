@@ -4,14 +4,12 @@ import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useSession } from '../../../utils/hooks/useSession'
-import { ErrorProvider } from '../../../utils/providers/ErrorProvider'
 import { Card } from '../../components/Card/Card'
 import { submitPlannerForm } from './_helpers/submitPlannerForm'
 import { WORKOUT_FORM_SCHEMA } from './_helpers/workout-form-schema'
 import { useWorkoutFormData } from './_hooks/useWorkoutFormData'
 import { SubmitFormWorkout } from './_types/SubmitFormWorkout'
-import { ExerciseFields } from './ExerciseFields/ExerciseFields'
-import { WorkoutInfo } from './WorkoutInfo/WorkoutInfo'
+import { WorkoutFormBody } from './WorkoutFormBody/WorkoutFormBody'
 
 type UserSessionState = undefined | { userId: string }
 
@@ -54,10 +52,11 @@ export function WorkoutForm() {
   return (
     <Card>
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
-        <ErrorProvider<SubmitFormWorkout> errors={errors}>
-          <WorkoutInfo register={register} />
-          <ExerciseFields control={control} register={register} />
-        </ErrorProvider>
+        <WorkoutFormBody<SubmitFormWorkout>
+          errors={errors}
+          control={control}
+          register={register}
+        />
       </FormContainer>
     </Card>
   )

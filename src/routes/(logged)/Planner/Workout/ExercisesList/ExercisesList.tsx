@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { WorkoutData } from '../../../../../api/plannerData/handleGetWorkout'
-import { EditForm } from '../EditWorkout/EditWorkout'
+import { EditWorkout } from '../EditWorkout/EditWorkout'
 
 export type ExercisesListProps = {
   exercises: WorkoutData['data']
@@ -20,29 +20,33 @@ export const Title = styled.p`
 
 export function ExercisesList({ exercises }: ExercisesListProps) {
   const [isEditSet, setIsEditSet] = useState(false)
-
   const location = useLocation()
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     const isEditParamSet = params.get('edit') === 'true'
-
     setIsEditSet(isEditParamSet)
   }, [location.search])
 
-  if (isEditSet) return <EditForm exercises={exercises} />
+  if (isEditSet) {
+    return exercises ? <EditWorkout exercises={exercises} /> : <p>Loading...</p>
+  }
 
-  return exercises?.exercises.map((e) => (
-    <div key={e.id}>
-      <Title>{e.name}</Title>
+  return (
+    <>
+      {exercises?.exercises.map((e) => (
+        <div key={e.id}>
+          <Title>{e.name}</Title>
 
-      <UlContainer>
-        {e.sets.map((s, index) => (
-          <li key={s.id}>
-            Set: {index + 1} | Reps: {s.reps} | Weight: {s.weight}
-          </li>
-        ))}
-      </UlContainer>
-    </div>
-  ))
+          <UlContainer>
+            {e.sets.map((s, index) => (
+              <li key={s.id}>
+                Set: {index + 1} | Reps: {s.reps} | Weight: {s.weight}
+              </li>
+            ))}
+          </UlContainer>
+        </div>
+      ))}
+    </>
+  )
 }

@@ -7,7 +7,7 @@ import { Spinner } from '../../../../ui/components/Spinner/Spinner'
 import { useAppDispatch } from '../../../../utils/hooks/useAppDispatch'
 import { useAppSelector } from '../../../../utils/hooks/useAppSelector'
 import { useDialog } from '../../../../utils/hooks/useDialog'
-import { workoutsSelector } from '../../../../utils/redux/selectors/scheduledWorkouts'
+import { workoutsSelector } from '../../../../utils/redux/selectors/workoutsSelector'
 import { fetchWorkout } from '../../../../utils/redux/slices/workouts/actions'
 import { ExercisesList } from './ExercisesList/ExercisesList'
 

@@ -16,6 +16,8 @@ const StyledDialogBody = styled(motion.create(Card)).attrs(() => ({
   box-shadow: ${({ theme }) => theme.shadows.lg};
   padding: ${({ theme }) => theme.spacing.xl};
   z-index: ${({ theme }) => theme.zIndex.modal};
+  max-height: 80dvh;
+  overflow: auto;
 
   @media (min-width: ${({ theme }) => theme.breakPoints.sm}) {
     max-width: 500px;

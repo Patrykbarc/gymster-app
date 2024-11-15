@@ -6,19 +6,19 @@ import { AddExerciseButton } from './AddExerciseButton/AddExerciseButton'
 import { ExerciseField } from './ExerciseField/ExerciseField'
 import { SetsFields } from './SetsFields/SetsFields'
 
-type ExerciseFieldsProps = {
+export type ExerciseFieldsProps = {
   register: UseFormRegister<SubmitFormWorkout>
   control: Control<SubmitFormWorkout>
 }
 
-const ExerciseFieldsContainer = styled.div`
+export const ExerciseFieldsContainer = styled.div`
   display: grid;
   gap: ${({ theme }) => theme.spacing.md};
   padding-block: ${({ theme }) => theme.spacing.lg};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary};
 `
 
-const ButtonActions = styled.div`
+export const ButtonActions = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: ${({ theme }) => theme.spacing.lg};
