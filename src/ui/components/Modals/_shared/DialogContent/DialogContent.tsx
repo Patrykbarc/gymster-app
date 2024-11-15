@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import styled from 'styled-components'
 import { CloseDialog } from '../../Dialog/CloseDialog/CloseDialog'
 import { DialogBody } from '../../Dialog/DialogBody/DialogBody'
 import { DialogDescription } from './DialogHeader/DialogDescription/DialogDescription'
@@ -11,6 +12,11 @@ type DialogContentProps = {
   dialogHeaderProps?: Partial<DialogHeaderProps>
 }
 
+const DialogContentContainer = styled.div`
+  padding-right: ${({ theme }) => theme.spacing.lg};
+  overflow: auto;
+`
+
 export function DialogContent({
   onClose,
   children,
@@ -18,15 +24,17 @@ export function DialogContent({
 }: DialogContentProps) {
   return (
     <DialogBody>
-      {onClose && <CloseDialog onClose={onClose} />}
-      {dialogHeaderProps && (
-        <DialogHeader {...dialogHeaderProps}>
-          <DialogTitle />
-          <DialogDescription />
-        </DialogHeader>
-      )}
+      <DialogContentContainer>
+        {onClose && <CloseDialog onClose={onClose} />}
+        {dialogHeaderProps && (
+          <DialogHeader {...dialogHeaderProps}>
+            <DialogTitle />
+            <DialogDescription />
+          </DialogHeader>
+        )}
 
-      {children}
+        {children}
+      </DialogContentContainer>
     </DialogBody>
   )
 }
