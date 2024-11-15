@@ -9,8 +9,8 @@ const StyledCloseDialog = styled.div`
   position: absolute;
   right: 0;
   top: 0;
-  padding: 0.2rem 0.7rem 0 0;
-  scale: 70%;
+  padding: 0.5rem 1rem 0 0;
+  scale: 90%;
   font-size: 2em;
   cursor: pointer;
 `

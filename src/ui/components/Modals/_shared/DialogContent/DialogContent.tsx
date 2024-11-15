@@ -12,9 +12,9 @@ type DialogContentProps = {
   dialogHeaderProps?: Partial<DialogHeaderProps>
 }
 
-const DialogContentContainer = styled.div`
+const DialogContainer = styled.div`
   padding-right: ${({ theme }) => theme.spacing.lg};
-  overflow: auto;
+  overflow: hidden;
 `
 
 export function DialogContent({
@@ -23,18 +23,17 @@ export function DialogContent({
   dialogHeaderProps,
 }: DialogContentProps) {
   return (
-    <DialogBody>
-      <DialogContentContainer>
+    <div>
+      {dialogHeaderProps && (
+        <DialogHeader {...dialogHeaderProps}>
+          <DialogTitle />
+          <DialogDescription />
+        </DialogHeader>
+      )}
+      <DialogBody>
         {onClose && <CloseDialog onClose={onClose} />}
-        {dialogHeaderProps && (
-          <DialogHeader {...dialogHeaderProps}>
-            <DialogTitle />
-            <DialogDescription />
-          </DialogHeader>
-        )}
-
-        {children}
-      </DialogContentContainer>
-    </DialogBody>
+        <DialogContainer>{children}</DialogContainer>
+      </DialogBody>
+    </div>
   )
 }

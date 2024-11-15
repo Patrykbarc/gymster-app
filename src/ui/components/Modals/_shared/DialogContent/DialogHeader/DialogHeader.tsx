@@ -15,6 +15,9 @@ export type DialogHeaderProps = {
 export const StyledDialogHeader = styled.div`
   display: grid;
   gap: ${({ theme }) => theme.spacing.sm};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  padding-bottom: ${({ theme }) => theme.spacing.md};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.light};
 `
 
 export function DialogHeader({ children }: DialogHeaderProps) {

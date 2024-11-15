@@ -3,6 +3,9 @@ import { createPortal } from 'react-dom'
 import { useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { DialogContent } from '../../../../ui/components/Modals/_shared/DialogContent/DialogContent'
+import { DialogDescription } from '../../../../ui/components/Modals/_shared/DialogContent/DialogHeader/DialogDescription/DialogDescription'
+import { DialogHeader } from '../../../../ui/components/Modals/_shared/DialogContent/DialogHeader/DialogHeader'
+import { DialogTitle } from '../../../../ui/components/Modals/_shared/DialogContent/DialogHeader/DialogTitle/DialogTitle'
 import { Spinner } from '../../../../ui/components/Spinner/Spinner'
 import { useAppDispatch } from '../../../../utils/hooks/useAppDispatch'
 import { useAppSelector } from '../../../../utils/hooks/useAppSelector'
@@ -14,14 +17,11 @@ import { ExercisesList } from './ExercisesList/ExercisesList'
 const Container = styled.div`
   display: grid;
   gap: ${({ theme }) => theme.spacing.md};
-`
+  overflow-y: auto;
+  max-height: 800px;
 
-const Header = styled.div`
-  h1 {
-    font-size: ${({ theme }) => theme.fontSizes.lg};
-    font-weight: ${({ theme }) => theme.typography.fontWeights.bold};
-    margin-bottom: ${({ theme }) => theme.spacing.xs};
-  }
+  padding-right: ${({ theme }) => theme.spacing.lg};
+  padding-block: ${({ theme }) => theme.spacing.xl};
 `
 
 export function Workout() {
@@ -52,13 +52,15 @@ export function Workout() {
       {error && <p>Error: {error}</p>}
 
       {data && status === 'succeeded' ? (
-        <Container>
-          <Header>
-            <h1>{data?.workout_name}</h1>
-            <p>Date: {data?.workout_date}</p>
-          </Header>
-          <ExercisesList exercises={data} />
-        </Container>
+        <>
+          <DialogHeader>
+            <DialogTitle>{data?.workout_name}</DialogTitle>
+            <DialogDescription>{data?.workout_date}</DialogDescription>
+          </DialogHeader>
+          <Container>
+            <ExercisesList exercises={data} />
+          </Container>
+        </>
       ) : (
         <p>Workout not found</p>
       )}
