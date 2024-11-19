@@ -1,26 +1,32 @@
 import { useEffect } from 'react'
-import { useAppDispatch } from './useAppDispatch'
 
+import { useNavigate } from 'react-router-dom'
 import { supabase } from '../../api/supabase'
 import { clearSession, setSession } from '../redux/slices/session/sessionSlice'
+import { useAppDispatch } from './useAppDispatch'
 
 export const useSessionListener = () => {
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        console.log({ event, session })
-        if (event === 'SIGNED_OUT' || !session) {
-          dispatch(clearSession())
-        } else if (session) {
-          dispatch(setSession(session.user))
-        }
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        setSession(session)
       }
-    )
+    })
 
-    return () => {
-      authListener.subscription.unsubscribe()
-    }
-  }, [dispatch])
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) {
+        dispatch(setSession(session))
+      } else {
+        dispatch(clearSession())
+        navigate('/login')
+      }
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
 }

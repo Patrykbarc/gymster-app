@@ -11,7 +11,7 @@ import { useWorkoutFormData } from './_hooks/useWorkoutFormData'
 import { SubmitFormWorkout } from './_types/SubmitFormWorkout'
 import { WorkoutFormBody } from './WorkoutFormBody/WorkoutFormBody'
 
-type UserSessionState = undefined | { userId: string }
+type UserSessionState = { userId: string } | undefined
 
 const FormContainer = styled.form`
   display: grid;
@@ -25,10 +25,10 @@ export function WorkoutForm() {
   const { defaultValues } = useWorkoutFormData({ watch: undefined })
 
   useEffect(() => {
-    if (session?.id) {
-      setUserId({ userId: session?.id })
+    if (session?.user !== undefined) {
+      setUserId({ userId: session?.user.id })
     }
-  }, [])
+  }, [session])
 
   const {
     control,

@@ -10,5 +10,11 @@ if (!SUPABASE_API_URL || !SUPABASE_API_KEY) {
 
 export const supabase = createClient<Database>(
   SUPABASE_API_URL,
-  SUPABASE_API_KEY
+  SUPABASE_API_KEY,
+  {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+    },
+  }
 )

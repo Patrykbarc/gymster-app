@@ -1,13 +1,11 @@
 import { useAppSelector } from './useAppSelector'
 
 export function useSession() {
-  const userSession = useAppSelector((state) => state.session)
+  const session = useAppSelector((state) => state.session?.session)
 
-  if (!userSession) {
+  if (session === undefined) {
     throw new Error('useSession hook must be used within Redux provider')
   }
-
-  const session = userSession.user
 
   return { session }
 }

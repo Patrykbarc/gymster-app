@@ -1,23 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { User } from '@supabase/supabase-js'
+import { Session } from '@supabase/supabase-js'
 
 type SessionState = {
-  user: User | null
+  session: Session | null
 }
 
 const initialState: SessionState = {
-  user: null,
+  session: null,
 }
 
 const sessionSlice = createSlice({
   name: 'session',
   initialState,
   reducers: {
-    setSession: (state, action: PayloadAction<User | null>) => {
-      state.user = action.payload
+    setSession: (state, action: PayloadAction<Session>) => {
+      {
+        state.session = action.payload
+      }
     },
     clearSession: (state) => {
-      state.user = null
+      state.session = null
     },
   },
 })
