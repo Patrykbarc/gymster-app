@@ -35,6 +35,7 @@ export function WorkoutForm() {
     handleSubmit,
     register,
     watch,
+    reset,
     formState: { errors },
   } = useForm<SubmitFormWorkout>({
     defaultValues,
@@ -47,6 +48,7 @@ export function WorkoutForm() {
     const mutatedData = Object.assign(data, userId)
     submitPlannerForm(mutatedData, dispatch)
     localStorage.removeItem('workoutForm')
+    reset()
   }
 
   return (

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 import { Button } from '../../components/Button/Button'
-import { FlexBetween } from '../../components/FlexBetween/FlexBetween'
+import { Flex } from '../../components/Flex/Flex'
 import { Form } from '../../components/Form/Form/Form'
 import { FormError } from '../../components/Form/FormError/FormError'
 import { FormField } from '../../components/Form/FormField/FormField'
@@ -66,14 +66,14 @@ export function LoginForm() {
 
         {errors.root && <FormError error={errors.root.message} />}
 
-        <FlexBetween>
+        <Flex $justify="space-between">
           <Button type="submit" $variant="primary">
             Login
           </Button>
           <Link to="/register" $textAlign="end">
             Create account
           </Link>
-        </FlexBetween>
+        </Flex>
       </Form>
     </Wrapper>
   )

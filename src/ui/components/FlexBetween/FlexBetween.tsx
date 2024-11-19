@@ -1,6 +1,9 @@
+import { Property } from 'csstype'
 import styled from 'styled-components'
 
-export const FlexBetween = styled.div`
+type Flex = Property.JustifyContent
+
+export const Flex = styled.div<{ $justify: Flex }>`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${({ $justify }) => $justify && 'normal'};
 `

@@ -29,7 +29,7 @@ export function ExercisesList({ exercises }: ExercisesListProps) {
   }, [location.search])
 
   if (isEditSet) {
-    return exercises ? <EditWorkout exercises={exercises} /> : <p>Loading...</p>
+    return exercises && <EditWorkout exercises={exercises} />
   }
 
   return (

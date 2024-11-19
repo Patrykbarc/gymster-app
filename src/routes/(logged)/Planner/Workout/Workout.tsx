@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
+import { Flex } from '../../../../ui/components/Flex/Flex'
 import { DialogContent } from '../../../../ui/components/Modals/_shared/DialogContent/DialogContent'
 import { DialogDescription } from '../../../../ui/components/Modals/_shared/DialogContent/DialogHeader/DialogDescription/DialogDescription'
 import { DialogHeader } from '../../../../ui/components/Modals/_shared/DialogContent/DialogHeader/DialogHeader'
@@ -48,7 +49,11 @@ export function Workout() {
 
   return createPortal(
     <DialogContent onClose={handleCloseDialog}>
-      {status === 'loading' && <Spinner />}
+      {status === 'loading' && (
+        <Flex $justify="center">
+          <Spinner />
+        </Flex>
+      )}
       {error && <p>Error: {error}</p>}
 
       {data && status === 'succeeded' ? (

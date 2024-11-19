@@ -1,11 +1,13 @@
-export function Spinner() {
+type SpinnerProps = { $size?: string }
+
+export function Spinner({ $size = '2rem' }: SpinnerProps) {
   return (
     <div>
       <svg
         className="spinner"
         xmlns="http://www.w3.org/2000/svg"
-        width="1em"
-        height="1em"
+        width={$size}
+        height={$size}
         viewBox="0 0 24 24"
       >
         <path
