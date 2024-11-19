@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../../api/supabase'
 import { clearSession, setSession } from '../redux/slices/session/sessionSlice'

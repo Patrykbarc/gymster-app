@@ -1,7 +1,6 @@
-import { useSession } from './useSession'
-
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useSession } from './useSession'
 
 export function useCheckSession() {
   const { session } = useSession()
