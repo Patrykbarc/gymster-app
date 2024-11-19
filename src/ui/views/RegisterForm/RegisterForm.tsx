@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 import { Button } from '../../components/Button/Button'
+import { FlexBetween } from '../../components/FlexBetween/FlexBetween'
 import { Form } from '../../components/Form/Form/Form'
 import { FormError } from '../../components/Form/FormError/FormError'
 import { FormField } from '../../components/Form/FormField/FormField'
@@ -88,10 +89,12 @@ export function RegisterForm() {
 
         <FormError error={errors.root?.message} />
 
-        <Button type="submit">Register</Button>
-        <Link to="/login" $textAlign="end">
-          Already registered?
-        </Link>
+        <FlexBetween>
+          <Button type="submit">Register</Button>
+          <Link to="/login" $textAlign="end">
+            Already registered?
+          </Link>
+        </FlexBetween>
       </Form>
     </Wrapper>
   )
