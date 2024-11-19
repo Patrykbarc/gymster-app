@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
+import { WorkoutFormBody } from '../../../../../ui/views/WorkoutForm/_components/WorkoutFormBody/WorkoutFormBody'
 import { SubmitFormWorkout } from '../../../../../ui/views/WorkoutForm/_types/SubmitFormWorkout'
-import { WorkoutFormBody } from '../../../../../ui/views/WorkoutForm/WorkoutFormBody/WorkoutFormBody'
 import { ExercisesListProps } from '../ExercisesList/ExercisesList'
 
 export function EditWorkout({ exercises }: ExercisesListProps) {

@@ -5,11 +5,11 @@ import styled from 'styled-components'
 import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useSession } from '../../../utils/hooks/useSession'
 import { Card } from '../../components/Card/Card'
+import { WorkoutFormBody } from './_components/WorkoutFormBody/WorkoutFormBody'
 import { submitPlannerForm } from './_helpers/submitPlannerForm'
 import { WORKOUT_FORM_SCHEMA } from './_helpers/workout-form-schema'
 import { useWorkoutFormData } from './_hooks/useWorkoutFormData'
 import { SubmitFormWorkout } from './_types/SubmitFormWorkout'
-import { WorkoutFormBody } from './WorkoutFormBody/WorkoutFormBody'
 
 type UserSessionState = { userId: string } | undefined
 

@@ -7,7 +7,7 @@ const NavigationContainer = styled.nav`
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
-  min-width: 20rem;
+  min-width: 15rem;
 
   gap: ${({ theme }) => theme.spacing.md};
   padding: ${({ theme }) => theme.spacing.xl};

@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 import { get, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
-import { ErrorContext } from '../../../../utils/providers/contexts/ErrorContext'
-import { SubmitFormWorkout } from '../_types/SubmitFormWorkout'
+import { ErrorContext } from '../../../../../utils/providers/contexts/ErrorContext'
+import { SubmitFormWorkout } from '../../_types/SubmitFormWorkout'
 import { Field } from '../Field/Field'
 import { FieldError } from '../Field/FieldError/FieldError'
 

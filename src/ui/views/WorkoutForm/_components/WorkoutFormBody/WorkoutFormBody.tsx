@@ -2,13 +2,13 @@ import { FieldValues } from 'react-hook-form'
 import {
   ErrorProvider,
   ErrorProviderProps,
-} from '../../../../utils/providers/ErrorProvider'
+} from '../../../../../utils/providers/ErrorProvider'
+import { SubmitFormWorkout } from '../../_types/SubmitFormWorkout'
 import {
   ExerciseFields,
   ExerciseFieldsProps,
 } from '../ExerciseFields/ExerciseFields'
 import { WorkoutInfo } from '../WorkoutInfo/WorkoutInfo'
-import { SubmitFormWorkout } from '../_types/SubmitFormWorkout'
 
 type WorkoutFormBodyProps<T extends FieldValues> = ExerciseFieldsProps &
   Pick<ErrorProviderProps<T>, 'errors'>

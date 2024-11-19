@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useContext, useEffect } from 'react'
 import { get } from 'react-hook-form'
 import styled from 'styled-components'
-import { ErrorContext } from '../../../../../../utils/providers/contexts/ErrorContext'
+import { ErrorContext } from '../../../../../../../utils/providers/contexts/ErrorContext'
 import { FieldError } from '../../../Field/FieldError/FieldError'
 
 type ErrorsProps = {

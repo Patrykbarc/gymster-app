@@ -1,7 +1,7 @@
 import { UseFieldArrayAppend } from 'react-hook-form'
-import { Button } from '../../../../components/Button/Button'
-import { workoutDefaultValues } from '../../_helpers/workout-default-values'
-import { SubmitFormWorkout } from '../../_types/SubmitFormWorkout'
+import { Button } from '../../../../../components/Button/Button'
+import { workoutDefaultValues } from '../../../_helpers/workout-default-values'
+import { SubmitFormWorkout } from '../../../_types/SubmitFormWorkout'
 
 const newExerciseRep = workoutDefaultValues.reps
 const newExerciseWeight = workoutDefaultValues.weight

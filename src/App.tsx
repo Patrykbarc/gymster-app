@@ -20,7 +20,7 @@ function App() {
 
   return (
     <>
-      <Toaster />
+      <Toaster position="bottom-right" />
       <Layout>
         <Navigation />
         <OutletContainer>

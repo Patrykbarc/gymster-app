@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { UseFormWatch } from 'react-hook-form'
-import toast from 'react-hot-toast'
 import { useAppDispatch } from '../../../../utils/hooks/useAppDispatch'
 import { setIsLoading } from '../../../../utils/redux/slices/loading/loadingSlice'
 import { debounce } from '../_helpers/debounce'
 import { WORKOUT_DEFAULT_VALUES } from '../_helpers/workout-default-values'
 import { SubmitFormWorkout } from '../_types/SubmitFormWorkout'
+import { debouncedSave } from './_helper/debouncedSave'
 
 type Props = {
   watch: UseFormWatch<SubmitFormWorkout> | undefined
@@ -37,19 +37,6 @@ export function useWorkoutFormData({ watch }: Props) {
     const debouncedLoading = debounce((value) => {
       dispatch(setIsLoading(value))
     }, 300)
-
-    const debouncedSave = debounce((value) => {
-      const loadingPromise = new Promise((resolve) => {
-        localStorage.setItem(STORAGE_ITEM_NAME, JSON.stringify(value))
-        resolve(true)
-      })
-
-      toast.promise(loadingPromise, {
-        loading: 'Saving draft...',
-        success: 'Draft saved!',
-        error: 'Failed to save draft',
-      })
-    }, 1000)
 
     const subscription = watch((value) => {
       dispatch(setIsLoading(true))

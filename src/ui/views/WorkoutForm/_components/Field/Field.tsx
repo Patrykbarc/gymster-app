@@ -1,8 +1,8 @@
 import { InputHTMLAttributes, useId } from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
 import styled from 'styled-components'
-import { Input } from '../../../components/Input/Input'
-import { Label } from '../../../components/Label/Label'
+import { Input } from '../../../../components/Input/Input'
+import { Label } from '../../../../components/Label/Label'
 
 type FieldProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string | boolean
