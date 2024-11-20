@@ -12,6 +12,7 @@ import { Link } from '../../components/Link/Link'
 import { Wrapper } from '../../components/Wrapper/Wrapper'
 import { FORM_SCHEMA } from './helpers/form-schema'
 import { handleLogin } from './helpers/handleLogin'
+import { IsSubmitting } from './IsSubmitting/IsSubmitting'
 
 type FormData = z.infer<typeof FORM_SCHEMA>
 
@@ -22,7 +23,7 @@ export function LoginForm() {
     register,
     handleSubmit,
     setError,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(FORM_SCHEMA),
     defaultValues: { email: '', password: '' },
@@ -34,6 +35,7 @@ export function LoginForm() {
 
   return (
     <Wrapper $height="100dvh">
+      <IsSubmitting isSubmitting={isSubmitting} />
       <Form onSubmit={handleSubmit(submitForm)} $maxWidth="25rem">
         <FormTitle>Login to continue</FormTitle>
 

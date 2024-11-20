@@ -1,7 +1,12 @@
+import { Property } from 'csstype'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-export const DialogOverlay = styled(motion.div).attrs(() => ({
+type Props = {
+  $opacity?: Property.Opacity
+}
+
+export const DialogOverlay = styled(motion.div).attrs<Props>(() => ({
   initial: { opacity: 0 },
   animate: { opacity: 1 },
   transition: { duration: 0.2, ease: 'easeInOut' },
@@ -14,6 +19,6 @@ export const DialogOverlay = styled(motion.div).attrs(() => ({
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.75);
+  background: ${({ $opacity }) => `rgba(0,0,0, ${$opacity || '0.75'})`};
   z-index: ${({ theme }) => theme.zIndex.modal};
 `
