@@ -4,12 +4,12 @@ const DEFAULT_REPS = 8
 export const WORKOUT_DEFAULT_VALUES = {
   defaultValues: {
     info: {
-      workout: '',
+      workout: 'Test',
       workoutDate: '',
     },
     exercises: [
       {
-        name: '',
+        name: 'Test',
         sets: [{ set: 1, weight: DEFAULT_WEIGHT, reps: DEFAULT_REPS }],
       },
     ],

@@ -5,8 +5,8 @@ import { handleDeleteWorkout } from '../../../../api/plannerData/handleDeleteWor
 import { handleEditWorkout } from '../../../../api/plannerData/handleEditWorkout/handleEditWorkout'
 import { handleGetPlannedWorkouts } from '../../../../api/plannerData/handleGetPlannedWorkouts'
 import { handleGetWorkout } from '../../../../api/plannerData/handleGetWorkout'
-import { debounce } from '../../../../ui/views/WorkoutForm/_helpers/debounce'
 import { FormWorkout } from '../../../../ui/views/WorkoutForm/_helpers/submitPlannerForm'
+import { debounce } from '../../../../ui/views/WorkoutForm/_utils/debounce'
 import { PlannedWorkouts } from './types'
 
 export const fetchWorkouts = createAsyncThunk(
@@ -32,11 +32,11 @@ export const addWorkout = createAsyncThunk(
   async (workoutData: FormWorkout) => {
     const result = await handleAddWorkout(workoutData)
     if (!result) {
-      throw new Error('No response from handleAddWorkout')
+      return 'No response from handleAddWorkout'
     }
     const { data, error } = result
     if (error) {
-      throw new Error(error.message)
+      return error.message
     }
     return data && data.length > 0 ? data[0] : null
   }

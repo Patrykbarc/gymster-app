@@ -17,11 +17,11 @@ export async function upsertWorkout(
 
   if (error) {
     printError({ message: 'adding workout', error })
-    return undefined
+    return { error }
   }
 
   if (!data || data.length === 0) {
-    return undefined
+    return { error }
   }
 
   const workoutId: string = data[0].id

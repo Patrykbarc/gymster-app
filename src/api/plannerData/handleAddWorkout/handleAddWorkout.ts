@@ -12,8 +12,11 @@ export async function handleAddWorkout({
   exercises,
 }: AddWorkoutArgs) {
   const workoutResult = await upsertWorkout(userId, workout, workoutDate)
+  console.log(workoutResult)
 
-  if (!workoutResult) return
+  if (workoutResult.error || !workoutResult.data) {
+    return workoutResult?.error?.message
+  }
 
   const { workoutId } = workoutResult
 

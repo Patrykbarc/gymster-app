@@ -2,9 +2,9 @@ import { useEffect } from 'react'
 import { UseFormWatch } from 'react-hook-form'
 import { useAppDispatch } from '../../../../utils/hooks/useAppDispatch'
 import { setIsLoading } from '../../../../utils/redux/slices/loading/loadingSlice'
-import { debounce } from '../_helpers/debounce'
-import { WORKOUT_DEFAULT_VALUES } from '../_helpers/workout-default-values'
+import { WORKOUT_DEFAULT_VALUES } from '../_constants/workout-default-values'
 import { SubmitFormWorkout } from '../_types/SubmitFormWorkout'
+import { debounce } from '../_utils/debounce'
 import { debouncedSave } from './_helper/debouncedSave'
 
 type Props = {

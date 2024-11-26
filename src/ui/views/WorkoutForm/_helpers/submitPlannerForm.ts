@@ -17,5 +17,5 @@ export async function submitPlannerForm(
     return
   }
 
-  dispatch(addWorkout(data))
+  return await dispatch(addWorkout(data))
 }

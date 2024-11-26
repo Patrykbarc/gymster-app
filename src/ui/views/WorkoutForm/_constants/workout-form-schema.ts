@@ -1,5 +1,6 @@
 import { z } from 'zod'
-import { isString } from './isString'
+import { isString } from '../_utils/isString'
+
 const workoutInfoSchema = z.object({
   workout: z.string().min(3, { message: 'Workout must be named' }),
   workoutDate: z.preprocess(

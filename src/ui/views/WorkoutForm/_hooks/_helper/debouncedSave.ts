@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast'
-import { debounce } from '../../_helpers/debounce'
+import { debounce } from '../../_utils/debounce'
 
 const STORAGE_ITEM_NAME = 'workout-draft'
 

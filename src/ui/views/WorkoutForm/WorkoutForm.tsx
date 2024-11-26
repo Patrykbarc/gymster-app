@@ -6,8 +6,9 @@ import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useSession } from '../../../utils/hooks/useSession'
 import { Card } from '../../components/Card/Card'
 import { WorkoutFormBody } from './_components/WorkoutFormBody/WorkoutFormBody'
+import { WORKOUT_FORM_SCHEMA } from './_constants/workout-form-schema'
+import { handleFormReset } from './_helpers/handleFormReset'
 import { submitPlannerForm } from './_helpers/submitPlannerForm'
-import { WORKOUT_FORM_SCHEMA } from './_helpers/workout-form-schema'
 import { useWorkoutFormData } from './_hooks/useWorkoutFormData'
 import { SubmitFormWorkout } from './_types/SubmitFormWorkout'
 
@@ -44,11 +45,13 @@ export function WorkoutForm() {
 
   useWorkoutFormData({ watch })
 
-  const onSubmit = (data: SubmitFormWorkout) => {
+  const onSubmit = async (data: SubmitFormWorkout) => {
     const mutatedData = Object.assign(data, userId)
-    submitPlannerForm(mutatedData, dispatch)
-    localStorage.removeItem('workoutForm')
-    reset()
+    const response = await submitPlannerForm(mutatedData, dispatch)
+
+    if (response?.payload) {
+      handleFormReset(reset)
+    }
   }
 
   return (
