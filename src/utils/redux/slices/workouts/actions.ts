@@ -31,14 +31,14 @@ export const addWorkout = createAsyncThunk(
   'workouts/addWorkout',
   async (workoutData: FormWorkout) => {
     const result = await handleAddWorkout(workoutData)
-    if (!result) {
-      return 'No response from handleAddWorkout'
-    }
+
     const { data, error } = result
+
     if (error) {
-      return error.message
+      return typeof error === 'string' ? error : error.message
     }
-    return data && data.length > 0 ? data[0] : null
+
+    return data?.[0] ?? null
   }
 )
 

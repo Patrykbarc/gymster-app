@@ -24,6 +24,7 @@ export async function upsertExecise(workoutId: string, exercises: Exercises) {
 
   if (error) {
     printError({ message: 'adding workout', error })
+    return { error }
   }
 
   return { data, error }

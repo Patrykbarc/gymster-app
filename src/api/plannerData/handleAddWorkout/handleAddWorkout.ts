@@ -12,10 +12,9 @@ export async function handleAddWorkout({
   exercises,
 }: AddWorkoutArgs) {
   const workoutResult = await upsertWorkout(userId, workout, workoutDate)
-  console.log(workoutResult)
 
   if (workoutResult.error || !workoutResult.data) {
-    return workoutResult?.error?.message
+    return { data: [], error: workoutResult?.error?.message }
   }
 
   const { workoutId } = workoutResult
@@ -25,7 +24,13 @@ export async function handleAddWorkout({
     exercises
   )
 
-  if (!exerciseData) return
+  console.log(exerciseData)
+
+  if (exerciseError || !exerciseData)
+    return {
+      data: [],
+      error: exerciseError,
+    }
 
   const { error: upsertError } = await upsertSets(
     workoutId,
@@ -35,7 +40,7 @@ export async function handleAddWorkout({
 
   if (exerciseError || upsertError) {
     await rollbackWorkout(workoutId)
-    return { data: null, error: exerciseError || upsertError }
+    return { data: [], error: exerciseError || upsertError }
   }
 
   return { data: workoutResult.data, error: null }

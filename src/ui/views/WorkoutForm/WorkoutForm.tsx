@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useSession } from '../../../utils/hooks/useSession'
 import { Card } from '../../components/Card/Card'
+import { FormError } from '../../components/Form/FormError/FormError'
 import { WorkoutFormBody } from './_components/WorkoutFormBody/WorkoutFormBody'
 import { WORKOUT_FORM_SCHEMA } from './_constants/workout-form-schema'
 import { handleFormReset } from './_helpers/handleFormReset'
@@ -36,6 +37,7 @@ export function WorkoutForm() {
     handleSubmit,
     register,
     watch,
+    setError,
     reset,
     formState: { errors },
   } = useForm<SubmitFormWorkout>({
@@ -49,9 +51,15 @@ export function WorkoutForm() {
     const mutatedData = Object.assign(data, userId)
     const response = await submitPlannerForm(mutatedData, dispatch)
 
-    if (response?.payload) {
-      handleFormReset(reset)
+    if (!response?.payload) {
+      setError('root.submit', {
+        message: 'An error occurred during submission. Please try again.',
+      })
+
+      return
     }
+
+    handleFormReset(reset)
   }
 
   return (
@@ -62,6 +70,7 @@ export function WorkoutForm() {
           control={control}
           register={register}
         />
+        <FormError error={errors.root?.submit.message} />
       </FormContainer>
     </Card>
   )
