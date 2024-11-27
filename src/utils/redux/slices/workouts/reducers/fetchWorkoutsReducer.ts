@@ -1,5 +1,5 @@
 import { setError, setPending, setSuccess } from '../_helpers/reducersHelper'
-import { fetchWorkouts } from '../actions'
+import { fetchWorkouts } from '../actions/fetchWorkouts'
 import { WorkoutsState } from '../types'
 
 export const fetchWorkoutsReducer = (builder: any) => {

@@ -12,7 +12,7 @@ import { useAppDispatch } from '../../../../utils/hooks/useAppDispatch'
 import { useAppSelector } from '../../../../utils/hooks/useAppSelector'
 import { useDialog } from '../../../../utils/hooks/useDialog'
 import { workoutsSelector } from '../../../../utils/redux/selectors/workoutsSelector'
-import { fetchWorkout } from '../../../../utils/redux/slices/workouts/actions'
+import { fetchWorkouts } from '../../../../utils/redux/slices/workouts/actions/fetchWorkouts'
 import { ExercisesList } from './ExercisesList/ExercisesList'
 
 const Container = styled.div`
@@ -36,7 +36,7 @@ export function Workout() {
   useEffect(() => {
     if (id) {
       handleOpen()
-      dispatch(fetchWorkout(id))
+      dispatch(fetchWorkouts(id))
     }
   }, [id])
 

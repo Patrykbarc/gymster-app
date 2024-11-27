@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { PostgrestError } from '@supabase/supabase-js'
 import { handleAddWorkout } from '../../../../../api/plannerData/handleAddWorkout/handleAddWorkout'
 import { handleEditWorkout } from '../../../../../api/plannerData/handleEditWorkout/handleEditWorkout'
 import { FormWorkout } from '../../../../../ui/views/WorkoutForm/_helpers/submitPlannerForm'
+import { throwError } from './_helper/throwError'
 
 type ModifyWorkoutArgs = {
   workoutData: FormWorkout
@@ -29,12 +29,3 @@ export const modifyWorkout = createAsyncThunk(
     }
   }
 )
-
-function throwError(error: string | PostgrestError | null) {
-  const errorMessage =
-    typeof error === 'string'
-      ? error
-      : (error as PostgrestError)?.message || 'Unknown error'
-
-  throw new Error(errorMessage)
-}

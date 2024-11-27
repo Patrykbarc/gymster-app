@@ -1,5 +1,5 @@
 import { setError } from '../_helpers/reducersHelper'
-import { deleteWorkout } from '../actions'
+import { deleteWorkout } from '../actions/deleteWorkout'
 import { WorkoutsState } from '../types'
 
 export const deleteWorkoutReducer = (builder: any) => {

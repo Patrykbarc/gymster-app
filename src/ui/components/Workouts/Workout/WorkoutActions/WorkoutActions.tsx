@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useAppDispatch } from '../../../../../utils/hooks/useAppDispatch'
-import { deleteWorkout } from '../../../../../utils/redux/slices/workouts/actions'
+import { deleteWorkout } from '../../../../../utils/redux/slices/workouts/actions/deleteWorkout'
 import { Icon } from '../../../Icon/Icon'
 import { Alert } from '../../../Modals/Alert/Alert'
 
