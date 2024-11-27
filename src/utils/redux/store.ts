@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import loadingReducer from './slices/loading/loadingSlice'
 import sessionReducer from './slices/session/sessionSlice'
-import { default as workoutsReducer } from './slices/workouts/workoutsSlice'
+import workoutsReducer from './slices/workouts/workoutsSlice'
 
 export const store = configureStore({
   reducer: {

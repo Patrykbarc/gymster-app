@@ -1,6 +1,6 @@
 import { setSuccess } from './reducersHelper'
 
-import { WorkoutsState } from '../types'
+import { WorkoutsState } from '../_types/types'
 
 export const handleModifyWorkoutFulfilled = (
   state: WorkoutsState,

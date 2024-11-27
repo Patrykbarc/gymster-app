@@ -1,4 +1,4 @@
-import { WorkoutsState } from '../types'
+import { WorkoutsState } from '../_types/types'
 
 export const setPending = (state: WorkoutsState) => {
   state.status = 'loading'

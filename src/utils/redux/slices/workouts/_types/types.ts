@@ -1,5 +1,5 @@
-import { WorkoutData } from '../../../../api/plannerData/handleGetWorkout'
-import { Database } from '../../../../types/database.types'
+import { WorkoutData } from '../../../../../api/plannerData/handleGetWorkout'
+import { Database } from '../../../../../types/database.types'
 
 export type PlannedWorkouts = Database['public']['Tables']['workouts']['Row']
 

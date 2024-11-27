@@ -1,6 +1,6 @@
 import { setError, setSuccess } from '../_helpers/reducersHelper'
+import { WorkoutsState } from '../_types/types'
 import { fetchWorkouts } from '../actions/fetchWorkouts'
-import { WorkoutsState } from '../types'
 
 export const fetchWorkoutsReducer = (builder: any) => {
   builder

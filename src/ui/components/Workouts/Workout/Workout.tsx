@@ -1,4 +1,4 @@
-import { PlannedWorkouts } from '../../../../utils/redux/slices/workouts/types'
+import { PlannedWorkouts } from '../../../../utils/redux/slices/workouts/_types/types'
 import { WorkoutContainer } from './WorkoutContainer/WorkoutContainer'
 
 type WorkoutProps = PlannedWorkouts
