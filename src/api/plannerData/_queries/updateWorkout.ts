@@ -3,7 +3,7 @@ import { printError } from '../_helpers/printError'
 
 export type Field = 'weight' | 'reps'
 
-export type UpdateWorkoutParams = {
+export type UpdateSetParams = {
   setId: number
   field: {
     name: Field
@@ -11,10 +11,10 @@ export type UpdateWorkoutParams = {
   }
 }
 
-export async function updateWorkout({
+export async function updateSet({
   setId,
   field: { name, value },
-}: UpdateWorkoutParams) {
+}: UpdateSetParams) {
   const { data, error } = await supabase
     .from('sets')
     .update({

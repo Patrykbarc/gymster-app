@@ -1,4 +1,4 @@
-import { addWorkout } from '../../../../utils/redux/slices/workouts/actions'
+import { modifyWorkout } from '../../../../utils/redux/slices/workouts/actions/modifyWorkout'
 import { AppDispatch } from '../../../../utils/redux/store'
 import { SubmitFormWorkout } from '../_types/SubmitFormWorkout'
 
@@ -17,5 +17,5 @@ export async function submitPlannerForm(
     return
   }
 
-  return await dispatch(addWorkout(data))
+  return await dispatch(modifyWorkout({ workoutData: data }))
 }
