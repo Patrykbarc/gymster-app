@@ -32,7 +32,7 @@ export function SavedWorkouts() {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(fetchWorkouts())
+    dispatch(fetchWorkouts({}))
   }, [dispatch])
 
   if (status === 'failed') return <p>Error: {error}</p>

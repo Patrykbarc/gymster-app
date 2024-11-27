@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { deleteWorkoutReducer } from './reducers/deleteWorkoutReducer'
-import { fetchWorkoutsReducer } from './reducers/fetchWorkoutsReducer'
-import { modifyWorkoutReducer } from './reducers/modifyWorkoutReducer'
+import { deleteWorkoutReducer } from './builders/deleteWorkoutReducer'
+import { fetchWorkoutsReducer } from './builders/fetchWorkoutsReducer'
+import { modifyWorkoutReducer } from './builders/modifyWorkoutReducer'
 import { WorkoutsState } from './types'
 
 const initialState: WorkoutsState = {

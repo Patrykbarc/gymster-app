@@ -36,7 +36,7 @@ export function Workout() {
   useEffect(() => {
     if (id) {
       handleOpen()
-      dispatch(fetchWorkouts(id))
+      dispatch(fetchWorkouts({ workoutId: id }))
     }
   }, [id])
 
@@ -55,7 +55,6 @@ export function Workout() {
         </Flex>
       )}
       {error && <p>Error: {error}</p>}
-
       {data && status === 'succeeded' ? (
         <>
           <DialogHeader>
