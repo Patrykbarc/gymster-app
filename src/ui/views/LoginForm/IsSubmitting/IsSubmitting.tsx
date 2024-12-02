@@ -7,7 +7,6 @@ type IsSubmittingProps = {
 }
 
 export function IsSubmitting({ isSubmitting }: IsSubmittingProps) {
-  console.log(isSubmitting)
   return (
     isSubmitting && (
       <DialogOverlay $opacity="60%">

@@ -1,5 +1,5 @@
 export type Sets = {
-  id: number
+  id?: number
   set: number
   weight: number
   reps: number
