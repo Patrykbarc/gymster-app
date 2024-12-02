@@ -18,6 +18,6 @@ export const Input = styled.input<InputProps>`
     $isError ? theme.colors.danger : theme.colors.secondary};
 
   &:disabled {
-    background-color: ${({ theme }) => theme.colors.secondary};
+    background-color: ${({ theme }) => theme.colors.light};
   }
 `

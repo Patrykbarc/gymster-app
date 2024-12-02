@@ -1,6 +1,8 @@
 import { Control, useFieldArray, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
+import { WorkoutsState } from '../../../../../utils/redux/slices/workouts/_types/types'
 import { Button } from '../../../../components/Button/Button'
+import { Spinner } from '../../../../components/Spinner/Spinner'
 import { SubmitFormWorkout } from '../../_types/SubmitFormWorkout'
 import { AddExerciseButton } from './AddExerciseButton/AddExerciseButton'
 import { ExerciseField } from './ExerciseField/ExerciseField'
@@ -9,6 +11,7 @@ import { SetsFields } from './SetsFields/SetsFields'
 export type ExerciseFieldsProps = {
   register: UseFormRegister<SubmitFormWorkout>
   control: Control<SubmitFormWorkout>
+  status?: WorkoutsState['status']
 }
 
 export const ExerciseFieldsContainer = styled.div`
@@ -20,11 +23,16 @@ export const ExerciseFieldsContainer = styled.div`
 
 export const ButtonActions = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-top: ${({ theme }) => theme.spacing.lg};
 `
 
-export function ExerciseFields({ control, register }: ExerciseFieldsProps) {
+export function ExerciseFields({
+  control,
+  register,
+  status,
+}: ExerciseFieldsProps) {
   const {
     fields: exerciseFields,
     append: appendExercise,
@@ -58,7 +66,11 @@ export function ExerciseFields({ control, register }: ExerciseFieldsProps) {
 
       <ButtonActions>
         <AddExerciseButton appendExercise={appendExercise} />
-        <Button type="submit">Save</Button>
+        {status === 'loading' ? (
+          <Spinner $size="2rem" />
+        ) : (
+          <Button type="submit">Save</Button>
+        )}
       </ButtonActions>
     </div>
   )
