@@ -1,5 +1,4 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
@@ -13,25 +12,13 @@ import { submitPlannerForm } from './_helpers/submitPlannerForm'
 import { useWorkoutFormData } from './_hooks/useWorkoutFormData'
 import { SubmitFormWorkout } from './_types/SubmitFormWorkout'
 
-type UserSessionState = { userId: string } | undefined
-
 const FormContainer = styled.form`
   display: grid;
   gap: ${({ theme }) => theme.spacing.xl};
 `
 
 export function WorkoutForm() {
-  const { session } = useSession()
-  const [userId, setUserId] = useState<UserSessionState>(undefined)
-  const dispatch = useAppDispatch()
   const { defaultValues } = useWorkoutFormData({ watch: undefined })
-
-  useEffect(() => {
-    if (session?.user !== undefined) {
-      setUserId({ userId: session?.user.id })
-    }
-  }, [session])
-
   const {
     control,
     handleSubmit,
@@ -44,12 +31,18 @@ export function WorkoutForm() {
     defaultValues,
     resolver: zodResolver(WORKOUT_FORM_SCHEMA),
   })
-
+  const { session } = useSession()
+  const dispatch = useAppDispatch()
   useWorkoutFormData({ watch })
 
+  if (!session) return
+  const userId = session.user.id
+
   const onSubmit = async (data: SubmitFormWorkout) => {
-    const mutatedData = Object.assign(data, userId)
-    const response = await submitPlannerForm(mutatedData, dispatch)
+    const response = await submitPlannerForm({
+      data: { ...data, userId },
+      dispatch,
+    })
 
     if (!response?.payload) {
       setError('root.submit', {

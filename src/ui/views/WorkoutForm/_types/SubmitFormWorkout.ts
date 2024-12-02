@@ -6,6 +6,7 @@ export type SubmitFormWorkout = {
     workoutDate: string
   }
   exercises: {
+    id?: number
     name: string
     sets: Sets[]
   }[]

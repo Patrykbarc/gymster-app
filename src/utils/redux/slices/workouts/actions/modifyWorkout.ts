@@ -23,6 +23,7 @@ export const modifyWorkout = createAsyncThunk(
       if (result.error) {
         throwError(result.error)
       }
+
       return result.data
     } catch (error: any) {
       return rejectWithValue(error.message || 'Unknown error occurred')

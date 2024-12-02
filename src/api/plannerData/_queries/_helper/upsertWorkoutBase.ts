@@ -8,22 +8,15 @@ export async function upsertWorkoutBase(
   workoutId?: string
 ) {
   const workoutData = {
+    ...(workoutId && { id: workoutId }),
     user_id: userId,
     workout_name: workoutName,
     workout_date: workoutDate,
   }
 
-  if (workoutId) {
-    Object.assign(workoutData, { workout_id: workoutId })
-  }
-
   const { data, error } = await supabase
     .from('workouts')
-    .upsert({
-      user_id: userId,
-      workout_name: workoutName,
-      workout_date: workoutDate,
-    })
+    .upsert(workoutData, { onConflict: 'id' })
     .select()
 
   if (error) {

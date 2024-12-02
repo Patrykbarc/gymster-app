@@ -6,10 +6,17 @@ export type FormWorkout = SubmitFormWorkout & {
   userId: string
 }
 
-export async function submitPlannerForm(
-  data: FormWorkout,
+type SubmitPlannerProps = {
+  data: FormWorkout
   dispatch: AppDispatch
-) {
+  workoutId?: string
+}
+
+export async function submitPlannerForm({
+  data,
+  dispatch,
+  workoutId,
+}: SubmitPlannerProps) {
   const dateObject = new Date(data.info.workoutDate)
 
   if (isNaN(dateObject.getTime())) {
@@ -17,5 +24,5 @@ export async function submitPlannerForm(
     return
   }
 
-  return await dispatch(modifyWorkout({ workoutData: data }))
+  return await dispatch(modifyWorkout({ workoutData: data, workoutId }))
 }

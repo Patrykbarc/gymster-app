@@ -38,7 +38,7 @@ export function Workout() {
       handleOpen()
       dispatch(fetchWorkouts({ workoutId: id }))
     }
-  }, [id])
+  }, [id, status, dispatch])
 
   function handleCloseDialog() {
     handleClose()
