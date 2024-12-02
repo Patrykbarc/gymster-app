@@ -38,7 +38,7 @@ export function Workout() {
       handleOpen()
       dispatch(fetchWorkouts({ workoutId: id }))
     }
-  }, [id, status, dispatch])
+  }, [id, dispatch])
 
   function handleCloseDialog() {
     handleClose()
@@ -55,7 +55,7 @@ export function Workout() {
         </Flex>
       )}
       {error && <p>Error: {error}</p>}
-      {data && status === 'succeeded' ? (
+      {data ? (
         <>
           <DialogHeader>
             <DialogTitle>{data?.workout_name}</DialogTitle>
