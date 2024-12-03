@@ -1,3 +1,4 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
@@ -7,6 +8,7 @@ import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useSession } from '../../../utils/hooks/useSession'
 import { fetchWorkouts } from '../../../utils/redux/slices/workouts/actions/fetchWorkouts'
 import { WorkoutFormBody } from '../WorkoutForm/_components/WorkoutFormBody/WorkoutFormBody'
+import { WORKOUT_FORM_SCHEMA } from '../WorkoutForm/_constants/workout-form-schema'
 import { submitPlannerForm } from '../WorkoutForm/_helpers/submitPlannerForm'
 import { SubmitFormWorkout } from '../WorkoutForm/_types/SubmitFormWorkout'
 import { EDIT_FORM_DEFAULT_VALUES } from './_helper/edit-form-default-values'
@@ -21,6 +23,7 @@ export function EditWorkout({ exercises }: ExercisesListProps) {
     reset,
   } = useForm<SubmitFormWorkout>({
     defaultValues: EDIT_FORM_DEFAULT_VALUES({ exercises }),
+    resolver: zodResolver(WORKOUT_FORM_SCHEMA),
   })
 
   useEffect(() => {
