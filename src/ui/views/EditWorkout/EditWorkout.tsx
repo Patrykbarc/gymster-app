@@ -1,13 +1,14 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-hot-toast'
 import { useParams } from 'react-router-dom'
-import { WorkoutFormBody } from '../../../../../ui/views/WorkoutForm/_components/WorkoutFormBody/WorkoutFormBody'
-import { submitPlannerForm } from '../../../../../ui/views/WorkoutForm/_helpers/submitPlannerForm'
-import { SubmitFormWorkout } from '../../../../../ui/views/WorkoutForm/_types/SubmitFormWorkout'
-import { useAppDispatch } from '../../../../../utils/hooks/useAppDispatch'
-import { useSession } from '../../../../../utils/hooks/useSession'
-import { fetchWorkouts } from '../../../../../utils/redux/slices/workouts/actions/fetchWorkouts'
-import { ExercisesListProps } from '../ExercisesList/ExercisesList'
+import { ExercisesListProps } from '../../../routes/(logged)/Planner/Workout/ExercisesList/ExercisesList'
+import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
+import { useSession } from '../../../utils/hooks/useSession'
+import { fetchWorkouts } from '../../../utils/redux/slices/workouts/actions/fetchWorkouts'
+import { WorkoutFormBody } from '../WorkoutForm/_components/WorkoutFormBody/WorkoutFormBody'
+import { submitPlannerForm } from '../WorkoutForm/_helpers/submitPlannerForm'
+import { SubmitFormWorkout } from '../WorkoutForm/_types/SubmitFormWorkout'
 import { EDIT_FORM_DEFAULT_VALUES } from './_helper/edit-form-default-values'
 
 export function EditWorkout({ exercises }: ExercisesListProps) {
@@ -36,11 +37,18 @@ export function EditWorkout({ exercises }: ExercisesListProps) {
 
   const onSubmit = async (data: SubmitFormWorkout) => {
     try {
-      const response = await submitPlannerForm({
-        data: { ...data, userId },
-        dispatch,
-        workoutId: id,
-      })
+      const response = await toast.promise(
+        submitPlannerForm({
+          data: { ...data, userId },
+          dispatch,
+          workoutId: id,
+        }),
+        {
+          loading: 'Updating workout...',
+          success: 'Workout updated successfully',
+          error: 'Error updating workout',
+        }
+      )
 
       if (response?.meta.requestStatus === 'fulfilled') {
         reset(data)

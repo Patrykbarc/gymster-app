@@ -1,4 +1,4 @@
-import { ExercisesListProps } from '../../ExercisesList/ExercisesList'
+import { ExercisesListProps } from '../../../../routes/(logged)/Planner/Workout/ExercisesList/ExercisesList'
 
 export const EDIT_FORM_DEFAULT_VALUES = ({ exercises }: ExercisesListProps) => {
   return {

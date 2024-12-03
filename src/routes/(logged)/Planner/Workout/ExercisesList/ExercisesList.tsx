@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { WorkoutData } from '../../../../../api/plannerData/handleGetWorkout'
-import { EditWorkout } from '../EditWorkout/EditWorkout'
+import { EditWorkout } from '../../../../../ui/views/EditWorkout/EditWorkout'
 
 export type ExercisesListProps = {
   exercises: WorkoutData['data']
