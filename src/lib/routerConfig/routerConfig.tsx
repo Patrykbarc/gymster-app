@@ -29,6 +29,12 @@ export const ROUTER_CONFIG = [
       {
         path: '/dashboard',
         element: <Dashboard />,
+        children: [
+          {
+            path: ':id',
+            element: <Workout />,
+          },
+        ],
       },
       {
         path: '/workout',

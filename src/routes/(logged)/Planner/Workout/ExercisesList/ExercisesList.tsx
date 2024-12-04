@@ -24,7 +24,7 @@ export function ExercisesList({ exercises }: ExercisesListProps) {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
-    const isEditParamSet = params.get('edit') === 'true'
+    const isEditParamSet = params.get('e') === '1'
     setIsEditSet(isEditParamSet)
   }, [location.search])
 

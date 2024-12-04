@@ -27,7 +27,7 @@ const WorkoutsContainer = styled.div`
   }
 `
 
-export function SavedWorkouts() {
+export function WorkoutsList() {
   const { workouts, status, error, user } = useAppSelector(workoutsSelector)
   const dispatch = useAppDispatch()
 

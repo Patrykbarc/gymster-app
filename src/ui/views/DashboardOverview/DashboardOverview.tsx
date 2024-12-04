@@ -1,11 +1,17 @@
-import { PlannedWorkouts } from './PlannedWorkouts/PlannedWorkouts'
+import styled from 'styled-components'
+import { WorkoutsList } from '../WorkoutsList/WorkoutsList'
 import { TotalProgressOverview } from './TotalProgressOverview/TotalProgressOverview'
+
+const Container = styled.div`
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.lg};
+`
 
 export function DashboardOverview() {
   return (
-    <div>
+    <Container>
       <TotalProgressOverview />
-      <PlannedWorkouts />
-    </div>
+      <WorkoutsList />
+    </Container>
   )
 }

@@ -40,7 +40,10 @@ export function Workout() {
 
   function handleCloseDialog() {
     handleClose()
-    navigate('/workout')
+    const pathSegments = location.pathname.split('/')
+    pathSegments.pop()
+    const newPath = pathSegments.join('/')
+    navigate(newPath)
   }
 
   if (!isDialogVisible) return

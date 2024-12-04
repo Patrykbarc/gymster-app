@@ -26,7 +26,7 @@ export function WorkoutActions({ workoutId }: ActionsProps) {
 
   return (
     <ActionsContainer>
-      <Link to={`${workoutId}?edit=true`}>
+      <Link to={`${workoutId}?e=1`}>
         <Icon>
           <SquarePen />
         </Icon>
