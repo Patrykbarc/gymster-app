@@ -63,11 +63,12 @@ export function EditWorkout({ exercises }: ExercisesListProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form id="workout-form" onSubmit={handleSubmit(onSubmit)}>
       <WorkoutFormBody<SubmitFormWorkout>
         errors={errors}
         control={control}
         register={register}
+        showSaveButton={false}
       />
     </form>
   )

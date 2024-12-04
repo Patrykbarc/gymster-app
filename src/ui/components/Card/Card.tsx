@@ -12,7 +12,7 @@ export const Card = styled.div`
 
   border: 1px solid ${({ theme }) => theme.colors.secondary};
   border-radius: ${({ theme }) => theme.borderRadius.md};
-  padding: ${({ theme }) => theme.spacing.xxl};
+  padding: ${({ theme }) => theme.spacing.xl};
 
   .title {
     font-weight: ${({ theme }) => theme.typography.fontWeights.medium};

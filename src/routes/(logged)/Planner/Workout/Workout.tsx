@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
+import { Button } from '../../../../ui/components/Button/Button'
 import { DialogContent } from '../../../../ui/components/Modals/_shared/DialogContent/DialogContent'
 import { DialogDescription } from '../../../../ui/components/Modals/_shared/DialogContent/DialogHeader/DialogDescription/DialogDescription'
 import { DialogHeader } from '../../../../ui/components/Modals/_shared/DialogContent/DialogHeader/DialogHeader'
@@ -23,12 +24,23 @@ const Container = styled.div`
   padding-block: ${({ theme }) => theme.spacing.xl};
 `
 
+const SaveButtonContainer = styled.div`
+  display: grid;
+  justify-content: end;
+
+  padding-top: ${({ theme }) => theme.spacing.md};
+  border-top: 1px solid ${({ theme }) => theme.colors.light};
+
+  margin-right: ${({ theme }) => theme.spacing.xl};
+  margin-top: ${({ theme }) => theme.spacing.sm};
+`
+
 export function Workout() {
   const { isDialogVisible, portalTarget, handleOpen, handleClose } = useDialog()
   const { id } = useParams()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const { error, selectedWorkout } = useAppSelector(workoutsSelector)
+  const { error, selectedWorkout, status } = useAppSelector(workoutsSelector)
   const data = selectedWorkout?.data
 
   useEffect(() => {
@@ -60,6 +72,12 @@ export function Workout() {
           <Container>
             <ExercisesList exercises={data} />
           </Container>
+
+          <SaveButtonContainer>
+            <Button disabled={status === 'loading'} form="workout-form">
+              Save
+            </Button>
+          </SaveButtonContainer>
         </>
       ) : (
         <p>Workout not found</p>

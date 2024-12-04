@@ -34,9 +34,11 @@ export function ExercisesList({ exercises }: ExercisesListProps) {
 
   return (
     <>
-      {exercises?.exercises.map((e) => (
+      {exercises?.exercises.map((e, index) => (
         <div key={e.id}>
-          <Title>{e.name}</Title>
+          <Title>
+            {index + 1}. {e.name}
+          </Title>
 
           <UlContainer>
             {e.sets.map((s, index) => (

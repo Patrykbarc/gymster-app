@@ -1,8 +1,6 @@
+import { ReactNode } from 'react'
 import { Control, useFieldArray, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
-import { WorkoutsState } from '../../../../../utils/redux/slices/workouts/_types/types'
-import { Button } from '../../../../components/Button/Button'
-import { Spinner } from '../../../../components/Spinner/Spinner'
 import { SubmitFormWorkout } from '../../_types/SubmitFormWorkout'
 import { AddExerciseButton } from './AddExerciseButton/AddExerciseButton'
 import { ExerciseField } from './ExerciseField/ExerciseField'
@@ -11,7 +9,7 @@ import { SetsFields } from './SetsFields/SetsFields'
 export type ExerciseFieldsProps = {
   register: UseFormRegister<SubmitFormWorkout>
   control: Control<SubmitFormWorkout>
-  status?: WorkoutsState['status']
+  children?: ReactNode
 }
 
 export const ExerciseFieldsContainer = styled.div`
@@ -31,7 +29,7 @@ export const ButtonActions = styled.div`
 export function ExerciseFields({
   control,
   register,
-  status,
+  children,
 }: ExerciseFieldsProps) {
   const {
     fields: exerciseFields,
@@ -66,11 +64,7 @@ export function ExerciseFields({
 
       <ButtonActions>
         <AddExerciseButton appendExercise={appendExercise} />
-        {status === 'loading' ? (
-          <Spinner $size="2rem" />
-        ) : (
-          <Button type="submit">Save</Button>
-        )}
+        {children}
       </ButtonActions>
     </div>
   )

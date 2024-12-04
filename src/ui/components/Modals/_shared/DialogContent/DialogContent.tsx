@@ -13,7 +13,6 @@ type DialogContentProps = {
 }
 
 const DialogContainer = styled.div`
-  padding-right: ${({ theme }) => theme.spacing.lg};
   overflow: hidden;
 `
 

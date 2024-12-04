@@ -14,7 +14,7 @@ const StyledDialogBody = styled(motion.create(Card)).attrs(() => ({
   transition: { duration: 0.3, ease: 'easeInOut' },
 }))`
   position: relative;
-  padding-right: ${({ theme }) => theme.spacing.lg};
+
   box-shadow: ${({ theme }) => theme.shadows.lg};
   z-index: ${({ theme }) => theme.zIndex.modal};
 
