@@ -8,7 +8,7 @@ type SidebarContentProps = {
 const SidebarContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.md};
+  flex-grow: 1;
 `
 
 export function SidebarContent({ children }: SidebarContentProps) {

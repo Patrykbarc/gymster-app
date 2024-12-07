@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 import styled from 'styled-components'
 import { Layout } from './routes/Layout'
 import { Loader } from './ui/components/Loader/Loader'
-import { Navigation } from './ui/components/Navigation/Navigation'
+import { Sidebar } from './ui/components/Sidebar/Sidebar'
 import { useSession } from './utils/hooks/useSession'
 import { useSessionListener } from './utils/hooks/useSessionListener'
 
@@ -22,7 +22,7 @@ function App() {
     <>
       <Toaster position="bottom-right" />
       <Layout>
-        <Navigation />
+        <Sidebar />
         <OutletContainer>
           <Outlet />
         </OutletContainer>
