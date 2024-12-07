@@ -8,7 +8,7 @@ type SetFieldProps = {
 }
 
 const Set = styled(Button)`
-  font-weight: ${({ theme }) => theme.typography.fontWeights.semibold};
+  font-weight: ${({ theme }) => theme.typography.weight.semibold};
 `
 
 export function SetField({ isFirstIndex, set }: SetFieldProps) {

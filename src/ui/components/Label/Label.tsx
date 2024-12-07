@@ -8,6 +8,6 @@ type LabelProps = {
 export const Label = styled.label<LabelProps>`
   display: block;
   padding-bottom: ${({ theme }) => theme.spacing.sm};
-  font-weight: ${({ theme }) => theme.typography.fontWeights.medium};
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
   cursor: ${({ $cursor }) => $cursor || 'pointer'};
 `

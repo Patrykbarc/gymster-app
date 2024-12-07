@@ -8,8 +8,8 @@ export type ButtonProps = {
 
 export const Button = styled.button<ButtonProps>`
   padding: ${({ theme }) => theme.spacing.sm};
-
-  font-size: ${({ theme }) => theme.fontSizes.md};
+  font-size: ${({ theme }) => theme.typography.fontSizes.base};
+  line-height: ${({ theme }) => theme.typography.lineHeights.normal};
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius.sm};
   transition: ${({ theme }) => theme.transitions.normal};

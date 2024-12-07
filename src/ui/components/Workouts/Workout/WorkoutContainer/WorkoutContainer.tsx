@@ -10,7 +10,9 @@ export const WorkoutContainer = styled.div`
   transition: background-color ${({ theme }) => theme.transitions.quick};
 
   h3 {
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-size: ${({ theme }) => theme.typography.fontSizes.lg};
+    font-weight: ${({ theme }) => theme.typography.weight.semibold};
+    line-height: ${({ theme }) => theme.typography.lineHeights.normal};
     margin-bottom: ${({ theme }) => theme.spacing.sm};
   }
 

@@ -15,12 +15,12 @@ export const Card = styled.div`
   padding: ${({ theme }) => theme.spacing.xl};
 
   .title {
-    font-weight: ${({ theme }) => theme.typography.fontWeights.medium};
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-weight: ${({ theme }) => theme.typography.weight.medium};
+    font-size: ${({ theme }) => theme.typography.fontSizes.lg};
   }
 
   h3 {
-    font-size: ${({ theme }) => theme.fontSizes.xl};
-    font-weight: bold;
+    font-size: ${({ theme }) => theme.typography.fontSizes.xl};
+    font-weight: ${({ theme }) => theme.typography.weight.bold};
   }
 `

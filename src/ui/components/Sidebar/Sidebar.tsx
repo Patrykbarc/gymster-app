@@ -14,11 +14,11 @@ const SidebarContainer = styled.nav`
   background: ${({ theme }) => theme.colors.gray['700']};
 
   text-transform: capitalize;
-  font-size: ${({ theme }) => theme.fontSizes.lg};
 
   p,
   a {
     color: ${({ theme }) => theme.colors.gray['100']};
+    font-size: ${({ theme }) => theme.typography.fontSizes.lg};
   }
 
   @media (max-width: ${({ theme }) => theme.breakPoints.md}) {
@@ -26,10 +26,10 @@ const SidebarContainer = styled.nav`
   }
 
   // debug
-  div {
+  /* div {
     border: 1px solid tomato;
     padding: ${({ theme }) => theme.spacing.md} 0;
-  }
+  } */
 `
 
 export function Sidebar() {
