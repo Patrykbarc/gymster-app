@@ -1,42 +1,9 @@
 import styled, { css } from 'styled-components'
+import { BUTTON_VARIANT_CONFIG } from './config/button-variant-styles'
 
 export type ButtonProps = {
   $variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'link' | 'outline'
   $noHover?: boolean
-}
-
-const variantStyles = {
-  primary: css`
-    background: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.light};
-  `,
-  secondary: css`
-    background: ${({ theme }) => theme.colors.secondary};
-    color: ${({ theme }) => theme.colors.light};
-  `,
-  success: css`
-    background: ${({ theme }) => theme.colors.success};
-    color: ${({ theme }) => theme.colors.light};
-  `,
-  danger: css`
-    background: ${({ theme }) => theme.colors.danger};
-    color: ${({ theme }) => theme.colors.light};
-  `,
-  link: css`
-    background: none;
-    padding: 0 0.5rem;
-
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.light};
-    }
-  `,
-  outline: css`
-    background: none;
-    border: 1px solid ${({ theme }) => theme.colors.gray};
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.light};
-    }
-  `,
 }
 
 export const Button = styled.button<ButtonProps>`
@@ -53,7 +20,7 @@ export const Button = styled.button<ButtonProps>`
   height: 2.5rem;
   max-width: fit-content;
 
-  ${({ $variant = 'primary' }) => variantStyles[$variant]};
+  ${({ $variant = 'primary' }) => BUTTON_VARIANT_CONFIG[$variant]};
 
   ${({ $noHover }) =>
     $noHover &&
