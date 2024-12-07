@@ -1,66 +1,11 @@
+import { COLORS } from './constants/colors'
+import { TYPOGRAPHY } from './constants/typography'
+
 export type ThemeType = typeof theme
 
 export const theme = {
-  colors: {
-    primary: {
-      50: '#eff6ff',
-      100: '#dbeafe',
-      200: '#bfdbfe',
-      300: '#93c5fd',
-      400: '#60a5fa',
-      500: '#3b82f6', // primary default
-      600: '#2563eb',
-      700: '#1d4ed8',
-      800: '#1e40af',
-      900: '#1e3a8a',
-      950: '#172554',
-    },
-    secondary: '#e3e3e4',
-    muted: '#71717a',
-    gray: {
-      50: '#f9fafb',
-      100: '#f3f4f6',
-      200: '#e5e7eb',
-      300: '#d1d5db',
-      400: '#9ca3af',
-      500: '#6b7280',
-      600: '#4b5563',
-      700: '#374151',
-      800: '#1f2937',
-      900: '#111827',
-      950: '#030712',
-    },
-    white: '#ffffff',
-    success: {
-      50: '#f0fdf4',
-      100: '#dcfce7',
-      200: '#bbf7d0',
-      300: '#86efac',
-      400: '#4ade80',
-      500: '#22c55e', // success default
-      600: '#16a34a',
-      700: '#15803d',
-      800: '#166534',
-      900: '#14532d',
-      950: '#052e16',
-    },
-    danger: {
-      50: '#fff1f2',
-      100: '#ffe4e6',
-      200: '#fecdd3',
-      300: '#fda4af',
-      400: '#fb7185',
-      500: '#f43f5e', // danger default
-      600: '#e11d48',
-      700: '#be123c',
-      800: '#9f1239',
-      900: '#881337',
-      950: '#4c0519',
-    },
-    light: '#f2f2f2',
-    dark: '#343a40',
-    text: '#212529',
-  },
+  colors: { ...COLORS },
+  typography: { ...TYPOGRAPHY },
   fontSizes: {
     xs: '0.75rem',
     sm: '0.875rem',
@@ -107,67 +52,6 @@ export const theme = {
     sticky: 1020,
     modal: 1050,
     tooltip: 1070,
-  },
-  buttons: {
-    primary: {
-      background: '#007bff',
-      color: '#ffffff',
-      border: '1px solid #007bff',
-      padding: '0.5rem 1rem',
-      borderRadius: '0.25rem',
-      transition: '0.3s ease-in-out',
-    },
-    secondary: {
-      background: '#6c757d',
-      color: '#ffffff',
-      border: '1px solid #6c757d',
-      padding: '0.5rem 1rem',
-      borderRadius: '0.25rem',
-      transition: '0.3s ease-in-out',
-    },
-  },
-  typography: {
-    fontWeights: {
-      bold: 700,
-      semibold: 600,
-      medium: 500,
-      regular: 400,
-      thin: 300,
-    },
-    headings: {
-      h1: {
-        fontSize: '2em',
-        fontWeight: 700,
-        // lineHeight: '2.5em',
-      },
-      h2: {
-        fontSize: '1.5em',
-        fontWeight: 600,
-        // lineHeight: '2em',
-      },
-      h3: {
-        fontSize: '1.25em',
-        fontWeight: 500,
-        // lineHeight: '1.75em',
-      },
-      h4: {
-        fontSize: '1.1em',
-        fontWeight: 500,
-        // lineHeight: '1.75em',
-      },
-    },
-    body: {
-      normal: {
-        fontSize: '1em',
-        fontWeight: 400,
-        // lineHeight: '1.5em',
-      },
-      small: {
-        fontSize: '0.875em',
-        fontWeight: 400,
-        // lineHeight: '1.25em',
-      },
-    },
   },
   breakPoints: {
     sm: '640px',
