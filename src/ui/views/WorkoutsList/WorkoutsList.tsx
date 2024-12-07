@@ -23,7 +23,7 @@ const WorkoutsContainer = styled.div`
   padding-right: ${({ theme }) => theme.spacing.md};
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.light};
+    background-color: ${({ theme }) => theme.colors.gray['100']};
   }
 `
 

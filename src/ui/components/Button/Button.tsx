@@ -41,6 +41,6 @@ export const Button = styled.button<ButtonProps>`
     opacity: 0.6;
 
     background: ${({ $variant, theme }) =>
-      $variant === 'outline' && theme.colors.light};
+      $variant === 'outline' && theme.colors.gray['100']};
   }
 `

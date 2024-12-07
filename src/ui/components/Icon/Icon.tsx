@@ -12,7 +12,7 @@ const IconWrapper = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.sm};
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
+    background-color: ${({ theme }) => theme.colors.gray['300']};
   }
   &:disabled {
     cursor: not-allowed;

@@ -6,11 +6,11 @@ export const Card = styled.div`
   flex-grow: 1;
   flex-basis: 0;
 
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.gray['50']};
 
   gap: ${({ theme }) => theme.spacing.lg};
 
-  border: 1px solid ${({ theme }) => theme.colors.secondary};
+  border: 1px solid ${({ theme }) => theme.colors.gray['300']};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   padding: ${({ theme }) => theme.spacing.xl};
 

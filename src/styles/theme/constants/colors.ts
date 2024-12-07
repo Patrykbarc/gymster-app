@@ -13,7 +13,6 @@ export const COLORS = {
     950: '#172554',
   },
   secondary: '#e3e3e4',
-  muted: '#71717a',
   gray: {
     50: '#f9fafb',
     100: '#f3f4f6',
@@ -27,7 +26,6 @@ export const COLORS = {
     900: '#111827',
     950: '#030712',
   },
-  white: '#ffffff',
   success: {
     50: '#f0fdf4',
     100: '#dcfce7',
@@ -54,7 +52,4 @@ export const COLORS = {
     900: '#881337',
     950: '#4c0519',
   },
-  light: '#f2f2f2',
-  dark: '#343a40',
-  text: '#212529',
 }

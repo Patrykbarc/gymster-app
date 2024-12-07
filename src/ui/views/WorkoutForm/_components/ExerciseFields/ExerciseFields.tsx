@@ -16,7 +16,7 @@ export const ExerciseFieldsContainer = styled.div`
   display: grid;
   gap: ${({ theme }) => theme.spacing.md};
   padding-block: ${({ theme }) => theme.spacing.lg};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray['300']};
 `
 
 export const ButtonActions = styled.div`

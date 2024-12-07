@@ -29,7 +29,7 @@ const SaveButtonContainer = styled.div`
   justify-content: end;
 
   padding-top: ${({ theme }) => theme.spacing.md};
-  border-top: 1px solid ${({ theme }) => theme.colors.light};
+  border-top: 1px solid ${({ theme }) => theme.colors.gray['100']};
 
   margin-right: ${({ theme }) => theme.spacing.xl};
   margin-top: ${({ theme }) => theme.spacing.sm};

@@ -15,7 +15,7 @@ export const Input = styled.input<InputProps>`
 
   border: 1px solid;
   border-color: ${({ theme, $isError }) =>
-    $isError ? theme.colors.danger : theme.colors.secondary};
+    $isError ? theme.colors.danger : theme.colors.gray['300']};
 
   transition:
     border-color 0.2s ease,
@@ -28,6 +28,6 @@ export const Input = styled.input<InputProps>`
     outline: 1px solid ${({ theme }) => theme.colors.gray['500']};
   }
   &:disabled {
-    background-color: ${({ theme }) => theme.colors.light};
+    background-color: ${({ theme }) => theme.colors.gray['100']};
   }
 `

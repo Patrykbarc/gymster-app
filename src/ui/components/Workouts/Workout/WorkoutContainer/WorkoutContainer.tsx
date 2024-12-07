@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const WorkoutContainer = styled.div`
   width: 100%;
 
-  border-top: 2px solid ${({ theme }) => theme.colors.light};
+  border-top: 2px solid ${({ theme }) => theme.colors.gray['100']};
   padding-block: ${({ theme }) => theme.spacing.md};
   padding-inline: ${({ theme }) => theme.spacing.lg};
 
