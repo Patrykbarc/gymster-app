@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { WorkoutForm } from '../../views/WorkoutForm/WorkoutForm'
-import { WorkoutsList } from '../../views/WorkoutsList/WorkoutsList'
 
 const Container = styled.div`
   display: grid;
@@ -17,7 +16,6 @@ export function Workouts() {
   return (
     <Container>
       <WorkoutForm />
-      <WorkoutsList />
     </Container>
   )
 }

@@ -27,8 +27,7 @@ const LinkContainer = styled.div`
     flex-direction: column;
     border-left: 1px solid ${({ theme }) => theme.colors.gray['300']};
 
-    padding-left: ${({ theme }) => theme.spacing.sm};
-    margin-left: ${({ theme }) => theme.spacing.sm};
+    margin-left: ${({ theme }) => theme.spacing.md};
   }
 `
 

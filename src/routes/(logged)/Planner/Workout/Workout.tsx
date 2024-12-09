@@ -10,6 +10,7 @@ import { DialogTitle } from '../../../../ui/components/Modals/_shared/DialogCont
 import { useAppDispatch } from '../../../../utils/hooks/useAppDispatch'
 import { useAppSelector } from '../../../../utils/hooks/useAppSelector'
 import { useDialog } from '../../../../utils/hooks/useDialog'
+import { useFindParam } from '../../../../utils/hooks/useFindParam'
 import { workoutsSelector } from '../../../../utils/redux/selectors/workoutsSelector'
 import { fetchWorkouts } from '../../../../utils/redux/slices/workouts/actions/fetchWorkouts'
 import { ExercisesList } from './ExercisesList/ExercisesList'
@@ -42,6 +43,9 @@ export function Workout() {
   const navigate = useNavigate()
   const { error, selectedWorkout, status } = useAppSelector(workoutsSelector)
   const data = selectedWorkout?.data
+  const isEditParamSet = useFindParam({ param: 'e', value: '1' }, [
+    location.search,
+  ])
 
   useEffect(() => {
     if (id) {
@@ -73,11 +77,13 @@ export function Workout() {
             <ExercisesList exercises={data} />
           </Container>
 
-          <SaveButtonContainer>
-            <Button disabled={status === 'loading'} form="workout-form">
-              Save
-            </Button>
-          </SaveButtonContainer>
+          {isEditParamSet && (
+            <SaveButtonContainer>
+              <Button disabled={status === 'loading'} form="workout-form">
+                Save
+              </Button>
+            </SaveButtonContainer>
+          )}
         </>
       ) : (
         <p>Workout not found</p>

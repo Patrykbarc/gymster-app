@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { WorkoutData } from '../../../../../api/plannerData/handleGetWorkout'
 import { EditWorkout } from '../../../../../ui/views/EditWorkout/EditWorkout'
+import { useFindParam } from '../../../../../utils/hooks/useFindParam'
 
 export type ExercisesListProps = {
   exercises: WorkoutData['data']
@@ -19,16 +18,11 @@ export const Title = styled.p`
 `
 
 export function ExercisesList({ exercises }: ExercisesListProps) {
-  const [isEditSet, setIsEditSet] = useState(false)
-  const location = useLocation()
+  const isEditParamSet = useFindParam({ param: 'e', value: '1' }, [
+    location.search,
+  ])
 
-  useEffect(() => {
-    const params = new URLSearchParams(location.search)
-    const isEditParamSet = params.get('e') === '1'
-    setIsEditSet(isEditParamSet)
-  }, [location.search])
-
-  if (isEditSet) {
+  if (isEditParamSet) {
     return exercises && <EditWorkout exercises={exercises} />
   }
 
