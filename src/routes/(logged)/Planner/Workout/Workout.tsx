@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Button } from '../../../../ui/components/Button/Button'
 import { DialogBody } from '../../../../ui/components/Modals/_shared/DialogContent/DialogBody/DialogBody'
 import { DialogContent } from '../../../../ui/components/Modals/_shared/DialogContent/DialogContent'
@@ -17,10 +17,10 @@ import { fetchWorkouts } from '../../../../utils/redux/slices/workouts/actions/f
 import { ExercisesList } from './ExercisesList/ExercisesList'
 
 export function Workout() {
-  const { isDialogVisible, portalTarget, handleOpen, handleClose } = useDialog()
+  const { isDialogVisible, portalTarget, handleOpen, handleCloseDialog } =
+    useDialog()
   const { id } = useParams()
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
   const { error, selectedWorkout, status } = useAppSelector(workoutsSelector)
   const data = selectedWorkout?.data
   const isEditParamSet = useFindParam({ param: 'e', value: '1' }, [
@@ -33,14 +33,6 @@ export function Workout() {
       dispatch(fetchWorkouts({ workoutId: id }))
     }
   }, [id, dispatch])
-
-  function handleCloseDialog() {
-    handleClose()
-    const pathSegments = location.pathname.split('/')
-    pathSegments.pop()
-    const newPath = pathSegments.join('/')
-    navigate(newPath)
-  }
 
   if (!isDialogVisible) return
 

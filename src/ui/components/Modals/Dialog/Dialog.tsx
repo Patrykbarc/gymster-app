@@ -35,7 +35,7 @@ type DialogProps = {
  *
  * @example
  * // Controlled externally
- * <Dialog defaultOpen onClose={handleClose}>
+ * <Dialog defaultOpen onClose={handleCloseDialog}>
  *   <DialogContent>Dialog content here</DialogContent>
  * </Dialog>
  */
@@ -45,14 +45,11 @@ export function Dialog({
   onClose,
   defaultOpen = false,
 }: DialogProps) {
-  const { isDialogVisible, portalTarget, handleOpen, handleClose } = useDialog({
-    defaultOpen,
-  })
-
-  const handleCloseDialog = () => {
-    handleClose()
-    onClose?.()
-  }
+  const { isDialogVisible, portalTarget, handleOpen, handleCloseDialog } =
+    useDialog({
+      defaultOpen,
+      onClose,
+    })
 
   return (
     <>
