@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useNavigate, useParams } from 'react-router-dom'
-import styled from 'styled-components'
 import { Button } from '../../../../ui/components/Button/Button'
+import { DialogBody } from '../../../../ui/components/Modals/_shared/DialogContent/DialogBody/DialogBody'
 import { DialogContent } from '../../../../ui/components/Modals/_shared/DialogContent/DialogContent'
+import { DialogFooter } from '../../../../ui/components/Modals/_shared/DialogContent/DialogFooter/DialogFooter'
 import { DialogDescription } from '../../../../ui/components/Modals/_shared/DialogContent/DialogHeader/DialogDescription/DialogDescription'
 import { DialogHeader } from '../../../../ui/components/Modals/_shared/DialogContent/DialogHeader/DialogHeader'
 import { DialogTitle } from '../../../../ui/components/Modals/_shared/DialogContent/DialogHeader/DialogTitle/DialogTitle'
@@ -14,27 +15,6 @@ import { useFindParam } from '../../../../utils/hooks/useFindParam'
 import { workoutsSelector } from '../../../../utils/redux/selectors/workoutsSelector'
 import { fetchWorkouts } from '../../../../utils/redux/slices/workouts/actions/fetchWorkouts'
 import { ExercisesList } from './ExercisesList/ExercisesList'
-
-const Container = styled.div`
-  display: grid;
-  gap: ${({ theme }) => theme.spacing.md};
-  overflow-y: auto;
-  max-height: 800px;
-
-  padding-right: ${({ theme }) => theme.spacing.lg};
-  padding-block: ${({ theme }) => theme.spacing.xl};
-`
-
-const SaveButtonContainer = styled.div`
-  display: grid;
-  justify-content: end;
-
-  padding-top: ${({ theme }) => theme.spacing.md};
-  border-top: 1px solid ${({ theme }) => theme.colors.gray['100']};
-
-  margin-right: ${({ theme }) => theme.spacing.xl};
-  margin-top: ${({ theme }) => theme.spacing.sm};
-`
 
 export function Workout() {
   const { isDialogVisible, portalTarget, handleOpen, handleClose } = useDialog()
@@ -73,16 +53,16 @@ export function Workout() {
             <DialogTitle>{data?.workout_name}</DialogTitle>
             <DialogDescription>{data?.workout_date}</DialogDescription>
           </DialogHeader>
-          <Container>
+          <DialogBody>
             <ExercisesList exercises={data} />
-          </Container>
+          </DialogBody>
 
           {isEditParamSet && (
-            <SaveButtonContainer>
+            <DialogFooter>
               <Button disabled={status === 'loading'} form="workout-form">
                 Save
               </Button>
-            </SaveButtonContainer>
+            </DialogFooter>
           )}
         </>
       ) : (

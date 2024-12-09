@@ -10,6 +10,10 @@ import { useSessionListener } from './utils/hooks/useSessionListener'
 const OutletContainer = styled.div`
   padding: ${({ theme }) => `calc(${theme.spacing.xxl} * 2)`};
   width: 100%;
+
+  @media (max-width: ${({ theme }) => theme.breakPoints.md}) {
+    padding: ${({ theme }) => theme.spacing.xl};
+  }
 `
 
 function App() {

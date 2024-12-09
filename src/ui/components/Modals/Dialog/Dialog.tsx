@@ -1,50 +1,76 @@
 import { ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { useDialog } from '../../../../utils/hooks/useDialog'
-import { ButtonProps, Button as DialogTrigger } from '../../Button/Button'
+import { Button, ButtonProps } from '../../Button/Button'
 import { DialogContent } from '../_shared/DialogContent/DialogContent'
 
 type DialogProps = {
-  buttonText: string | ReactNode
+  trigger?: {
+    text: string | ReactNode
+    variant?: ButtonProps['$variant']
+    disabled?: boolean
+  }
   children: ReactNode
-  buttonVariant?: ButtonProps['$variant']
-  disabled?: boolean
+  onClose?: () => void
+  defaultOpen?: boolean
 }
 
 /**
- * The `Dialog` component provides a modal dialog that can be opened with a trigger button.
- * It allows for customizable content to be displayed inside the dialog, with an option to close the modal.
+ * Dialog component that provides a modal dialog with customizable content.
+ * It can be triggered by a button or controlled externally.
+ *
  * @example
+ * // With trigger button
  * <Dialog
- *   buttonText="Open Dialog"
- *   buttonVariant="primary"
+ *   trigger={{
+ *     text: "Open Dialog",
+ *     variant: "primary"
+ *   }}
  * >
  *   <DialogHeader>
  *     <DialogTitle>Dialog Title</DialogTitle>
- *     <DialogDescription>Some description inside the dialog.</DialogDescription>
+ *     <DialogDescription>Dialog content here</DialogDescription>
  *   </DialogHeader>
+ * </Dialog>
+ *
+ * @example
+ * // Controlled externally
+ * <Dialog defaultOpen onClose={handleClose}>
+ *   <DialogContent>Dialog content here</DialogContent>
  * </Dialog>
  */
 export function Dialog({
-  buttonText,
+  trigger,
   children,
-  buttonVariant = 'primary',
-  disabled,
+  onClose,
+  defaultOpen = false,
 }: DialogProps) {
-  const { isDialogVisible, portalTarget, handleOpen, handleClose } = useDialog()
+  const { isDialogVisible, portalTarget, handleOpen, handleClose } = useDialog({
+    defaultOpen,
+  })
+
+  const handleCloseDialog = () => {
+    handleClose()
+    onClose?.()
+  }
 
   return (
     <>
-      <DialogTrigger
-        $variant={buttonVariant}
-        disabled={disabled}
-        onClick={handleOpen}
-      >
-        {buttonText}
-      </DialogTrigger>
+      {trigger && (
+        <Button
+          $variant={trigger.variant ?? 'primary'}
+          disabled={trigger.disabled}
+          onClick={handleOpen}
+          type="button"
+        >
+          {trigger.text}
+        </Button>
+      )}
+
       {isDialogVisible &&
+        portalTarget &&
         createPortal(
-          <DialogContent onClose={handleClose}>{children}</DialogContent>,
+          <DialogContent onClose={handleCloseDialog}>{children}</DialogContent>,
           portalTarget
         )}
     </>

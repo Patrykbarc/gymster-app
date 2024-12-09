@@ -2,9 +2,9 @@ import { ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { useDialog } from '../../../../utils/hooks/useDialog'
 import { ButtonProps, Button as DialogTrigger } from '../../Button/Button'
+import { DialogBody } from '../_shared/DialogContent/DialogBody/DialogBody'
 import { DialogContent } from '../_shared/DialogContent/DialogContent'
 import { DialogDescription } from '../_shared/DialogContent/DialogHeader/DialogDescription/DialogDescription'
-import { DialogHeader } from '../_shared/DialogContent/DialogHeader/DialogHeader'
 import { DialogTitle } from '../_shared/DialogContent/DialogHeader/DialogTitle/DialogTitle'
 import { ActionButtons } from './ActionButtons/ActionButtons'
 
@@ -67,11 +67,11 @@ export function Alert({
       {isDialogVisible &&
         createPortal(
           <DialogContent>
-            <DialogHeader>
+            <DialogBody>
               <DialogTitle>{title}</DialogTitle>
               <DialogDescription>{description}</DialogDescription>
-            </DialogHeader>
-            <ActionButtons onAccept={onAccept} onClose={handleClose} />
+              <ActionButtons onAccept={onAccept} onClose={handleClose} />
+            </DialogBody>
           </DialogContent>,
           portalTarget
         )}

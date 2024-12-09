@@ -7,6 +7,10 @@ export type ExercisesListProps = {
   exercises: WorkoutData['data']
 }
 
+const StyledExercisesList = styled.div`
+  overflow-y: hidden;
+`
+
 const UlContainer = styled.ul`
   display: grid;
   gap: ${({ theme }) => theme.spacing.xs};
@@ -27,7 +31,7 @@ export function ExercisesList({ exercises }: ExercisesListProps) {
   }
 
   return (
-    <>
+    <StyledExercisesList>
       {exercises?.exercises.map((e, index) => (
         <div key={e.id}>
           <Title>
@@ -43,6 +47,6 @@ export function ExercisesList({ exercises }: ExercisesListProps) {
           </UlContainer>
         </div>
       ))}
-    </>
+    </StyledExercisesList>
   )
 }
