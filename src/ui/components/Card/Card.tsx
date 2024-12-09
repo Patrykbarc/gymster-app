@@ -6,7 +6,7 @@ export const Card = styled.div`
   flex-grow: 1;
   flex-basis: 0;
 
-  background-color: ${({ theme }) => theme.colors.gray['50']};
+  background-color: ${({ theme }) => theme.colors.gray['100']};
 
   gap: ${({ theme }) => theme.spacing.lg};
 
