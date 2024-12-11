@@ -7,6 +7,7 @@ type Props = {
 }
 
 export const DialogOverlay = styled(motion.div).attrs<Props>(() => ({
+  id: 'dialog-overlay',
   initial: { opacity: 0 },
   animate: { opacity: 1 },
   transition: { duration: 0.2, ease: 'easeInOut' },
