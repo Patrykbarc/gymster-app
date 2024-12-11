@@ -32,8 +32,10 @@ export const BUTTON_VARIANT_CONFIG = {
   link: css`
     background: none;
     padding: 0 0.5rem;
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.gray['100']};
+    border: 1px solid transparent;
+    &:focus,
+    &:focus-within {
+      border: 1px solid ${({ theme }) => theme.colors.gray['600']};
     }
   `,
   outline: css`

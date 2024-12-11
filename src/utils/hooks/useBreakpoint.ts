@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react'
 import { theme } from '../../styles/theme/theme'
 
-const MOBILE_BREAKPOINT = +theme['breakPoints']['md']
-const TABLET_BREAKPOINT = +theme['breakPoints']['lg']
-const DESKTOP_BREAKPOINT = +theme['breakPoints']['xl']
+function getBreakpoint(value: string): number {
+  return +value.split('px')[0]
+}
+
+const MOBILE_BREAKPOINT = getBreakpoint(theme['breakPoints']['md'])
+const TABLET_BREAKPOINT = getBreakpoint(theme['breakPoints']['lg'])
+const DESKTOP_BREAKPOINT = getBreakpoint(theme['breakPoints']['xl'])
 
 export function useBreakpoint() {
   const [breakpoint, setBreakpoint] = useState({

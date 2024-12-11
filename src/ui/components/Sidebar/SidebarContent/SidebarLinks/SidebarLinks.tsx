@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { useAppDispatch } from '../../../../../utils/hooks/useAppDispatch'
+import { useBreakpoint } from '../../../../../utils/hooks/useBreakpoint'
 import { useSegment } from '../../../../../utils/hooks/useSegment'
+import { setIsOpen } from '../../../../../utils/redux/slices/sidebar/sidebarSlice'
 import { isLinkActive } from '../../helpers/isLinkActive'
 import { NAVIGATION_LINKS } from '../../helpers/navigation-links'
 
@@ -8,6 +11,7 @@ const LinkContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.xs};
+  text-wrap: nowrap;
 
   .active {
     background-color: ${({ theme }) => theme.colors.gray['200']};
@@ -33,19 +37,29 @@ const LinkContainer = styled.div`
 
 export function SidebarLinks() {
   const { currentPath } = useSegment()
+  const dispatch = useAppDispatch()
+  const { isMobile } = useBreakpoint()
+
+  function handleLinkClick() {
+    if (isMobile) {
+      dispatch(setIsOpen(false))
+    }
+  }
 
   return NAVIGATION_LINKS.map((link) => (
     <LinkContainer key={link.name}>
       <Link
+        onClick={handleLinkClick}
         className={`link ${isLinkActive(link.href, currentPath) ? 'active' : ''}`}
         to={link.href}
       >
-        {link.icon && <link.icon size={17} />} {link.name}
+        {link.name}
       </Link>
 
       <div className="nested-link">
         {link?.children?.map((child) => (
           <Link
+            onClick={handleLinkClick}
             className={`link ${isLinkActive(child.href, currentPath) ? 'active' : ''}`}
             key={child.name}
             to={child.href}

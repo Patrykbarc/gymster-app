@@ -3,11 +3,14 @@ import { Outlet } from 'react-router-dom'
 import styled from 'styled-components'
 import { Layout } from './routes/Layout'
 import { Loader } from './ui/components/Loader/Loader'
+import { HamburgerMenu } from './ui/components/Sidebar/HamburgerMenu/HamburgerMenu'
 import { Sidebar } from './ui/components/Sidebar/Sidebar'
 import { useSession } from './utils/hooks/useSession'
 import { useSessionListener } from './utils/hooks/useSessionListener'
 
 const OutletContainer = styled.div`
+  display: flex;
+
   padding: ${({ theme }) => `calc(${theme.spacing.xxl} * 2)`};
   width: 100%;
 
@@ -26,6 +29,7 @@ function App() {
     <>
       <Toaster position="bottom-right" />
       <Layout>
+        <HamburgerMenu />
         <Sidebar />
         <OutletContainer>
           <Outlet />
