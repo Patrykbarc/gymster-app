@@ -4,8 +4,8 @@ import { useAppDispatch } from '../../../../../utils/hooks/useAppDispatch'
 import { useBreakpoint } from '../../../../../utils/hooks/useBreakpoint'
 import { useSegment } from '../../../../../utils/hooks/useSegment'
 import { setIsOpen } from '../../../../../utils/redux/slices/sidebar/sidebarSlice'
-import { isLinkActive } from '../../helpers/isLinkActive'
-import { NAVIGATION_LINKS } from '../../helpers/navigation-links'
+import { isLinkActive } from '../../_helpers/isLinkActive'
+import { NAVIGATION_LINKS } from '../../_helpers/navigation-links'
 
 const LinkContainer = styled.div`
   display: flex;

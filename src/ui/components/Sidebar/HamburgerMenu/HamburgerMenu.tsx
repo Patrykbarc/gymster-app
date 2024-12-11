@@ -1,7 +1,12 @@
 import { Menu } from 'lucide-react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { useAppDispatch } from '../../../../utils/hooks/useAppDispatch'
-import { toggleSidebar } from '../../../../utils/redux/slices/sidebar/sidebarSlice'
+import { useBreakpoint } from '../../../../utils/hooks/useBreakpoint'
+import {
+  setIsOpen,
+  toggleSidebar,
+} from '../../../../utils/redux/slices/sidebar/sidebarSlice'
 import { Button } from '../../Button/Button'
 
 const HamburgerMenuContainer = styled.div`
@@ -23,12 +28,21 @@ const HamburgerMenuContainer = styled.div`
 
 export function HamburgerMenu() {
   const dispatch = useAppDispatch()
+  const { isMobile, isDesktop } = useBreakpoint()
+
+  useEffect(() => {
+    if (isDesktop) {
+      dispatch(setIsOpen(true))
+    }
+  }, [isDesktop])
 
   return (
-    <HamburgerMenuContainer>
-      <Button $variant="link" onClick={() => dispatch(toggleSidebar())}>
-        <Menu size={32} className="menu-icon" />
-      </Button>
-    </HamburgerMenuContainer>
+    isMobile && (
+      <HamburgerMenuContainer>
+        <Button $variant="link" onClick={() => dispatch(toggleSidebar())}>
+          <Menu size={32} className="menu-icon" />
+        </Button>
+      </HamburgerMenuContainer>
+    )
   )
 }
