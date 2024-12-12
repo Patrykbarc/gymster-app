@@ -1,15 +1,22 @@
 import { Menu } from 'lucide-react'
 import { useEffect } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { useAppDispatch } from '../../../../utils/hooks/useAppDispatch'
-import { useBreakpoint } from '../../../../utils/hooks/useBreakpoint'
 import {
   setIsOpen,
   toggleSidebar,
 } from '../../../../utils/redux/slices/sidebar/sidebarSlice'
 import { Button } from '../../Button/Button'
+import { useSidebar } from '../_hooks/useSiderbar'
 
-const HamburgerMenuContainer = styled.div`
+type Props = {
+  $isOpen: boolean
+}
+
+const HamburgerMenuContainer = styled.div<Props>`
+  opacity: ${({ $isOpen }) => ($isOpen ? css`0` : css`100`)};
+  transition: opacity 0.3s 0.2s ease-in-out;
+
   position: fixed;
   top: 0;
   right: 0;
@@ -28,7 +35,7 @@ const HamburgerMenuContainer = styled.div`
 
 export function HamburgerMenu() {
   const dispatch = useAppDispatch()
-  const { isMobile, isDesktop } = useBreakpoint()
+  const { isOpen, isMobile, isDesktop } = useSidebar()
 
   useEffect(() => {
     if (isDesktop) {
@@ -38,7 +45,7 @@ export function HamburgerMenu() {
 
   return (
     isMobile && (
-      <HamburgerMenuContainer>
+      <HamburgerMenuContainer $isOpen={isOpen}>
         <Button $variant="link" onClick={() => dispatch(toggleSidebar())}>
           <Menu size={32} className="menu-icon" />
         </Button>

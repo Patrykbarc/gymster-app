@@ -64,7 +64,16 @@ const SidebarContainer = styled.aside<Props>`
 `
 
 export function Sidebar() {
-  const { isOpen, showOverlay, sidebarRef, isMobile } = useSidebar()
+  const {
+    isOpen,
+    isMobile,
+    isDesktop,
+    showOverlay,
+    sidebarRef,
+    transitionState,
+  } = useSidebar()
+
+  const renderNavLinks = isDesktop || transitionState !== 'closed'
 
   return (
     <>
@@ -74,11 +83,10 @@ export function Sidebar() {
         id="sidebar-container"
         $isOpen={isOpen}
         $isMobile={isMobile}
+        data-state={transitionState}
       >
         <SidebarHeader />
-        <SidebarContent>
-          <SidebarLinks />
-        </SidebarContent>
+        <SidebarContent>{renderNavLinks && <SidebarLinks />}</SidebarContent>
         <SidebarFooter />
       </SidebarContainer>
     </>
