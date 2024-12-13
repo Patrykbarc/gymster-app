@@ -10,12 +10,14 @@ export function useOverlayState(
   useEffect(() => {
     if (isDesktop) {
       setShowOverlay(false)
-    } else if (isMobile) {
-      setShowOverlay(isOpen)
-      if (!isOpen) {
-        const timeout = setTimeout(() => setShowOverlay(false), 100)
-        return () => clearTimeout(timeout)
-      }
+      return
+    }
+
+    setShowOverlay(isOpen)
+
+    if (!isOpen) {
+      const timeout = setTimeout(() => setShowOverlay(false), 100)
+      return () => clearTimeout(timeout)
     }
   }, [isMobile, isDesktop, isOpen])
 

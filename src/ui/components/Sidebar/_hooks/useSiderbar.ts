@@ -11,10 +11,10 @@ import { useSidebarTransition } from './useSidebarTransition'
 export type SidebarState = 'open' | 'closed' | 'transitioning'
 
 export function useSidebar() {
+  const sidebarRef = useRef<HTMLDivElement>(null)
   const dispatch = useAppDispatch()
   const { isOpen } = useSelector((state: RootState) => state.sidebar)
   const { isMobile, isDesktop } = useBreakpoint()
-  const sidebarRef = useRef<HTMLDivElement>(null)
   const transitionState = useSidebarTransition(sidebarRef, isOpen)
   const showOverlay = useOverlayState(isMobile, isDesktop, isOpen)
 
@@ -23,6 +23,14 @@ export function useSidebar() {
       dispatch(setIsOpen(false))
     }
   }, [isMobile, dispatch])
+
+  useEffect(() => {
+    if (isMobile && isOpen) {
+      document.body.classList.add('hidden')
+    } else {
+      document.body.classList.remove('hidden')
+    }
+  }, [isMobile, isOpen])
 
   useOutsideClick(sidebarRef, isMobile && isOpen, () => {
     dispatch(setIsOpen(false))
