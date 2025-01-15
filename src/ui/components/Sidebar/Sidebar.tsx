@@ -26,7 +26,7 @@ const SidebarContainer = styled.aside<Props>`
   min-height: 100dvh;
   min-width: ${({ $isOpen }) => ($isOpen ? '320px' : '0')};
   left: ${({ $isOpen }) => ($isOpen ? '0' : '-100%')};
-  padding: ${({ theme }) => theme.spacing.md};
+  padding: 1rem 0.75rem 2rem;
 
   ${({ $isMobile }) =>
     $isMobile

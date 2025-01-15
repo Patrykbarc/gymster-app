@@ -5,8 +5,7 @@ function getBreakpoint(value: string): number {
   return +value.split('px')[0]
 }
 
-const MOBILE_BREAKPOINT = getBreakpoint(theme['breakPoints']['lg'])
-
+const MOBILE_BREAKPOINT = getBreakpoint(theme()['breakPoints']['lg'])
 export function useBreakpoint() {
   const [isMobile, setIsMobile] = useState(false)
 

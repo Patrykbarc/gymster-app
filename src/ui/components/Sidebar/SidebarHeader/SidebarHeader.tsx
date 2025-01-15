@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { ThemeToggle } from '../../ThemeToogle/ThemeToogle'
 
-const SidebarHeaderContainer = styled.p`
+const SidebarHeaderContainer = styled(Link)`
   font-weight: ${({ theme }) => theme.typography.weight.black};
   font-size: ${({ theme }) => theme.typography.fontSizes.lg};
   color: ${({ theme }) => theme.colors.gray['900']};
@@ -12,5 +14,10 @@ const SidebarHeaderContainer = styled.p`
 `
 
 export function SidebarHeader() {
-  return <SidebarHeaderContainer>GymsterApp</SidebarHeaderContainer>
+  return (
+    <SidebarHeaderContainer to="/dashboard">
+      <ThemeToggle />
+      GymsterApp
+    </SidebarHeaderContainer>
+  )
 }

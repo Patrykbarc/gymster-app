@@ -38,7 +38,7 @@ A modern workout tracking application built with React, TypeScript, and Vite. Tr
 ### UI/UX Improvements
 
 - [ ] Add i18n support
-- [ ] Add dark mode support
+- ✅ Add dark mode support
 - [ ] Implement skeleton loading states
 - [ ] Add proper form validation feedback
 - [ ] Improve mobile responsiveness
