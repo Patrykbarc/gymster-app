@@ -5,6 +5,7 @@ import { Layout } from './routes/Layout'
 import { Loader } from './ui/components/Loader/Loader'
 import { HamburgerMenu } from './ui/components/Sidebar/HamburgerMenu/HamburgerMenu'
 import { Sidebar } from './ui/components/Sidebar/Sidebar'
+import { ThemeToggle } from './ui/components/ThemeToogle/ThemeToogle'
 import { useSession } from './utils/hooks/useSession'
 import { useSessionListener } from './utils/hooks/useSessionListener'
 
@@ -33,6 +34,7 @@ function App() {
         <Sidebar />
         <OutletContainer>
           <Outlet />
+          <ThemeToggle />
         </OutletContainer>
       </Layout>
     </>

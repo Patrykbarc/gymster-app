@@ -55,7 +55,7 @@ const SidebarContainer = styled.aside<Props>`
   }
 
   a:hover {
-    color: ${({ theme }) => theme.colors.gray['600']};
+    color: ${({ theme }) => theme.colors.gray['400']};
   }
 
   @media (min-width: ${({ theme }) => theme.breakPoints.md}) {

@@ -3,18 +3,29 @@ import styled from 'styled-components'
 import { useTheme } from '../../../utils/hooks/useTheme'
 import { Button } from '../Button/Button'
 
-const IconWrapper = styled.div`
-  color: ${({ theme }) => theme.colors.gray['600']};
+const Wrapper = styled.div`
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: ${({ theme }) => theme.spacing.sm};
+
+  .icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `
 
 export function ThemeToggle() {
   const { isDarkMode, toggleTheme } = useTheme()
 
   return (
-    <Button $variant="link" onClick={toggleTheme}>
-      <IconWrapper>
-        {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
-      </IconWrapper>
-    </Button>
+    <Wrapper>
+      <Button $variant="link" onClick={toggleTheme}>
+        <div className="icon-wrapper">
+          {isDarkMode ? <Sun size={32} /> : <Moon size={24} />}
+        </div>
+      </Button>
+    </Wrapper>
   )
 }

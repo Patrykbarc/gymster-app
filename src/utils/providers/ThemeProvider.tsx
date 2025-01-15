@@ -3,6 +3,7 @@ import {
   ThemeProvider as StyledThemeProvider,
   createGlobalStyle,
 } from 'styled-components'
+import { DefaultTheme } from 'styled-components/dist/types'
 import { RESET } from '../../styles/theme/constants/reset'
 import { theme } from '../../styles/theme/theme'
 import { ThemeContext } from './contexts/ThemeContext'
@@ -13,6 +14,15 @@ const GlobalStyle = createGlobalStyle`
   a:visited {
     color: ${({ theme }) => theme.colors.gray['600']};
     text-decoration: none;
+  }
+
+  body {
+    color: ${({ theme }) => theme.colors.gray['600']};
+    background-color: ${({ theme }) => theme.colors.gray['50']};
+  }
+
+  button {
+    color: inherit; 
   }
 `
 
@@ -33,7 +43,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
-      <StyledThemeProvider theme={themeConfig}>
+      <StyledThemeProvider theme={themeConfig as DefaultTheme}>
         <GlobalStyle />
         {children}
       </StyledThemeProvider>
