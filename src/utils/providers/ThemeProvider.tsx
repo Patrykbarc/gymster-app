@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     color: ${({ theme }) => theme.colors.gray['600']};
     background-color: ${({ theme }) => theme.colors.gray['50']};
+    min-height: 100dvh;
   }
 
   button {
