@@ -1,6 +1,6 @@
 /* eslint-disable */
 import 'styled-components'
-import { theme } from './theme/theme'
+import { theme } from './theme'
 
 type Theme = ReturnType<typeof theme>
 

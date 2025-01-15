@@ -3,6 +3,5 @@ import { useCheckSession } from '../../../utils/hooks/useCheckSession'
 
 export function Login() {
   useCheckSession()
-
   return <LoginForm />
 }
