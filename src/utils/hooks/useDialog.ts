@@ -34,10 +34,19 @@ export function useDialog({
       }
     }
 
+    function handleClick(event: MouseEvent) {
+      const target = event.target as HTMLElement
+      if (target.id === 'dialog-overlay') {
+        handleCloseDialog()
+      }
+    }
+
     window.addEventListener('keydown', handleEscape)
+    window.addEventListener('click', handleClick)
 
     return () => {
       window.removeEventListener('keydown', handleEscape)
+      window.removeEventListener('click', handleClick)
     }
   }, [isDialogVisible])
 
