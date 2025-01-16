@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import loadingReducer from './slices/loading/loadingSlice'
+import overviewReducer from './slices/overview/overviewSlice'
 import sessionReducer from './slices/session/sessionSlice'
 import sidebarReducer from './slices/sidebar/sidebarSlice'
 import workoutsReducer from './slices/workouts/workoutsSlice'
@@ -10,6 +11,7 @@ export const store = configureStore({
     workouts: workoutsReducer,
     loading: loadingReducer,
     sidebar: sidebarReducer,
+    overview: overviewReducer,
   },
 })
 

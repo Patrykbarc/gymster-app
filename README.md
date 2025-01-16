@@ -47,6 +47,7 @@ A modern workout tracking application built with React, TypeScript, and Vite. Tr
 - [ ] Implement proper loading indicators
 - [✅] Add proper toast notifications
 - [ ] Improve accessibility (ARIA labels, keyboard navigation)
+- [ ] Add kilograms or pounds conversion
 
 ### Documentation
 
