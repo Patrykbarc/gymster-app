@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { fetchOverview } from './actions/fetchOverview'
 
-type OverviewState = {
+export type CardOverview = {
   overview: {
     title: string
     icon: string
@@ -10,7 +10,7 @@ type OverviewState = {
   }[]
 }
 
-const initialState: OverviewState = {
+const initialState: CardOverview = {
   overview: [],
 }
 
@@ -18,7 +18,7 @@ const overviewSlice = createSlice({
   name: 'overview',
   initialState,
   reducers: {
-    setOverview: (state, action: PayloadAction<OverviewState>) => {
+    setOverview: (state, action: PayloadAction<CardOverview>) => {
       state.overview = action.payload.overview
     },
   },

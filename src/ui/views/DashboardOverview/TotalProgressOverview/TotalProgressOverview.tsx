@@ -48,11 +48,10 @@ export function TotalProgressOverview() {
         <MemoizedStatisticsCard
           key={item.title}
           title={item.title}
-          icon={item.icon}
           statistic={item.statistic.toString()}
-        >
-          {item.text}
-        </MemoizedStatisticsCard>
+          description={item.text}
+          icon={item.icon}
+        />
       ))}
     </TotalProgressOverviewContainer>
   )
