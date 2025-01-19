@@ -6,12 +6,13 @@ import { useAppSelector } from '../../../utils/hooks/useAppSelector'
 import { workoutsSelector } from '../../../utils/redux/selectors/workoutsSelector'
 import { fetchWorkouts } from '../../../utils/redux/slices/workouts/actions/fetchWorkouts'
 import { Card } from '../../components/Card/Card'
+import { FormTitle } from '../../components/Form/FormTitle/FormTitle'
 import { Workout } from '../../components/Workouts/Workout/Workout'
 import { WorkoutActions } from '../../components/Workouts/Workout/WorkoutActions/WorkoutActions'
 
 const WorkoutsCard = styled(Card)`
   display: grid;
-  gap: ${({ theme }) => theme.spacing.lg};
+  gap: 0;
   height: fit-content;
 `
 
@@ -33,7 +34,7 @@ export function WorkoutsList() {
 
   useEffect(() => {
     dispatch(fetchWorkouts({}))
-  }, [dispatch])
+  }, [])
 
   if (status === 'failed') return <p>Error: {error}</p>
   if (!user) return
@@ -41,15 +42,17 @@ export function WorkoutsList() {
   return (
     workouts.length > 0 && (
       <WorkoutsCard>
-        <h1 className="title">Your workouts</h1>
-        {workouts.map((workout) => (
-          <WorkoutsContainer key={workout.id}>
-            <Link to={workout.id}>
-              <Workout {...workout} />
-            </Link>
-            <WorkoutActions workoutId={workout.id} />
-          </WorkoutsContainer>
-        ))}
+        <FormTitle>Saved workouts</FormTitle>
+        <div>
+          {workouts.map((workout) => (
+            <WorkoutsContainer key={workout.id}>
+              <Link to={workout.id}>
+                <Workout {...workout} />
+              </Link>
+              <WorkoutActions workoutId={workout.id} />
+            </WorkoutsContainer>
+          ))}
+        </div>
       </WorkoutsCard>
     )
   )

@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../../utils/hooks/useAppDispatch'
 import { useSession } from '../../../utils/hooks/useSession'
 import { Card } from '../../components/Card/Card'
 import { FormError } from '../../components/Form/FormError/FormError'
+import { FormTitle } from '../../components/Form/FormTitle/FormTitle'
 import { WorkoutFormBody } from './_components/WorkoutFormBody/WorkoutFormBody'
 import { WORKOUT_FORM_SCHEMA } from './_constants/workout-form-schema'
 import { handleFormReset } from './_helpers/handleFormReset'
@@ -14,7 +15,7 @@ import { SubmitFormWorkout } from './_types/SubmitFormWorkout'
 
 const FormContainer = styled.form`
   display: grid;
-  gap: ${({ theme }) => theme.spacing.xl};
+  gap: 0;
 `
 
 export function WorkoutForm() {
@@ -58,6 +59,7 @@ export function WorkoutForm() {
   return (
     <Card>
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
+        <FormTitle>Workout</FormTitle>
         <WorkoutFormBody<SubmitFormWorkout>
           errors={errors}
           control={control}

@@ -1,4 +1,4 @@
-import { Dumbbell, HomeIcon } from 'lucide-react'
+import { Dumbbell, HomeIcon, UserIcon } from 'lucide-react'
 import { ElementType } from 'react'
 
 type NavigationLink = {
@@ -24,5 +24,10 @@ export const NAVIGATION_LINKS: NavigationLink[] = [
         href: '/saved-workouts',
       },
     ],
+  },
+  {
+    name: 'profile',
+    href: '/profile',
+    icon: UserIcon,
   },
 ]
