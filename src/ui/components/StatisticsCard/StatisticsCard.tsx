@@ -27,6 +27,8 @@ const CardContainer = styled(Card)`
 
     .title {
       font-size: ${({ theme }) => theme.typography.fontSizes.xl};
+      font-weight: ${({ theme }) => theme.typography.weight.semibold};
+      color: ${({ theme }) => theme.colors.gray[600]};
     }
     .description {
       font-size: ${({ theme }) => theme.typography.fontSizes.base};
@@ -35,7 +37,7 @@ const CardContainer = styled(Card)`
     .statistic {
       font-size: ${({ theme }) => theme.typography.fontSizes['4xl']};
       margin-top: ${({ theme }) => theme.spacing.sm};
-      font-weight: ${({ theme }) => theme.typography.weight.bold};
+      font-weight: ${({ theme }) => theme.typography.weight.black};
     }
   }
 

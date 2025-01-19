@@ -23,10 +23,10 @@ export const BUTTON_VARIANT_CONFIG = {
     }
   `,
   danger: css`
-    background: ${({ theme }) => theme.colors.danger['500']};
-    color: ${({ theme }) => theme.colors.gray['100']};
+    background: ${({ theme }) => theme.colors.danger['400']};
+    color: ${({ theme }) => theme.colors.gray['600']};
     &:hover {
-      background-color: ${({ theme }) => theme.colors.danger['600']};
+      background-color: ${({ theme }) => theme.colors.danger['500']};
     }
   `,
   link: css`
