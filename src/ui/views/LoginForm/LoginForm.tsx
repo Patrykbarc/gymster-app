@@ -30,7 +30,7 @@ export function LoginForm() {
   })
 
   async function submitForm({ email, password }: FormData) {
-    handleLogin({ loginData: { email, password }, setError, router })
+    await handleLogin({ loginData: { email, password }, setError, router })
   }
 
   return (

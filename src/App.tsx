@@ -1,7 +1,7 @@
 import { Toaster } from 'react-hot-toast'
 import { Outlet } from 'react-router-dom'
 import styled from 'styled-components'
-import { Layout } from './routes/Layout'
+import { Layout } from './ui/components/Layout/Layout'
 import { Loader } from './ui/components/Loader/Loader'
 import { HamburgerMenu } from './ui/components/Sidebar/HamburgerMenu/HamburgerMenu'
 import { Sidebar } from './ui/components/Sidebar/Sidebar'
