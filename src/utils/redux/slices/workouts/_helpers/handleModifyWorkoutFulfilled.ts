@@ -1,12 +1,29 @@
+import { PayloadAction } from '@reduxjs/toolkit'
 import { setSuccess } from './reducersHelper'
 
 import { WorkoutsState } from '../_types/types'
 
+type ModifyWorkoutPayload = {
+  created_at: string
+  id: string
+  user_id: string
+  workout_date: string
+  workout_name: string
+}[]
+
 export const handleModifyWorkoutFulfilled = (
   state: WorkoutsState,
-  action: any
+  action: PayloadAction<
+    ModifyWorkoutPayload,
+    string,
+    { arg: { workoutId?: string } }
+  >
 ) => {
   setSuccess(state)
+
+  state.workouts = action.payload
+  state.status = 'succeeded'
+  state.error = null
 
   if (action.payload && Array.isArray(action.payload)) {
     const updatedWorkout = {

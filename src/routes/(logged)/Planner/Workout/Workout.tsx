@@ -47,10 +47,10 @@ export function Workout() {
         <>
           <DialogHeader>
             <Flex $align="start" $justify="space-between">
-              <div>
+              <Flex $direction="column" $gap="0.5rem">
                 <DialogTitle>{data?.workout_name}</DialogTitle>
                 <DialogDescription>{data?.workout_date}</DialogDescription>
-              </div>
+              </Flex>
               <Switch
                 $label="Edit"
                 $checked={isEditParamSet}

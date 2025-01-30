@@ -7,8 +7,10 @@ export const fetchOverview = createAsyncThunk(
     try {
       const data = await handleGetOverview()
       return data
-    } catch (error: any) {
-      return rejectWithValue(error.message || 'Unknown error occurred')
+    } catch (error: unknown) {
+      return rejectWithValue(
+        (error as Error).message || 'Unknown error occurred'
+      )
     }
   }
 )
