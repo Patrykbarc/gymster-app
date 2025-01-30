@@ -32,7 +32,7 @@ const DialogContainer = styled(motion.div).attrs(() => ({
 
   width: 100%;
   max-width: 600px;
-  max-height: 90vh;
+  max-height: 90dvh;
   margin: ${({ theme }) => theme.spacing.xl};
 
   display: flex;

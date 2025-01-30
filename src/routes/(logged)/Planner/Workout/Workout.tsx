@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from '../../../../ui/components/Button/Button'
+import { Flex } from '../../../../ui/components/Flex/Flex'
 import { DialogBody } from '../../../../ui/components/Modals/_shared/DialogContent/DialogBody/DialogBody'
 import { DialogContent } from '../../../../ui/components/Modals/_shared/DialogContent/DialogContent'
 import { DialogFooter } from '../../../../ui/components/Modals/_shared/DialogContent/DialogFooter/DialogFooter'
@@ -45,17 +46,21 @@ export function Workout() {
       {data ? (
         <>
           <DialogHeader>
-            <DialogTitle>{data?.workout_name}</DialogTitle>
-            <DialogDescription>{data?.workout_date}</DialogDescription>
-            <Switch
-              $label="Edit"
-              $checked={isEditParamSet}
-              onChange={() => {
-                navigate(`?e=${isEditParamSet ? 0 : 1}`, {
-                  replace: true,
-                })
-              }}
-            />
+            <Flex $align="start" $justify="space-between">
+              <div>
+                <DialogTitle>{data?.workout_name}</DialogTitle>
+                <DialogDescription>{data?.workout_date}</DialogDescription>
+              </div>
+              <Switch
+                $label="Edit"
+                $checked={isEditParamSet}
+                onChange={() => {
+                  navigate(`?e=${isEditParamSet ? 0 : 1}`, {
+                    replace: true,
+                  })
+                }}
+              />
+            </Flex>
           </DialogHeader>
           <DialogBody>
             <ExercisesList exercises={data} />

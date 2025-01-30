@@ -6,6 +6,7 @@ type CloseDialogProps = {
 }
 
 const StyledCloseDialog = styled.div`
+  display: none;
   position: absolute;
   right: 0;
   top: 0;
@@ -13,6 +14,10 @@ const StyledCloseDialog = styled.div`
   scale: 90%;
   font-size: 2em;
   cursor: pointer;
+
+  @media (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    display: block;
+  }
 `
 
 export function CloseDialog({ onClose }: CloseDialogProps) {

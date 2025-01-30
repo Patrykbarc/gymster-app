@@ -31,11 +31,14 @@ const Container = styled.div<{ $direction: SwitchProps['$direction'] }>`
   align-items: center;
   flex-direction: ${({ $direction }) => $direction || 'row'};
   gap: ${({ theme }) => theme.spacing.sm};
-  margin-top: ${({ theme }) => theme.spacing.sm};
   cursor: pointer;
 
   .label {
     cursor: inherit;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    margin-right: 2.2rem;
   }
 `
 

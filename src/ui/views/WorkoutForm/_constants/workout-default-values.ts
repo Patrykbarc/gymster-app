@@ -5,7 +5,7 @@ export const WORKOUT_DEFAULT_VALUES = {
   defaultValues: {
     info: {
       workout: '',
-      workoutDate: '',
+      workoutDate: new Date().toISOString().split('T')[0],
     },
     exercises: [
       {
