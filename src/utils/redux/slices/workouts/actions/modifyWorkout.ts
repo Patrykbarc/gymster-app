@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { handleAddWorkout } from '../../../../../api/plannerData/handleAddWorkout/handleAddWorkout'
 import { handleEditWorkout } from '../../../../../api/plannerData/handleEditWorkout/handleEditWorkout'
 import { FormWorkout } from '../../../../../ui/views/WorkoutForm/_helpers/submitPlannerForm'
+import { fetchOverview } from '../../overview/actions/fetchOverview'
 import { throwError } from './_helper/throwError'
 
 type ModifyWorkoutArgs = {
@@ -13,7 +14,7 @@ export const modifyWorkout = createAsyncThunk(
   'workouts/modifyWorkout',
   async (
     { workoutId, workoutData }: ModifyWorkoutArgs,
-    { rejectWithValue }
+    { rejectWithValue, dispatch }
   ) => {
     try {
       const result = workoutId
@@ -23,6 +24,8 @@ export const modifyWorkout = createAsyncThunk(
       if (result.error) {
         throwError(result.error)
       }
+
+      dispatch(fetchOverview())
 
       return result.data
     } catch (error: unknown) {

@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid'
 import { supabase } from '../supabase'
 
 export async function handleGetOverview() {
@@ -25,18 +26,21 @@ export async function handleGetOverview() {
 
   return [
     {
+      id: uuidv4(),
       title: 'Total Workouts',
       icon: '💪',
       statistic: totalWorkouts,
       text: 'Since you started',
     },
     {
+      id: uuidv4(),
       title: 'Active Days',
       icon: '📅',
       statistic: activeDays,
       text: 'This month',
     },
     {
+      id: uuidv4(),
       title: 'Personal Records',
       icon: '🏆',
       statistic: personalRecord,

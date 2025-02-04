@@ -1,10 +1,5 @@
-import { memo, useEffect } from 'react'
-import { createSelector } from 'reselect'
 import styled from 'styled-components'
-import { useAppDispatch } from '../../../../utils/hooks/useAppDispatch'
 import { useAppSelector } from '../../../../utils/hooks/useAppSelector'
-import { fetchOverview } from '../../../../utils/redux/slices/overview/actions/fetchOverview'
-import { RootState } from '../../../../utils/redux/store'
 import { StatisticsCard } from '../../../components/StatisticsCard/StatisticsCard'
 
 const TotalProgressOverviewContainer = styled.section`
@@ -22,31 +17,22 @@ const TotalProgressOverviewContainer = styled.section`
   }
 `
 
-const selectOverviewAndWorkouts = createSelector(
-  [
-    (state: RootState) => state.overview.overview,
-    (state: RootState) => state.workouts.status,
-  ],
-  (overview, workoutsStatus) => ({ overview, workoutsStatus })
-)
-
-const MemoizedStatisticsCard = memo(StatisticsCard)
-
 export function TotalProgressOverview() {
-  const dispatch = useAppDispatch()
-  const { overview, workoutsStatus } = useAppSelector(selectOverviewAndWorkouts)
+  const { overview, status } = useAppSelector((state) => state.overview)
 
-  useEffect(() => {
-    if (workoutsStatus === 'succeeded') {
-      dispatch(fetchOverview())
-    }
-  }, [workoutsStatus, dispatch])
+  if (status === 'loading') {
+    return (
+      <TotalProgressOverviewContainer>
+        Loading...
+      </TotalProgressOverviewContainer>
+    )
+  }
 
   return (
     <TotalProgressOverviewContainer>
       {overview.map((item) => (
-        <MemoizedStatisticsCard
-          key={item.title}
+        <StatisticsCard
+          key={item.id}
           title={item.title}
           statistic={item.statistic.toString()}
           description={item.text}

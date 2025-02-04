@@ -11,7 +11,7 @@ type CardProps = {
   icon?: Overview['icon']
 }
 
-const CardContainer = styled(Card)`
+export const CardContainer = styled(Card)`
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr;
